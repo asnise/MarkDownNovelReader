@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dorea's Princess Journey - Reader</title>
+  <!-- Google Fonts for beautiful minimalist typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Sarabun:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <!-- Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <style>
+    :root {
+      --font-sans: 'Inter', 'Sarabun', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Lora', 'Sarabun', 'Georgia', serif;
+      
+      /* Light theme values */
+      --bg-color: #faf9f6;
+      --text-color: #1a1917;
+      --border-color: #e6e4df;
+      --sidebar-bg: #f3f1eb;
+      --sidebar-hover: #e7e5df;
+      --header-bg: rgba(250, 249, 246, 0.85);
+      --accent-color: #1a1917;
+      --accent-rgb: 26, 25, 23;
+      --text-muted: #706e6a;
+      
+      --font-size-base: 18px;
+    }
+
+    [data-theme="dark"] {
+      /* Dark theme values (Minimalist black/charcoal) */
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --border-color: #242424;
+      --sidebar-bg: #181818;
+      --sidebar-hover: #262626;
+      --header-bg: rgba(18, 18, 18, 0.85);
+      --accent-color: #ffffff;
+      --accent-rgb: 255, 255, 255;
+      --text-muted: #8e8e8e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-serif);
+      font-size: var(--font-size-base);
+      line-height: 1.8;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.use-sans {
+      font-family: var(--font-sans);
+      line-height: 1.7;
+    }
+
+    /* Scroll Progress Bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent-color);
+      z-index: 1020;
+      transition: width 0.1s ease;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background-color: var(--header-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      z-index: 1000;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Minimalist Buttons */
+    .btn {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+      padding: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, opacity 0.2s ease;
+      outline: none;
+      opacity: 0.8;
+    }
+
+    .btn:hover {
+      background-color: var(--sidebar-hover);
+      opacity: 1;
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .chapter-title-header {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 0.85rem;
+      max-width: 220px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      opacity: 0.7;
+    }
+
+    /* Sidebar Menu */
+    #sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: -280px;
+      width: 280px;
+      background-color: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
+      z-index: 1010;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    #sidebar.open {
+      transform: translateX(280px);
+    }
+
+    .sidebar-header {
+      height: 56px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+    }
+
+    .sidebar-title {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    .sidebar-content {
+      overflow-y: auto;
+      flex-grow: 1;
+      padding: 12px 0;
+    }
+
+    .chapter-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .chapter-item {
+      padding: 10px 16px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+      border-left: 2px solid transparent;
+      opacity: 0.85;
+      line-height: 1.4;
+    }
+
+    .chapter-item:hover {
+      background-color: var(--sidebar-hover);
+      opacity: 1;
+    }
+
+    .chapter-item.active {
+      border-left-color: var(--accent-color);
+      font-weight: 500;
+      background-color: var(--sidebar-hover);
+      opacity: 1;
+    }
+
+    /* Overlay */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.25);
+      z-index: 1005;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    [data-theme="dark"] #overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    #overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Main Content Container */
+    .reader-container {
+      max-width: 660px;
+      margin: 92px auto 60px auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .reader-content {
+      margin-bottom: 50px;
+    }
+
+    /* Markdown elements styling */
+    .reader-content p {
+      margin-top: 0;
+      margin-bottom: 1.4em;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .reader-content h1, 
+    .reader-content h2, 
+    .reader-content h3 {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      line-height: 1.3;
+      margin-top: 1.8em;
+      margin-bottom: 0.8em;
+      color: var(--text-color);
+    }
+
+    .reader-content h1 {
+      font-size: 1.6rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+    }
+
+    .reader-content h2 { font-size: 1.3rem; }
+    .reader-content h3 { font-size: 1.15rem; }
+
+    .reader-content hr {
+      border: none;
+      border-top: 1px solid var(--border-color);
+      margin: 2.5em 0;
+    }
+
+    .reader-content blockquote {
+      margin: 1.5em 0;
+      padding-left: 16px;
+      border-left: 2px solid var(--border-color);
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Bottom Navigation */
+    .nav-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding: 24px 0 48px 0;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .nav-link {
+      font-family: var(--font-sans);
+      text-decoration: none;
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      padding: 10px 16px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-link:hover {
+      background-color: var(--sidebar-hover);
+    }
+
+    .nav-link.disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .nav-link svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* CORS / File Protocol Alert */
+    .fallback-card {
+      padding: 24px;
+      border: 1px dashed var(--border-color);
+      border-radius: 6px;
+      font-family: var(--font-sans);
+      text-align: center;
+      background-color: var(--sidebar-bg);
+    }
+
+    .fallback-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .fallback-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .code-instruction {
+      background-color: var(--bg-color);
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      border: 1px solid var(--border-color);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    /* Utility labels */
+    .theme-icon-light, .theme-icon-dark {
+      display: none;
+    }
+
+    [data-theme="light"] .theme-icon-dark {
+      display: block;
+    }
+
+    [data-theme="dark"] .theme-icon-light {
+      display: block;
+    }
+
+    /* Skeleton Loading */
+    .skeleton {
+      animation: skeleton-loading 1.2s infinite ease-in-out;
+      background-color: var(--sidebar-bg);
+      border-radius: 4px;
+      height: 1.2em;
+      margin-bottom: 1em;
+    }
+    
+    .skeleton.title {
+      height: 2em;
+      width: 60%;
+      margin-bottom: 2em;
+    }
+
+    .skeleton.p {
+      width: 100%;
+    }
+
+    .skeleton.p-last {
+      width: 80%;
+    }
+
+    @keyframes skeleton-loading {
+      0% { opacity: 0.6; }
+      50% { opacity: 0.3; }
+      100% { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <button class="btn" id="menu-btn" title="สารบัญ (Menu)">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      <div class="chapter-title-header" id="header-title">กำลังโหลด...</div>
+    </div>
+    
+    <div class="header-right">
+      <!-- Font Family Switcher -->
+      <button class="btn" id="font-btn" title="เปลี่ยนฟอนต์ Serif / Sans">
+        <svg viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+      </button>
+      
+      <!-- Font Size Outlines -->
+      <button class="btn" id="size-dec-btn" title="ลดขนาดตัวอักษร">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </button>
+      <button class="btn" id="size-inc-btn" title="เพิ่มขนาดตัวอักษร">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </button>
+
+      <!-- Theme Switcher -->
+      <button class="btn" id="theme-btn" title="เปลี่ยนธีม">
+        <!-- Sun icon (shown in dark theme) -->
+        <svg class="theme-icon-light" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <!-- Moon icon (shown in light theme) -->
+        <svg class="theme-icon-dark" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar menu -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">ตอนทั้งหมด</span>
+      <button class="btn" id="close-sidebar-btn" title="ปิด">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="sidebar-content">
+      <ul class="chapter-list" id="chapter-list-ul">
+        <!-- Chapters loaded dynamically -->
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Sidebar Overlay Overlay -->
+  <div id="overlay"></div>
+
+  <!-- Main Reader Container -->
+  <main class="reader-container">
+    <article class="reader-content" id="reader-content">
+      <!-- Loading Skeleton initially -->
+      <div id="skeleton-loader">
+        <div class="skeleton title"></div>
+        <div class="skeleton p"></div>
+        <div class="skeleton p"></div>
+        <div class="skeleton p"></div>
+        <div class="skeleton p-last"></div>
+        <br>
+        <div class="skeleton p"></div>
+        <div class="skeleton p"></div>
+        <div class="skeleton p-last"></div>
+      </div>
+    </article>
+
+    <!-- Bottom navigation -->
+    <footer class="nav-footer">
+      <a href="#" class="nav-link disabled" id="prev-chapter-btn">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        ตอนก่อนหน้า
+      </a>
+      <a href="#" class="nav-link disabled" id="next-chapter-btn">
+        ตอนต่อไป
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+    </footer>
+  </main>
+
+  <script>
+    // Configurable state
+    const STATE = {
+      theme: 'light',
+      font: 'serif',
+      fontSize: 18,
+      chapters: [],
+      currentChapterIndex: 0
+    };
+
+    // Hardcoded fallback list of chapters if chapters.json fails to load (e.g. running on file:// protocol)
+    const FALLBACK_CHAPTERS = [
+      { "file": "Chapter_00_The_Cradle_of_Dorea.md", "title": "ตอนที่ 0: ของขวัญจากฟากฟ้า และคำสัญญาอันแสนอบอุ่น" },
+      { "file": "Chapter_01_The_Ash_of_Draconia.md", "title": "ตอนที่ 1: วันที่ท้องฟ้าถล่ม และอ้อมกอดสุดท้าย" },
+      { "file": "Chapter_02_The_Origin_of_Tar.md", "title": "ตอนที่ 2: รอยแผลแห่งเอเธลการ์ด และคุณหมอผู้อ่อนโยน" },
+      { "file": "Chapter_03_The_Cold_Embrace.md", "title": "ตอนที่ 3: แขนสีเงินกลางป่าลึก และอ้อมกอดของคนแปลกหน้า" },
+      { "file": "Chapter_04_The_Doctors_Suture.md", "title": "ตอนที่ 4: คืนพายุโหม และเส้นทางสู่บ้าน" },
+      { "file": "Chapter_05_The_Tense_Distance_and_Shivered_Trust.md", "title": "ตอนที่ 5: ระยะห่างและเศษเสี้ยวความระแวง" },
+      { "file": "Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md", "title": "ตอนที่ 6: ตัวอักษรดวงดาว กับภาษาที่เชื่อมใจ" },
+      { "file": "Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md", "title": "ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต" }
+    ];
+
+    // Configure Marked
+    if (window.marked) {
+      marked.use({
+        breaks: true, // Treat single newlines as line breaks (web novel format)
+        gfm: true
+      });
+    }
+
+    // Elements
+    const elements = {
+      html: document.documentElement,
+      body: document.body,
+      progressBar: document.getElementById('progress-bar'),
+      menuBtn: document.getElementById('menu-btn'),
+      themeBtn: document.getElementById('theme-btn'),
+      fontBtn: document.getElementById('font-btn'),
+      sizeDecBtn: document.getElementById('size-dec-btn'),
+      sizeIncBtn: document.getElementById('size-inc-btn'),
+      sidebar: document.getElementById('sidebar'),
+      closeSidebarBtn: document.getElementById('close-sidebar-btn'),
+      overlay: document.getElementById('overlay'),
+      chapterListUl: document.getElementById('chapter-list-ul'),
+      readerContent: document.getElementById('reader-content'),
+      headerTitle: document.getElementById('header-title'),
+      prevBtn: document.getElementById('prev-chapter-btn'),
+      nextBtn: document.getElementById('next-chapter-btn'),
+      skeleton: document.getElementById('skeleton-loader').cloneNode(true)
+    };
+
+    // Initialize UI settings from localStorage
+    function initSettings() {
+      // 1. Theme
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      STATE.theme = savedTheme;
+      elements.html.setAttribute('data-theme', savedTheme);
+
+      // 2. Font family
+      const savedFont = localStorage.getItem('font') || 'serif';
+      STATE.font = savedFont;
+      if (savedFont === 'sans') {
+        elements.body.classList.add('use-sans');
+      } else {
+        elements.body.classList.remove('use-sans');
+      }
+
+      // 3. Font size
+      const savedFontSize = parseInt(localStorage.getItem('fontSize')) || 18;
+      STATE.fontSize = savedFontSize;
+      elements.body.style.setProperty('--font-size-base', `${savedFontSize}px`);
+
+      // 4. Initial chapter index
+      const savedIndex = parseInt(localStorage.getItem('chapterIndex')) || 0;
+      STATE.currentChapterIndex = savedIndex;
+    }
+
+    // Toggle Theme
+    function toggleTheme() {
+      const newTheme = STATE.theme === 'light' ? 'dark' : 'light';
+      STATE.theme = newTheme;
+      elements.html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+
+    // Toggle Font Family
+    function toggleFont() {
+      const newFont = STATE.font === 'serif' ? 'sans' : 'serif';
+      STATE.font = newFont;
+      if (newFont === 'sans') {
+        elements.body.classList.add('use-sans');
+      } else {
+        elements.body.classList.remove('use-sans');
+      }
+      localStorage.setItem('font', newFont);
+    }
+
+    // Modify Font Size
+    function changeFontSize(direction) {
+      let newSize = STATE.fontSize + direction;
+      // Boundaries
+      if (newSize < 14) newSize = 14;
+      if (newSize > 28) newSize = 28;
+      
+      STATE.fontSize = newSize;
+      elements.body.style.setProperty('--font-size-base', `${newSize}px`);
+      localStorage.setItem('fontSize', newSize);
+    }
+
+    // Sidebar Toggles
+    function toggleSidebar(open) {
+      if (open) {
+        elements.sidebar.classList.add('open');
+        elements.overlay.classList.add('open');
+      } else {
+        elements.sidebar.classList.remove('open');
+        elements.overlay.classList.remove('open');
+      }
+    }
+
+    // Load Chapters List
+    async function loadChaptersList() {
+      try {
+        const response = await fetch('data/chapters.json');
+        if (!response.ok) throw new Error('CORS or file not found');
+        STATE.chapters = await response.json();
+      } catch (err) {
+        console.warn('Could not fetch data/chapters.json, falling back to local list.', err);
+        STATE.chapters = FALLBACK_CHAPTERS;
+      }
+      renderChapterList();
+    }
+
+    // Render Chapters in Sidebar
+    function renderChapterList() {
+      elements.chapterListUl.innerHTML = '';
+      STATE.chapters.forEach((chapter, index) => {
+        const li = document.createElement('li');
+        li.className = 'chapter-item';
+        if (index === STATE.currentChapterIndex) {
+          li.classList.add('active');
+        }
+        
+        // Trim titles for UI
+        let cleanTitle = chapter.title.split('(')[0].trim();
+        li.textContent = cleanTitle;
+        li.addEventListener('click', () => {
+          selectChapter(index);
+          toggleSidebar(false);
+        });
+        elements.chapterListUl.appendChild(li);
+      });
+    }
+
+    // Select and load chapter
+    function selectChapter(index) {
+      if (index < 0 || index >= STATE.chapters.length) return;
+      STATE.currentChapterIndex = index;
+      localStorage.setItem('chapterIndex', index);
+      
+      // Update sidebar active state
+      const items = elements.chapterListUl.querySelectorAll('.chapter-item');
+      items.forEach((item, idx) => {
+        if (idx === index) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+
+      loadChapterContent(STATE.chapters[index]);
+    }
+
+    // Fetch and render markdown file content
+    async function loadChapterContent(chapter) {
+      // Display loader skeleton
+      elements.readerContent.innerHTML = '';
+      elements.readerContent.appendChild(elements.skeleton);
+      elements.headerTitle.textContent = chapter.title.split('(')[0].trim();
+      window.scrollTo(0, 0);
+
+      // Configure Next/Prev buttons
+      if (STATE.currentChapterIndex > 0) {
+        elements.prevBtn.classList.remove('disabled');
+      } else {
+        elements.prevBtn.classList.add('disabled');
+      }
+
+      if (STATE.currentChapterIndex < STATE.chapters.length - 1) {
+        elements.nextBtn.classList.remove('disabled');
+      } else {
+        elements.nextBtn.classList.add('disabled');
+      }
+
+      try {
+        const path = `data/${chapter.file}`;
+        const response = await fetch(path);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to load ${chapter.file}`);
+        }
+        
+        const markdownText = await response.text();
+        
+        if (window.marked) {
+          elements.readerContent.innerHTML = marked.parse(markdownText);
+        } else {
+          // simple parser fallback if marked fails
+          elements.readerContent.innerHTML = `<h1>${chapter.title}</h1><p>${markdownText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>`;
+        }
+      } catch (err) {
+        console.error('Error loading chapter markdown:', err);
+        showFallbackMessage(chapter);
+      }
+      
+      // Reset scroll position to top
+      updateScrollProgress();
+    }
+
+    // Show beautiful local environment fallback message (CORS block or missing files)
+    function showFallbackMessage(chapter) {
+      const isFileProtocol = window.location.protocol === 'file:';
+      
+      let helpHtml = '';
+      if (isFileProtocol) {
+        helpHtml = `
+          <div class="fallback-card">
+            <div class="fallback-title">เปิดอ่านผ่านระบบ Local Server เพื่อแสดงผลเนื้อหา</div>
+            <div class="fallback-desc">
+              บราวเซอร์ของคุณบล็อกการดึงไฟล์จำลอง (.md) ด้วยระบบความปลอดภัย CORS เนื่องจากการเปิดไฟล์ตรง ๆ (file://)<br>
+              โปรดเปิดอ่านโดยใช้ Local Server เช่น Extension Live Server ใน VS Code หรือรันคำสั่งด้านล่างนี้ในโฟลเดอร์นี้:
+            </div>
+            <div class="code-instruction">python -m http.server 8000</div>
+            <div class="fallback-desc">จากนั้นเข้าสู่ลิงก์ <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></div>
+          </div>
+        `;
+      } else {
+        helpHtml = `
+          <div class="fallback-card">
+            <div class="fallback-title">ไม่สามารถดาวน์โหลดไฟล์บทประพันธ์ได้</div>
+            <div class="fallback-desc">
+              ไม่พบไฟล์ <code>data/${chapter.file}</code> ในโฟลเดอร์หรือบราวเซอร์ไม่ได้รับอนุญาตให้ดึงข้อมูล<br>
+              โปรดตรวจสอบว่าได้คัดลอกไฟล์ Markdown ทั้งหมดเข้าไว้ในโฟลเดอร์ <code>MarkDownNovelReader/data/</code> แล้ว
+            </div>
+          </div>
+        `;
+      }
+      elements.readerContent.innerHTML = helpHtml;
+    }
+
+    // Scroll Progress bar logic
+    function updateScrollProgress() {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPos = window.scrollY;
+      if (docHeight > 0) {
+        const percentage = (scrollPos / docHeight) * 100;
+        elements.progressBar.style.width = `${percentage}%`;
+      } else {
+        elements.progressBar.style.width = '0%';
+      }
+    }
+
+    // Event Listeners
+    elements.menuBtn.addEventListener('click', () => toggleSidebar(true));
+    elements.closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
+    elements.overlay.addEventListener('click', () => toggleSidebar(false));
+    elements.themeBtn.addEventListener('click', toggleTheme);
+    elements.fontBtn.addEventListener('click', toggleFont);
+    elements.sizeDecBtn.addEventListener('click', () => changeFontSize(-1));
+    elements.sizeIncBtn.addEventListener('click', () => changeFontSize(1));
+
+    elements.prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (STATE.currentChapterIndex > 0) {
+        selectChapter(STATE.currentChapterIndex - 1);
+      }
+    });
+
+    elements.nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (STATE.currentChapterIndex < STATE.chapters.length - 1) {
+        selectChapter(STATE.currentChapterIndex + 1);
+      }
+    });
+
+    window.addEventListener('scroll', updateScrollProgress);
+    window.addEventListener('resize', updateScrollProgress);
+
+    // Initial load
+    (async function init() {
+      initSettings();
+      await loadChaptersList();
+      selectChapter(STATE.currentChapterIndex);
+    })();
+  </script>
+</body>
+</html>
