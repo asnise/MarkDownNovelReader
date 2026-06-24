@@ -259,9 +259,20 @@
     /* Markdown elements styling */
     .reader-content p {
       margin-top: 0;
-      margin-bottom: 1.4em;
+      margin-bottom: 1.5em;
       text-align: justify;
-      text-justify: inter-word;
+      text-justify: inter-character;
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+
+    body.align-left .reader-content p {
+      text-align: left;
+      text-justify: auto;
+    }
+
+    body.indent-enabled .reader-content p {
+      text-indent: 2.5em;
     }
 
     .reader-content h1, 
@@ -452,6 +463,16 @@
         <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       </button>
 
+      <!-- Paragraph Indentation Toggle -->
+      <button class="btn" id="indent-btn" title="ย่อหน้าบรรทัดแรก (Toggle Indentation)">
+        <svg viewBox="0 0 24 24"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="4" y1="18" x2="21" y2="18"></line><polyline points="4 6 7 9 4 12"></polyline></svg>
+      </button>
+
+      <!-- Alignment Toggle -->
+      <button class="btn" id="align-btn" title="สลับการจัดตำแหน่ง Left / Justified">
+        <svg viewBox="0 0 24 24"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
+      </button>
+
       <!-- Theme Switcher -->
       <button class="btn" id="theme-btn" title="เปลี่ยนธีม">
         <!-- Sun icon (shown in dark theme) -->
@@ -516,6 +537,8 @@
       theme: 'light',
       font: 'serif',
       fontSize: 18,
+      align: 'justify', // 'left' or 'justify'
+      indent: true,     // true or false
       chapters: [],
       currentChapterIndex: 0
     };
@@ -550,6 +573,8 @@
       fontBtn: document.getElementById('font-btn'),
       sizeDecBtn: document.getElementById('size-dec-btn'),
       sizeIncBtn: document.getElementById('size-inc-btn'),
+      indentBtn: document.getElementById('indent-btn'),
+      alignBtn: document.getElementById('align-btn'),
       sidebar: document.getElementById('sidebar'),
       closeSidebarBtn: document.getElementById('close-sidebar-btn'),
       overlay: document.getElementById('overlay'),
@@ -582,7 +607,25 @@
       STATE.fontSize = savedFontSize;
       elements.body.style.setProperty('--font-size-base', `${savedFontSize}px`);
 
-      // 4. Initial chapter index
+      // 4. Text alignment
+      const savedAlign = localStorage.getItem('align') || 'justify';
+      STATE.align = savedAlign;
+      if (savedAlign === 'left') {
+        elements.body.classList.add('align-left');
+      } else {
+        elements.body.classList.remove('align-left');
+      }
+
+      // 5. Paragraph indentation
+      const savedIndent = localStorage.getItem('indent') !== 'false'; // default true
+      STATE.indent = savedIndent;
+      if (savedIndent) {
+        elements.body.classList.add('indent-enabled');
+      } else {
+        elements.body.classList.remove('indent-enabled');
+      }
+
+      // 6. Initial chapter index
       const savedIndex = parseInt(localStorage.getItem('chapterIndex')) || 0;
       STATE.currentChapterIndex = savedIndex;
     }
@@ -617,6 +660,30 @@
       STATE.fontSize = newSize;
       elements.body.style.setProperty('--font-size-base', `${newSize}px`);
       localStorage.setItem('fontSize', newSize);
+    }
+
+    // Toggle Text Alignment
+    function toggleAlign() {
+      const newAlign = STATE.align === 'justify' ? 'left' : 'justify';
+      STATE.align = newAlign;
+      if (newAlign === 'left') {
+        elements.body.classList.add('align-left');
+      } else {
+        elements.body.classList.remove('align-left');
+      }
+      localStorage.setItem('align', newAlign);
+    }
+
+    // Toggle Paragraph Indentation
+    function toggleIndent() {
+      const newIndent = !STATE.indent;
+      STATE.indent = newIndent;
+      if (newIndent) {
+        elements.body.classList.add('indent-enabled');
+      } else {
+        elements.body.classList.remove('indent-enabled');
+      }
+      localStorage.setItem('indent', newIndent);
     }
 
     // Sidebar Toggles
@@ -683,6 +750,82 @@
       loadChapterContent(STATE.chapters[index]);
     }
 
+    // Preprocess markdown to remove emojis and fix headers/dividers dynamically
+    function preprocessMarkdown(text) {
+      if (!text) return '';
+      
+      // Remove emojis (non-BMP characters above U+FFFF)
+      let cleanText = text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
+      
+      const lines = cleanText.split('\n');
+      let firstNonEmpty = true;
+      
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim();
+        if (!line) continue;
+        
+        if (firstNonEmpty) {
+          if (!line.startsWith('#')) {
+            lines[i] = '# ' + line;
+          }
+          firstNonEmpty = false;
+          continue;
+        }
+        
+        // Convert custom headings to standard markdown
+        if (line.startsWith('✦')) {
+          lines[i] = '## ' + line.substring(1).trim();
+        } else if (line.startsWith('🌿')) {
+          lines[i] = '### ' + line.substring(1).trim();
+        } else if (/^(วัย|อายุ)\s*\d+/.test(line) && line.length < 120 && !line.startsWith('#')) {
+          lines[i] = '### ' + line;
+        } else if (line === '---') {
+          lines[i] = '\n---\n';
+        }
+      }
+      
+      return lines.join('\n');
+    }
+
+    // Advanced Thai word segmenter using Intl.Segmenter
+    function applyThaiWordBreaks(element) {
+      if (!window.Intl || !window.Intl.Segmenter) {
+        console.warn('Intl.Segmenter is not supported. Falling back to native browser word breaks.');
+        return;
+      }
+      try {
+        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        
+        function walk(node) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.nodeValue;
+            if (/[\u0e00-\u0e7f]/.test(text)) {
+              const segments = segmenter.segment(text);
+              let result = '';
+              for (const segment of segments) {
+                result += segment.segment;
+                if (segment.isWordLike) {
+                  result += '\u200B'; // Insert Zero-Width Space
+                }
+              }
+              node.nodeValue = result;
+            }
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            // Skip non-reading elements
+            if (node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE' && node.tagName !== 'TEXTAREA') {
+              for (let child = node.firstChild; child; child = child.nextSibling) {
+                walk(child);
+              }
+            }
+          }
+        }
+        
+        walk(element);
+      } catch (e) {
+        console.error('Error segmenting Thai words:', e);
+      }
+    }
+
     // Fetch and render markdown file content
     async function loadChapterContent(chapter) {
       // Display loader skeleton
@@ -712,7 +855,10 @@
           throw new Error(`Failed to load ${chapter.file}`);
         }
         
-        const markdownText = await response.text();
+        let markdownText = await response.text();
+        
+        // Preprocess markdown
+        markdownText = preprocessMarkdown(markdownText);
         
         if (window.marked) {
           elements.readerContent.innerHTML = marked.parse(markdownText);
@@ -720,6 +866,10 @@
           // simple parser fallback if marked fails
           elements.readerContent.innerHTML = `<h1>${chapter.title}</h1><p>${markdownText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>`;
         }
+        
+        // Apply beautiful Thai word wrapping
+        applyThaiWordBreaks(elements.readerContent);
+        
       } catch (err) {
         console.error('Error loading chapter markdown:', err);
         showFallbackMessage(chapter);
@@ -780,6 +930,8 @@
     elements.fontBtn.addEventListener('click', toggleFont);
     elements.sizeDecBtn.addEventListener('click', () => changeFontSize(-1));
     elements.sizeIncBtn.addEventListener('click', () => changeFontSize(1));
+    elements.alignBtn.addEventListener('click', toggleAlign);
+    elements.indentBtn.addEventListener('click', toggleIndent);
 
     elements.prevBtn.addEventListener('click', (e) => {
       e.preventDefault();
