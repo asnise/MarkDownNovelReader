@@ -99,12 +99,21 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     .header-right {
       display: flex;
       align-items: center;
       gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .header-right::-webkit-scrollbar {
+      display: none;
     }
 
     /* Minimalist Buttons */
@@ -121,6 +130,7 @@
       transition: background-color 0.2s ease, opacity 0.2s ease;
       outline: none;
       opacity: 0.8;
+      flex-shrink: 0;
     }
 
     .btn:hover {
@@ -432,6 +442,18 @@
       0% { opacity: 0.6; }
       50% { opacity: 0.3; }
       100% { opacity: 0.6; }
+    }
+
+    @media (max-width: 480px) {
+      .chapter-title-header {
+        max-width: 100px;
+      }
+      .header-left {
+        gap: 6px;
+      }
+      header {
+        padding: 0 8px;
+      }
     }
   </style>
 </head>
