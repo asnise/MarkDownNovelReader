@@ -30,5 +30,33 @@
   {
     "file": "Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md",
     "title": "ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต (The Bound Hearts and Five Years' Dawn)"
+  },
+  {
+    "file": "World_Setting.md",
+    "title": "[Lore] ข้อมูลโลกและภูมิศาสตร์ (World Setting & Geography)"
+  },
+  {
+    "file": "Technology_Evolution.md",
+    "title": "[Lore] วิวัฒนาการทางเทคโนโลยี (Technology & Energy Evolution)"
+  },
+  {
+    "file": "Species_Aeran.md",
+    "title": "[Lore] เผ่าพันธุ์เอร่า (Species: Aeran)"
+  },
+  {
+    "file": "Species_Automata.md",
+    "title": "[Lore] เผ่าพันธุ์ออโตมาตา (Species: Automata)"
+  },
+  {
+    "file": "Species_Beastkin.md",
+    "title": "[Lore] เผ่าพันธุ์บีสต์คิน (Species: Beastkin)"
+  },
+  {
+    "file": "Species_Dragonoid.md",
+    "title": "[Lore] เผ่าพันธุ์ดราโกนอยด์ (Species: Dragonoid)"
+  },
+  {
+    "file": "Species_Sylvan.md",
+    "title": "[Lore] เผ่าพันธุ์ซิลวาน (Species: Sylvan)"
   }
 ]

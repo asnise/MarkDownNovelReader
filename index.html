@@ -444,6 +444,374 @@
       100% { opacity: 0.6; }
     }
 
+    /* Comment Selection Menu */
+    #selection-menu {
+      position: absolute;
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 4px 8px;
+      display: flex;
+      gap: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 1002;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(5px) scale(0.95);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    #selection-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .selection-menu-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      transition: background-color 0.2s;
+    }
+    .selection-menu-btn:hover {
+      background-color: var(--sidebar-hover);
+    }
+    .selection-menu-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+    .selection-menu-btn.btn-praise {
+      color: #10b981;
+    }
+    .selection-menu-btn.btn-suggest {
+      color: #f59e0b;
+    }
+
+    /* Comment Highlights */
+    .comment-highlight {
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.2s;
+    }
+    .comment-highlight.status-praise {
+      background-color: rgba(16, 185, 129, 0.15);
+      border-bottom: 2px dotted #10b981;
+    }
+    .comment-highlight.status-suggest {
+      background-color: rgba(245, 158, 11, 0.15);
+      border-bottom: 2px dotted #f59e0b;
+    }
+    .comment-highlight:hover {
+      background-color: rgba(16, 185, 129, 0.25);
+    }
+    .comment-highlight.status-suggest:hover {
+      background-color: rgba(245, 158, 11, 0.25);
+    }
+
+    /* Floating Comment Tooltip */
+    #comment-tooltip {
+      position: absolute;
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 1003;
+      max-width: 280px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      font-family: var(--font-sans);
+    }
+    #comment-tooltip.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .tooltip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+    .tooltip-header.praise {
+      color: #10b981;
+    }
+    .tooltip-header.suggest {
+      color: #f59e0b;
+    }
+    .tooltip-time {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Right-Side Comment Sidebar */
+    #comment-sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: -300px;
+      width: 300px;
+      background-color: var(--sidebar-bg);
+      border-left: 1px solid var(--border-color);
+      z-index: 1010;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    #comment-sidebar.open {
+      transform: translateX(-300px);
+    }
+    .comment-sidebar-header {
+      height: 56px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+    }
+    .comment-sidebar-title {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+    .comment-sidebar-actions {
+      display: flex;
+      gap: 4px;
+    }
+    .comment-sidebar-content {
+      overflow-y: auto;
+      flex-grow: 1;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .comment-card {
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .comment-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .comment-card-quote {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-left: 2px solid var(--border-color);
+      padding-left: 8px;
+      margin: 0;
+      font-style: italic;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+    .comment-card-quote:hover {
+      color: var(--text-color);
+    }
+    .comment-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .comment-card-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+    .comment-card-badge.praise {
+      background-color: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+    }
+    .comment-card-badge.suggest {
+      background-color: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+    }
+    .comment-card-text {
+      line-height: 1.5;
+      word-break: break-word;
+      color: var(--text-color);
+    }
+    .comment-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+    }
+    .comment-card-time {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .comment-card-btns {
+      display: flex;
+      gap: 6px;
+    }
+    .comment-card-btn {
+      background: none;
+      border: none;
+      padding: 2px;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .comment-card-btn:hover {
+      color: var(--text-color);
+    }
+    .comment-card-btn.delete:hover {
+      color: #ef4444;
+    }
+    .comment-card-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+    .empty-comments {
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 40px;
+      font-size: 0.85rem;
+    }
+
+    /* Comment Modal Form */
+    #comment-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1020;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    #comment-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 450px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      transform: translateY(20px);
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    #comment-modal.open .modal-content {
+      transform: translateY(0);
+    }
+    .modal-title {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .modal-title.praise {
+      color: #10b981;
+    }
+    .modal-title.suggest {
+      color: #f59e0b;
+    }
+    .modal-quote {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-left: 2px solid var(--border-color);
+      padding-left: 10px;
+      margin: 0;
+      font-style: italic;
+      max-height: 80px;
+      overflow-y: auto;
+    }
+    .modal-textarea {
+      width: 100%;
+      height: 100px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--sidebar-bg);
+      color: var(--text-color);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      padding: 10px;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .modal-textarea:focus {
+      border-color: var(--accent-color);
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .modal-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s, opacity 0.2s;
+    }
+    .modal-btn.cancel {
+      background-color: var(--sidebar-bg);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+    .modal-btn.cancel:hover {
+      background-color: var(--sidebar-hover);
+    }
+    .modal-btn.save {
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+    }
+    .modal-btn.save:hover {
+      opacity: 0.9;
+    }
+
     @media (max-width: 480px) {
       .chapter-title-header {
         display: none;
@@ -493,6 +861,12 @@
       <!-- Alignment Toggle -->
       <button class="btn" id="align-btn" title="สลับการจัดตำแหน่ง Left / Justified">
         <svg viewBox="0 0 24 24"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
+      </button>
+
+      <!-- Comments Sidebar Toggle -->
+      <button class="btn" id="comment-sidebar-btn" title="ความคิดเห็น (Comments)" style="position: relative;">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span id="comment-count-badge" style="position: absolute; top: 2px; right: 2px; background-color: #ef4444; color: white; font-size: 0.6rem; font-weight: bold; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; display: none;">0</span>
       </button>
 
       <!-- Theme Switcher -->
@@ -553,6 +927,50 @@
     </footer>
   </main>
 
+  <!-- Floating Selection Menu -->
+  <div id="selection-menu">
+    <button class="selection-menu-btn btn-praise" id="sel-btn-praise" title="ชื่นชม (Praise)">
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"></path></svg>
+    </button>
+    <button class="selection-menu-btn btn-suggest" id="sel-btn-suggest" title="เสนอแนะ/แก้ไข (Suggest)">
+      <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+    </button>
+  </div>
+
+  <!-- Floating Comment Tooltip -->
+  <div id="comment-tooltip"></div>
+
+  <!-- Comment Input Modal -->
+  <div id="comment-modal">
+    <div class="modal-content">
+      <h3 class="modal-title" id="comment-modal-title">แสดงความคิดเห็น</h3>
+      <p class="modal-quote" id="comment-modal-quote"></p>
+      <textarea class="modal-textarea" id="comment-modal-textarea" placeholder="พิมพ์ความคิดเห็นของคุณที่นี่..."></textarea>
+      <div class="modal-footer">
+        <button class="modal-btn cancel" id="comment-modal-cancel">ยกเลิก</button>
+        <button class="modal-btn save" id="comment-modal-save">บันทึก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side Comment Sidebar -->
+  <nav id="comment-sidebar">
+    <div class="comment-sidebar-header">
+      <span class="comment-sidebar-title">ความคิดเห็น</span>
+      <div class="comment-sidebar-actions">
+        <button class="btn" id="comment-export-btn" title="ดาวน์โหลดคอมเมนต์ (JSON)">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+        </button>
+        <button class="btn" id="close-comment-sidebar-btn" title="ปิด">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+    <div class="comment-sidebar-content" id="comment-sidebar-list">
+      <!-- Loaded dynamically -->
+    </div>
+  </nav>
+
   <script>
     // Configurable state
     const STATE = {
@@ -567,14 +985,21 @@
 
     // Hardcoded fallback list of chapters if chapters.json fails to load (e.g. running on file:// protocol)
     const FALLBACK_CHAPTERS = [
-      { "file": "Chapter_00_The_Cradle_of_Dorea.md", "title": "ตอนที่ 0: ของขวัญจากฟากฟ้า และคำสัญญาอันแสนอบอุ่น" },
-      { "file": "Chapter_01_The_Ash_of_Draconia.md", "title": "ตอนที่ 1: วันที่ท้องฟ้าถล่ม และอ้อมกอดสุดท้าย" },
-      { "file": "Chapter_02_The_Origin_of_Tar.md", "title": "ตอนที่ 2: รอยแผลแห่งเอเธลการ์ด และคุณหมอผู้อ่อนโยน" },
-      { "file": "Chapter_03_The_Cold_Embrace.md", "title": "ตอนที่ 3: แขนสีเงินกลางป่าลึก และอ้อมกอดของคนแปลกหน้า" },
-      { "file": "Chapter_04_The_Doctors_Suture.md", "title": "ตอนที่ 4: คืนพายุโหม และเส้นทางสู่บ้าน" },
-      { "file": "Chapter_05_The_Tense_Distance_and_Shivered_Trust.md", "title": "ตอนที่ 5: ระยะห่างและเศษเสี้ยวความระแวง" },
-      { "file": "Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md", "title": "ตอนที่ 6: ตัวอักษรดวงดาว กับภาษาที่เชื่อมใจ" },
-      { "file": "Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md", "title": "ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต" }
+      { "file": "Chapter_00_The_Cradle_of_Dorea.md", "title": "ตอนที่ 0: ของขวัญจากฟากฟ้า และคำสัญญาอันแสนอบอุ่น (The Cradle of Dorea)" },
+      { "file": "Chapter_01_The_Ash_of_Draconia.md", "title": "ตอนที่ 1: วันที่ท้องฟ้าถล่ม และอ้อมกอดสุดท้าย (The Ash of Draconia)" },
+      { "file": "Chapter_02_The_Origin_of_Tar.md", "title": "ตอนที่ 2: รอยแผลแห่งเอเธลการ์ด และคุณหมอผู้อ่อนโยน (The Origin of Thar)" },
+      { "file": "Chapter_03_The_Cold_Embrace.md", "title": "ตอนที่ 3: แขนสีเงินกลางป่าลึก และอ้อมกอดของคนแปลกหน้า (The Cold Embrace)" },
+      { "file": "Chapter_04_The_Doctors_Suture.md", "title": "ตอนที่ 4: คืนพายุโหม และเส้นทางสู่บ้าน (The Doctor's Suture - Journey)" },
+      { "file": "Chapter_05_The_Tense_Distance_and_Shivered_Trust.md", "title": "ตอนที่ 5: ระยะห่างและเศษเสี้ยวความระแวง (The Tense Distance and Shivered Trust)" },
+      { "file": "Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md", "title": "ตอนที่ 6: ตัวอักษรดวงดาว กับภาษาที่เชื่อมใจ (The Silent Pages and the Starry Letters)" },
+      { "file": "Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md", "title": "ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต (The Bound Hearts and Five Years' Dawn)" },
+      { "file": "World_Setting.md", "title": "[Lore] ข้อมูลโลกและภูมิศาสตร์ (World Setting & Geography)" },
+      { "file": "Technology_Evolution.md", "title": "[Lore] วิวัฒนาการทางเทคโนโลยี (Technology & Energy Evolution)" },
+      { "file": "Species_Aeran.md", "title": "[Lore] เผ่าพันธุ์เอร่า (Species: Aeran)" },
+      { "file": "Species_Automata.md", "title": "[Lore] เผ่าพันธุ์ออโตมาตา (Species: Automata)" },
+      { "file": "Species_Beastkin.md", "title": "[Lore] เผ่าพันธุ์บีสต์คิน (Species: Beastkin)" },
+      { "file": "Species_Dragonoid.md", "title": "[Lore] เผ่าพันธุ์ดราโกนอยด์ (Species: Dragonoid)" },
+      { "file": "Species_Sylvan.md", "title": "[Lore] เผ่าพันธุ์ซิลวาน (Species: Sylvan)" }
     ];
 
     // Configure Marked
@@ -889,6 +1314,9 @@
           elements.readerContent.innerHTML = `<h1>${chapter.title}</h1><p>${markdownText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>`;
         }
         
+        // Dynamic Comment highlights insertion
+        renderCommentsForCurrentChapter();
+        
         // Apply beautiful Thai word wrapping
         applyThaiWordBreaks(elements.readerContent);
         
@@ -969,12 +1397,570 @@
       }
     });
 
-    window.addEventListener('scroll', updateScrollProgress);
-    window.addEventListener('resize', updateScrollProgress);
+    // -------------------------------------------------------------
+    // Selection-Based Commenting System
+    // -------------------------------------------------------------
+    // Global Comments State
+    let commentsDb = [];
+
+    function initComments() {
+      try {
+        const saved = localStorage.getItem('novel_reader_comments');
+        if (saved) {
+          commentsDb = JSON.parse(saved);
+        }
+      } catch (e) {
+        console.error('Failed to load comments from local storage', e);
+        commentsDb = [];
+      }
+      updateCommentBadge();
+      setupCommentEventListeners();
+    }
+
+    function saveCommentsToStorage() {
+      try {
+        localStorage.setItem('novel_reader_comments', JSON.stringify(commentsDb));
+      } catch (e) {
+        console.error('Failed to save comments to local storage', e);
+      }
+      updateCommentBadge();
+    }
+
+    function updateCommentBadge() {
+      const currentFile = STATE.chapters[STATE.currentChapterIndex]?.file;
+      const count = commentsDb.filter(c => c.chapterFile === currentFile).length;
+      const badge = document.getElementById('comment-count-badge');
+      if (badge) {
+        if (count > 0) {
+          badge.textContent = count;
+          badge.style.display = 'flex';
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+    }
+
+    function renderCommentsForCurrentChapter() {
+      const currentFile = STATE.chapters[STATE.currentChapterIndex]?.file;
+      if (!currentFile) return;
+      
+      const chapterComments = commentsDb.filter(c => c.chapterFile === currentFile);
+      const blocks = elements.readerContent.children;
+      
+      const commentsByBlock = {};
+      chapterComments.forEach(comment => {
+        if (!commentsByBlock[comment.blockIndex]) {
+          commentsByBlock[comment.blockIndex] = [];
+        }
+        commentsByBlock[comment.blockIndex].push(comment);
+      });
+
+      for (const blockIdx in commentsByBlock) {
+        const blockEl = blocks[blockIdx];
+        if (!blockEl) continue;
+        
+        // Sort comments inside this block by startOffset descending to prevent index shift issues when wrapping!
+        const blockComments = commentsByBlock[blockIdx].sort((a, b) => b.startOffset - a.startOffset);
+        
+        blockComments.forEach(comment => {
+          // Double check selection matches text content to prevent corruption
+          const textAtRange = blockEl.textContent.substring(comment.startOffset, comment.endOffset);
+          if (textAtRange === comment.selectedText) {
+            wrapTextRange(blockEl, comment.startOffset, comment.endOffset, `comment-highlight status-${comment.type}`, comment.id);
+          } else {
+            // Fallback: If offset shifted because of content edit, try to find the selectedText exactly (only if it is unique in paragraph)
+            const firstIdx = blockEl.textContent.indexOf(comment.selectedText);
+            const lastIdx = blockEl.textContent.lastIndexOf(comment.selectedText);
+            if (firstIdx !== -1 && firstIdx === lastIdx) {
+              wrapTextRange(blockEl, firstIdx, firstIdx + comment.selectedText.length, `comment-highlight status-${comment.type}`, comment.id);
+            }
+          }
+        });
+      }
+    }
+
+    function wrapTextRange(element, start, end, className, commentId) {
+      const textNodes = [];
+      const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+      let node;
+      while (node = walk.nextNode()) {
+        textNodes.push(node);
+      }
+
+      let currentPos = 0;
+      let startNode = null, startOffset = 0;
+      let endNode = null, endOffset = 0;
+
+      for (const textNode of textNodes) {
+        const len = textNode.nodeValue.length;
+        if (currentPos <= start && start < currentPos + len) {
+          startNode = textNode;
+          startOffset = start - currentPos;
+        }
+        if (currentPos <= end && end <= currentPos + len) {
+          endNode = textNode;
+          endOffset = end - currentPos;
+          break;
+        }
+        currentPos += len;
+      }
+
+      if (!startNode || !endNode) return;
+
+      const range = document.createRange();
+      range.setStart(startNode, startOffset);
+      range.setEnd(endNode, endOffset);
+
+      const span = document.createElement('span');
+      span.className = className;
+      span.setAttribute('data-comment-id', commentId);
+      
+      try {
+        range.surroundContents(span);
+      } catch (e) {
+        try {
+          const content = range.extractContents();
+          span.appendChild(content);
+          range.insertNode(span);
+        } catch (err) {
+          console.error('Error wrapping content:', err);
+        }
+      }
+    }
+
+    let currentSelectionData = null;
+
+    function checkSelection(e) {
+      // Delay slightly to let the selection settle
+      setTimeout(() => {
+        const selection = window.getSelection();
+        if (!selection || selection.isCollapsed) {
+          hideSelectionMenu();
+          return;
+        }
+
+        const selectedText = selection.toString().trim();
+        if (selectedText === '') {
+          hideSelectionMenu();
+          return;
+        }
+
+        // Verify the selection is inside .reader-content
+        let node = selection.anchorNode;
+        let isInsideReader = false;
+        while (node) {
+          if (node === elements.readerContent) {
+            isInsideReader = true;
+            break;
+          }
+          node = node.parentNode;
+        }
+
+        if (!isInsideReader) {
+          hideSelectionMenu();
+          return;
+        }
+
+        // Find the block element (direct child of readerContent)
+        let blockEl = selection.anchorNode;
+        if (blockEl.nodeType === Node.TEXT_NODE) {
+          blockEl = blockEl.parentNode;
+        }
+        while (blockEl && blockEl.parentNode !== elements.readerContent) {
+          blockEl = blockEl.parentNode;
+        }
+
+        if (!blockEl) {
+          hideSelectionMenu();
+          return;
+        }
+
+        const blockIndex = Array.from(elements.readerContent.children).indexOf(blockEl);
+        if (blockIndex === -1) {
+          hideSelectionMenu();
+          return;
+        }
+
+        // Get character offsets
+        const offsets = getSelectionCharacterOffsetsWithin(blockEl);
+        
+        currentSelectionData = {
+          chapterFile: STATE.chapters[STATE.currentChapterIndex].file,
+          blockIndex: blockIndex,
+          selectedText: selection.toString(),
+          startOffset: offsets.start,
+          endOffset: offsets.end
+        };
+
+        // Position selection menu
+        const range = selection.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+        showSelectionMenu(rect);
+      }, 50);
+    }
+
+    function getSelectionCharacterOffsetsWithin(element) {
+      let start = 0, end = 0;
+      const sel = window.getSelection();
+      if (sel.rangeCount > 0) {
+        const range = sel.getRangeAt(0);
+        const preCaretRange = range.cloneRange();
+        preCaretRange.selectNodeContents(element);
+        preCaretRange.setEnd(range.startContainer, range.startOffset);
+        start = preCaretRange.toString().length;
+        end = start + range.toString().length;
+      }
+      return { start, end };
+    }
+
+    function showSelectionMenu(rect) {
+      const menu = document.getElementById('selection-menu');
+      if (!menu) return;
+
+      const menuWidth = 90;
+      const menuHeight = 40;
+
+      let top = rect.top + window.scrollY - menuHeight - 8;
+      let left = rect.left + window.scrollX + (rect.width / 2) - (menuWidth / 2);
+
+      // Keep inside screen boundaries
+      if (top < window.scrollY + 60) {
+        top = rect.bottom + window.scrollY + 8;
+      }
+      if (left < 10) left = 10;
+      if (left + menuWidth > window.innerWidth - 10) {
+        left = window.innerWidth - menuWidth - 10;
+      }
+
+      menu.style.top = `${top}px`;
+      menu.style.left = `${left}px`;
+      menu.classList.add('active');
+    }
+
+    function hideSelectionMenu() {
+      const menu = document.getElementById('selection-menu');
+      if (menu) {
+        menu.classList.remove('active');
+      }
+    }
+
+    // Modal and Sidebar Elements
+    const modal = document.getElementById('comment-modal');
+    const modalTitle = document.getElementById('comment-modal-title');
+    const modalQuote = document.getElementById('comment-modal-quote');
+    const modalTextarea = document.getElementById('comment-modal-textarea');
+    const modalCancel = document.getElementById('comment-modal-cancel');
+    const modalSave = document.getElementById('comment-modal-save');
+    let currentCommentType = 'praise';
+
+    const commentSidebar = document.getElementById('comment-sidebar');
+    const commentSidebarBtn = document.getElementById('comment-sidebar-btn');
+    const closeCommentSidebarBtn = document.getElementById('close-comment-sidebar-btn');
+    const commentSidebarList = document.getElementById('comment-sidebar-list');
+    const commentExportBtn = document.getElementById('comment-export-btn');
+    const tooltip = document.getElementById('comment-tooltip');
+
+    function openCommentModal(type) {
+      if (!currentSelectionData) return;
+      currentCommentType = type;
+      hideSelectionMenu();
+
+      // Clear range selection
+      window.getSelection().removeAllRanges();
+
+      modalTitle.textContent = type === 'praise' ? 'ชื่นชมเนื้อหา (Praise)' : 'เสนอแนะให้แก้ไข (Suggestion)';
+      modalTitle.className = `modal-title ${type}`;
+      modalQuote.textContent = `"${currentSelectionData.selectedText}"`;
+      modalTextarea.value = '';
+      
+      modal.classList.add('open');
+      modalTextarea.focus();
+    }
+
+    function closeCommentModal() {
+      modal.classList.remove('open');
+      currentSelectionData = null;
+    }
+
+    function toggleCommentSidebar(open) {
+      if (open) {
+        commentSidebar.classList.add('open');
+        renderCommentSidebarList();
+        toggleSidebar(false); // Close left chapter sidebar
+      } else {
+        commentSidebar.classList.remove('open');
+      }
+    }
+
+    function renderCommentSidebarList() {
+      commentSidebarList.innerHTML = '';
+      const currentFile = STATE.chapters[STATE.currentChapterIndex]?.file;
+      if (!currentFile) return;
+
+      const chapterComments = commentsDb.filter(c => c.chapterFile === currentFile);
+
+      if (chapterComments.length === 0) {
+        commentSidebarList.innerHTML = '<div class="empty-comments">ไม่มีความคิดเห็นในบทนี้<br><small style="opacity: 0.6; display: block; margin-top: 4px;">ไฮไลท์ข้อความเพื่อแสดงความเห็นได้เลย</small></div>';
+        return;
+      }
+
+      // Sort by date descending
+      chapterComments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+      chapterComments.forEach(comment => {
+        const card = document.createElement('div');
+        card.className = 'comment-card';
+
+        const quote = document.createElement('blockquote');
+        quote.className = 'comment-card-quote';
+        quote.textContent = `"${comment.selectedText}"`;
+        quote.title = 'คลิกเพื่อเลื่อนไปยังจุดนี้';
+        quote.addEventListener('click', () => {
+          scrollToCommentHighlight(comment.id);
+        });
+
+        const header = document.createElement('div');
+        header.className = 'comment-card-header';
+
+        const badge = document.createElement('span');
+        badge.className = `comment-card-badge ${comment.type}`;
+        badge.textContent = comment.type === 'praise' ? 'ชื่นชม' : 'เสนอแนะ';
+
+        header.appendChild(badge);
+
+        const text = document.createElement('div');
+        text.className = 'comment-card-text';
+        text.textContent = comment.text;
+
+        const footer = document.createElement('div');
+        footer.className = 'comment-card-footer';
+
+        const time = document.createElement('span');
+        time.className = 'comment-card-time';
+        time.textContent = new Date(comment.timestamp).toLocaleDateString('th-TH', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+        const btns = document.createElement('div');
+        btns.className = 'comment-card-btns';
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'comment-card-btn';
+        copyBtn.title = 'คัดลอกข้อความฟีดแบ็ก';
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+        copyBtn.addEventListener('click', () => {
+          copyCommentText(comment);
+        });
+
+        const delBtn = document.createElement('button');
+        delBtn.className = 'comment-card-btn delete';
+        delBtn.title = 'ลบความคิดเห็น';
+        delBtn.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>';
+        delBtn.addEventListener('click', () => {
+          if (confirm('คุณต้องการลบความคิดเห็นนี้ใช่หรือไม่?')) {
+            deleteComment(comment.id);
+          }
+        });
+
+        btns.appendChild(copyBtn);
+        btns.appendChild(delBtn);
+
+        footer.appendChild(time);
+        footer.appendChild(btns);
+
+        card.appendChild(quote);
+        card.appendChild(header);
+        card.appendChild(text);
+        card.appendChild(footer);
+
+        commentSidebarList.appendChild(card);
+      });
+    }
+
+    function deleteComment(commentId) {
+      commentsDb = commentsDb.filter(c => c.id !== commentId);
+      saveCommentsToStorage();
+      renderCommentSidebarList();
+      loadChapterContent(STATE.chapters[STATE.currentChapterIndex]);
+    }
+
+    function scrollToCommentHighlight(commentId) {
+      const span = document.querySelector(`.comment-highlight[data-comment-id="${commentId}"]`);
+      if (span) {
+        span.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        span.style.transition = 'none';
+        span.style.backgroundColor = 'rgba(239, 68, 68, 0.4)';
+        setTimeout(() => {
+          span.style.transition = 'background-color 1s ease';
+          const isPraise = span.classList.contains('status-praise');
+          span.style.backgroundColor = isPraise ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)';
+        }, 300);
+      }
+    }
+
+    function copyCommentText(comment) {
+      const typeStr = comment.type === 'praise' ? 'ชื่นชม' : 'เสนอแนะให้แก้ไข';
+      const textToCopy = `**[${typeStr}]** ในบท: ${STATE.chapters[STATE.currentChapterIndex].title}\n> ข้อความ: "${comment.selectedText}"\n\nความเห็น: ${comment.text}`;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        alert('คัดลอกข้อความเรียบร้อยแล้ว!');
+      }).catch(err => {
+        console.error('Failed to copy text', err);
+      });
+    }
+
+    function showTooltip(targetEl, comment) {
+      if (!tooltip) return;
+      
+      const typeStr = comment.type === 'praise' ? 'ชื่นชม' : 'เสนอแนะ';
+      const typeClass = comment.type;
+      
+      tooltip.innerHTML = `
+        <div class="tooltip-header ${typeClass}">
+          <span>${typeStr}</span>
+          <span class="tooltip-time">${new Date(comment.timestamp).toLocaleDateString('th-TH')}</span>
+        </div>
+        <div style="font-weight: 500; margin-top: 4px; color: var(--text-color);">${comment.text}</div>
+      `;
+
+      tooltip.classList.add('active');
+      
+      const rect = targetEl.getBoundingClientRect();
+      const tooltipHeight = tooltip.offsetHeight;
+      const tooltipWidth = tooltip.offsetWidth;
+
+      let top = rect.top + window.scrollY - tooltipHeight - 8;
+      let left = rect.left + window.scrollX + (rect.width / 2) - (tooltipWidth / 2);
+
+      if (top < window.scrollY + 60) {
+        top = rect.bottom + window.scrollY + 8;
+      }
+      if (left < 10) left = 10;
+      if (left + tooltipWidth > window.innerWidth - 10) {
+        left = window.innerWidth - tooltipWidth - 10;
+      }
+
+      tooltip.style.top = `${top}px`;
+      tooltip.style.left = `${left}px`;
+    }
+
+    function hideTooltip() {
+      if (tooltip) {
+        tooltip.classList.remove('active');
+      }
+    }
+
+    function setupCommentEventListeners() {
+      // Mouse/Touch triggers for selection
+      document.addEventListener('pointerup', checkSelection);
+      
+      // Floating menu actions
+      document.getElementById('sel-btn-praise').addEventListener('click', (e) => {
+        e.stopPropagation();
+        openCommentModal('praise');
+      });
+
+      document.getElementById('sel-btn-suggest').addEventListener('click', (e) => {
+        e.stopPropagation();
+        openCommentModal('suggest');
+      });
+
+      // Modal buttons
+      modalCancel.addEventListener('click', closeCommentModal);
+      modalSave.addEventListener('click', () => {
+        const text = modalTextarea.value.trim();
+        if (!text) {
+          alert('กรุณากรอกความคิดเห็น');
+          return;
+        }
+
+        const newComment = {
+          id: 'c_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+          chapterFile: currentSelectionData.chapterFile,
+          blockIndex: currentSelectionData.blockIndex,
+          selectedText: currentSelectionData.selectedText,
+          startOffset: currentSelectionData.startOffset,
+          endOffset: currentSelectionData.endOffset,
+          type: currentCommentType,
+          text: text,
+          timestamp: new Date().toISOString()
+        };
+
+        commentsDb.push(newComment);
+        saveCommentsToStorage();
+        closeCommentModal();
+        loadChapterContent(STATE.chapters[STATE.currentChapterIndex]);
+        toggleCommentSidebar(true);
+      });
+
+      // Sidebar buttons
+      commentSidebarBtn.addEventListener('click', () => {
+        const isOpen = commentSidebar.classList.contains('open');
+        toggleCommentSidebar(!isOpen);
+      });
+
+      closeCommentSidebarBtn.addEventListener('click', () => {
+        toggleCommentSidebar(false);
+      });
+
+      commentExportBtn.addEventListener('click', () => {
+        if (commentsDb.length === 0) {
+          alert('ยังไม่มีความคิดเห็นให้ดาวน์โหลด');
+          return;
+        }
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(commentsDb, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href",     dataStr);
+        downloadAnchor.setAttribute("download", `novel_comments_${Date.now()}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+      });
+
+      // Tooltips for highlights (hover & click delegation)
+      elements.readerContent.addEventListener('mouseover', (e) => {
+        const highlight = e.target.closest('.comment-highlight');
+        if (highlight) {
+          const commentId = highlight.getAttribute('data-comment-id');
+          const comment = commentsDb.find(c => c.id === commentId);
+          if (comment) {
+            showTooltip(highlight, comment);
+          }
+        }
+      });
+
+      elements.readerContent.addEventListener('mouseout', (e) => {
+        if (e.target.closest('.comment-highlight')) {
+          hideTooltip();
+        }
+      });
+
+      elements.readerContent.addEventListener('click', (e) => {
+        const highlight = e.target.closest('.comment-highlight');
+        if (highlight) {
+          e.stopPropagation();
+          const commentId = highlight.getAttribute('data-comment-id');
+          const comment = commentsDb.find(c => c.id === commentId);
+          if (comment) {
+            showTooltip(highlight, comment);
+            if ('ontouchstart' in window) {
+              setTimeout(hideTooltip, 4000);
+            }
+          }
+        } else {
+          hideTooltip();
+        }
+      });
+
+      document.addEventListener('click', () => {
+        hideTooltip();
+      });
+    }
 
     // Initial load
     (async function init() {
       initSettings();
+      initComments();
       await loadChaptersList();
       selectChapter(STATE.currentChapterIndex);
     })();
