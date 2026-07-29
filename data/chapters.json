@@ -8,6 +8,10 @@
     "title": "[Lore] ข้อมูลโลกและระบบพลังงาน (World Setting & Energy System)"
   },
   {
+    "file": "Entity_Tiers.md",
+    "title": "[Lore] ระบบระดับตัวตนและระดับภัยคุกคาม (Entity & Threat Classification Tiers)"
+  },
+  {
     "file": "Skill_Database.md",
     "title": "[Lore] ฐานข้อมูลทักษะและเวทมนตร์ (Skill & Magic Database)"
   },
@@ -38,6 +42,10 @@
   {
     "file": "Characters/Character_Document.md",
     "title": "[Character] สารบรรณรวบรวมตัวละคร (Character Database Overview)"
+  },
+  {
+    "file": "Characters/Relationship_Map.md",
+    "title": "[Character] แผนผังความสัมพันธ์ตัวละคร (Character Relationship Map)"
   },
   {
     "file": "Characters/Design_Focus.md",

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th" data-theme="light">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,18 @@
   <!-- Google Fonts for beautiful minimalist typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Sarabun:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-  <!-- Markdown parser -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Sarabun:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet">
+  <!-- Markdown & Diagram Parsers -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
   <style>
     :root {
       --font-sans: 'Inter', 'Sarabun', system-ui, -apple-system, sans-serif;
       --font-serif: 'Lora', 'Sarabun', 'Georgia', serif;
-      
+
       /* Light theme values */
       --bg-color: #faf9f6;
       --text-color: #1a1917;
@@ -26,7 +30,7 @@
       --accent-color: #1a1917;
       --accent-rgb: 26, 25, 23;
       --text-muted: #706e6a;
-      
+
       --font-size-base: 18px;
     }
 
@@ -285,8 +289,8 @@
       text-indent: 2.5em;
     }
 
-    .reader-content h1, 
-    .reader-content h2, 
+    .reader-content h1,
+    .reader-content h2,
     .reader-content h3 {
       font-family: var(--font-sans);
       font-weight: 600;
@@ -304,8 +308,13 @@
       margin-bottom: 1.5em;
     }
 
-    .reader-content h2 { font-size: 1.3rem; }
-    .reader-content h3 { font-size: 1.15rem; }
+    .reader-content h2 {
+      font-size: 1.3rem;
+    }
+
+    .reader-content h3 {
+      font-size: 1.15rem;
+    }
 
     .reader-content hr {
       border: none;
@@ -403,7 +412,8 @@
     }
 
     /* Utility labels */
-    .theme-icon-light, .theme-icon-dark {
+    .theme-icon-light,
+    .theme-icon-dark {
       display: none;
     }
 
@@ -423,7 +433,7 @@
       height: 1.2em;
       margin-bottom: 1em;
     }
-    
+
     .skeleton.title {
       height: 2em;
       width: 60%;
@@ -439,9 +449,17 @@
     }
 
     @keyframes skeleton-loading {
-      0% { opacity: 0.6; }
-      50% { opacity: 0.3; }
-      100% { opacity: 0.6; }
+      0% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+
+      100% {
+        opacity: 0.6;
+      }
     }
 
     /* Comment Selection Menu */
@@ -453,7 +471,7 @@
       padding: 4px 8px;
       display: flex;
       gap: 4px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       z-index: 1002;
       opacity: 0;
       visibility: hidden;
@@ -462,11 +480,13 @@
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
     }
+
     #selection-menu.active {
       opacity: 1;
       visibility: visible;
       transform: translateY(0) scale(1);
     }
+
     .selection-menu-btn {
       width: 32px;
       height: 32px;
@@ -480,9 +500,11 @@
       color: var(--text-color);
       transition: background-color 0.2s;
     }
+
     .selection-menu-btn:hover {
       background-color: var(--sidebar-hover);
     }
+
     .selection-menu-btn svg {
       width: 16px;
       height: 16px;
@@ -490,9 +512,11 @@
       fill: none;
       stroke-width: 2;
     }
+
     .selection-menu-btn.btn-praise {
       color: #10b981;
     }
+
     .selection-menu-btn.btn-suggest {
       color: #f59e0b;
     }
@@ -503,17 +527,21 @@
       position: relative;
       transition: background-color 0.2s;
     }
+
     .comment-highlight.status-praise {
       background-color: rgba(16, 185, 129, 0.15);
       border-bottom: 2px dotted #10b981;
     }
+
     .comment-highlight.status-suggest {
       background-color: rgba(245, 158, 11, 0.15);
       border-bottom: 2px dotted #f59e0b;
     }
+
     .comment-highlight:hover {
       background-color: rgba(16, 185, 129, 0.25);
     }
+
     .comment-highlight.status-suggest:hover {
       background-color: rgba(245, 158, 11, 0.25);
     }
@@ -525,7 +553,7 @@
       border: 1px solid var(--border-color);
       border-radius: 8px;
       padding: 10px 14px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       z-index: 1003;
       max-width: 280px;
       opacity: 0;
@@ -535,10 +563,12 @@
       line-height: 1.5;
       font-family: var(--font-sans);
     }
+
     #comment-tooltip.active {
       opacity: 1;
       visibility: visible;
     }
+
     .tooltip-header {
       display: flex;
       justify-content: space-between;
@@ -547,15 +577,596 @@
       font-weight: 600;
       font-size: 0.75rem;
     }
+
     .tooltip-header.praise {
       color: #10b981;
     }
+
     .tooltip-header.suggest {
       color: #f59e0b;
     }
+
     .tooltip-time {
       font-size: 0.7rem;
       color: var(--text-muted);
+    }
+
+    /* Image Lightbox Modal */
+    #image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    #image-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .image-modal-container {
+      position: relative;
+      max-width: 92vw;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-modal-img {
+      max-width: 92vw;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      cursor: zoom-in;
+    }
+
+    .image-modal-img.zoomed {
+      transform: scale(1.6);
+      cursor: zoom-out;
+    }
+
+    .image-modal-caption {
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      margin-top: 14px;
+      text-align: center;
+      opacity: 0.9;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    .image-modal-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 2010;
+    }
+
+    .image-modal-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .image-modal-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
+
+    .image-modal-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    /* Enhanced Markdown Figures & Images */
+    .reader-image-figure {
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    .reader-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 12px auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: block;
+    }
+
+    .reader-content img:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .reader-image-caption {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* Internal Markdown Document Links & Image Badges */
+    .reader-content a.internal-doc-link {
+      color: var(--accent-color);
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s ease, text-decoration-color 0.2s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .reader-content a.internal-doc-link:hover {
+      opacity: 0.75;
+      text-decoration-color: transparent;
+    }
+
+    .reader-content a.image-link-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      padding: 4px 12px;
+      border-radius: 16px;
+      color: var(--text-color);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      margin: 4px 0;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .reader-content a.image-link-badge:hover {
+      background-color: var(--sidebar-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Mermaid Diagrams Container & Styling */
+    .mermaid-container {
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .mermaid {
+      font-family: var(--font-sans) !important;
+      max-width: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Built-in Standalone Relationship Graph Renderer */
+    .builtin-graph-wrapper {
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 16px 0;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      font-family: var(--font-sans);
+      width: 100%;
+    }
+
+    .graph-groups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .graph-group-card {
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .graph-group-card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .graph-group-header {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+      margin-bottom: 4px;
+      opacity: 0.9;
+    }
+
+    .graph-group-nodes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .graph-node-pill {
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 6px 10px;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.2s, transform 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+
+    .graph-node-pill:hover {
+      background-color: var(--sidebar-hover);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    .node-title {
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: var(--text-color);
+    }
+
+    .node-subtext {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* Relationship Connections List */
+    .graph-connections-container {
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+
+    .graph-connections-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .graph-connections-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 8px;
+    }
+
+    .graph-edge-card {
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .graph-edge-card:hover {
+      border-color: var(--accent-color);
+      background-color: var(--sidebar-bg);
+    }
+
+    .graph-edge-card.thick {
+      border-left: 3.5px solid var(--accent-color);
+    }
+
+    .graph-edge-card.dashed {
+      border-style: dashed;
+    }
+
+    .edge-from,
+    .edge-to {
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .edge-arrow {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .edge-label-badge {
+      margin-left: auto;
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* Tree Graph Layout Styling */
+    .tree-graph-wrapper {
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      font-family: var(--font-sans);
+      width: 100%;
+    }
+
+    .tree-graph-header {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tree-subgraph-group {
+      margin-bottom: 22px;
+    }
+
+    .tree-subgraph-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .tree-subgraph-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-color);
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      display: inline-block;
+      opacity: 0.95;
+    }
+
+    .tree-cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tree-character-card {
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px 16px;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tree-character-card:hover {
+      border-color: var(--accent-color);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .tree-char-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .tree-char-title {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text-color);
+    }
+
+    .tree-char-subtext {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .tree-branches {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-left: 10px;
+      border-left: 2px dashed var(--border-color);
+      margin-left: 6px;
+    }
+
+    .tree-branch {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .tree-branch-symbol {
+      font-family: monospace;
+      color: var(--text-muted);
+      font-weight: bold;
+    }
+
+    .tree-branch-target {
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .tree-branch-arrow {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .tree-branch-badge {
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      padding: 2px 9px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .tree-branch-badge.thick {
+      font-weight: 600;
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    .tree-branch-badge.dashed {
+      border-style: dashed;
+    }
+
+    /* Modern Responsive Markdown Table Theme */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      background-color: var(--sidebar-bg);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .reader-content table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      text-align: left;
+      margin: 0;
+    }
+
+    .reader-content th {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-weight: 600;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .reader-content td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      vertical-align: middle;
+    }
+
+    .reader-content tr:last-child td {
+      border-bottom: none;
+    }
+
+    .reader-content tr:nth-child(even) {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+    [data-theme="dark"] .reader-content tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.025);
+    }
+
+    .reader-content tr:hover td {
+      background-color: var(--sidebar-hover);
+    }
+
+    /* Threat Code / Tag Badges */
+    .threat-tag-badge {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.74rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+    }
+
+    .threat-tag-badge.threat-pax {
+      background-color: rgba(16, 185, 129, 0.12);
+      color: #10b981;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    .threat-tag-badge.threat-hor {
+      background-color: rgba(59, 130, 246, 0.12);
+      color: #3b82f6;
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    .threat-tag-badge.threat-per {
+      background-color: rgba(245, 158, 11, 0.12);
+      color: #f59e0b;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    .threat-tag-badge.threat-mor {
+      background-color: rgba(168, 85, 247, 0.12);
+      color: #a855f7;
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+    .threat-tag-badge.threat-rui {
+      background-color: rgba(107, 114, 128, 0.12);
+      color: #6b7280;
+      border-color: rgba(107, 114, 128, 0.3);
+    }
+    .threat-tag-badge.threat-cat {
+      background-color: rgba(239, 68, 68, 0.12);
+      color: #ef4444;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+    .threat-tag-badge.threat-aby {
+      background-color: rgba(225, 29, 72, 0.2);
+      color: #e11d48;
+      border-color: rgba(225, 29, 72, 0.5);
+      box-shadow: 0 0 8px rgba(225, 29, 72, 0.2);
     }
 
     /* Right-Side Comment Sidebar */
@@ -572,9 +1183,11 @@
       display: flex;
       flex-direction: column;
     }
+
     #comment-sidebar.open {
       transform: translateX(-300px);
     }
+
     .comment-sidebar-header {
       height: 56px;
       border-bottom: 1px solid var(--border-color);
@@ -583,6 +1196,7 @@
       align-items: center;
       padding: 0 16px;
     }
+
     .comment-sidebar-title {
       font-family: var(--font-sans);
       font-weight: 600;
@@ -591,10 +1205,138 @@
       letter-spacing: 1px;
       opacity: 0.9;
     }
+
     .comment-sidebar-actions {
       display: flex;
       gap: 4px;
     }
+
+    /* Comment Tabs & Global View Badges */
+    .comment-sidebar-tabs {
+      display: flex;
+      gap: 4px;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--sidebar-bg);
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .comment-tab-btn {
+      background: none;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 3px 10px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-family: var(--font-sans);
+    }
+
+    .comment-tab-btn:hover {
+      border-color: var(--accent-color);
+      color: var(--text-color);
+    }
+
+    .comment-tab-btn.active {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+      border-color: var(--text-color);
+    }
+
+    .comment-tab-btn.active span {
+      color: var(--bg-color);
+    }
+
+    .comment-card-chapter-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      background-color: var(--sidebar-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 2px 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .comment-card-chapter-badge:hover {
+      border-color: var(--accent-color);
+      background-color: var(--sidebar-hover);
+    }
+
+    /* Date Filter Styling */
+    .comment-date-filter-bar {
+      padding: 8px 12px;
+      background-color: var(--sidebar-bg);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .date-filter-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .comment-date-select {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 0.76rem;
+      font-family: var(--font-sans);
+      outline: none;
+      cursor: pointer;
+      flex-grow: 1;
+    }
+
+    .comment-date-select:focus {
+      border-color: var(--accent-color);
+    }
+
+    .filtered-count-tag {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .custom-date-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      margin-top: 2px;
+    }
+
+    .comment-date-input {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 3px 6px;
+      font-size: 0.72rem;
+      font-family: var(--font-sans);
+      width: 100%;
+      outline: none;
+    }
+
+    .comment-date-input:focus {
+      border-color: var(--accent-color);
+    }
+
     .comment-sidebar-content {
       overflow-y: auto;
       flex-grow: 1;
@@ -603,6 +1345,7 @@
       flex-direction: column;
       gap: 12px;
     }
+
     .comment-card {
       background-color: var(--bg-color);
       border: 1px solid var(--border-color);
@@ -615,10 +1358,12 @@
       gap: 8px;
       transition: transform 0.2s, box-shadow 0.2s;
     }
+
     .comment-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
+
     .comment-card-quote {
       font-size: 0.8rem;
       color: var(--text-muted);
@@ -631,47 +1376,57 @@
       text-overflow: ellipsis;
       cursor: pointer;
     }
+
     .comment-card-quote:hover {
       color: var(--text-color);
     }
+
     .comment-card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .comment-card-badge {
       font-size: 0.7rem;
       font-weight: 600;
       padding: 2px 6px;
       border-radius: 10px;
     }
+
     .comment-card-badge.praise {
       background-color: rgba(16, 185, 129, 0.15);
       color: #10b981;
     }
+
     .comment-card-badge.suggest {
       background-color: rgba(245, 158, 11, 0.15);
       color: #f59e0b;
     }
+
     .comment-card-text {
       line-height: 1.5;
       word-break: break-word;
       color: var(--text-color);
     }
+
     .comment-card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 4px;
     }
+
     .comment-card-time {
       font-size: 0.7rem;
       color: var(--text-muted);
     }
+
     .comment-card-btns {
       display: flex;
       gap: 6px;
     }
+
     .comment-card-btn {
       background: none;
       border: none;
@@ -680,12 +1435,15 @@
       color: var(--text-muted);
       transition: color 0.2s;
     }
+
     .comment-card-btn:hover {
       color: var(--text-color);
     }
+
     .comment-card-btn.delete:hover {
       color: #ef4444;
     }
+
     .comment-card-btn svg {
       width: 14px;
       height: 14px;
@@ -693,6 +1451,7 @@
       stroke: currentColor;
       stroke-width: 2;
     }
+
     .empty-comments {
       text-align: center;
       color: var(--text-muted);
@@ -718,10 +1477,12 @@
       visibility: hidden;
       transition: opacity 0.3s, visibility 0.3s;
     }
+
     #comment-modal.open {
       opacity: 1;
       visibility: visible;
     }
+
     .modal-content {
       background-color: var(--bg-color);
       border: 1px solid var(--border-color);
@@ -736,9 +1497,11 @@
       flex-direction: column;
       gap: 16px;
     }
+
     #comment-modal.open .modal-content {
       transform: translateY(0);
     }
+
     .modal-title {
       font-family: var(--font-sans);
       font-weight: 600;
@@ -748,12 +1511,15 @@
       align-items: center;
       gap: 8px;
     }
+
     .modal-title.praise {
       color: #10b981;
     }
+
     .modal-title.suggest {
       color: #f59e0b;
     }
+
     .modal-quote {
       font-size: 0.85rem;
       color: var(--text-muted);
@@ -764,6 +1530,7 @@
       max-height: 80px;
       overflow-y: auto;
     }
+
     .modal-textarea {
       width: 100%;
       height: 100px;
@@ -778,14 +1545,17 @@
       outline: none;
       transition: border-color 0.2s;
     }
+
     .modal-textarea:focus {
       border-color: var(--accent-color);
     }
+
     .modal-footer {
       display: flex;
       justify-content: flex-end;
       gap: 10px;
     }
+
     .modal-btn {
       padding: 8px 16px;
       border-radius: 6px;
@@ -796,18 +1566,22 @@
       border: none;
       transition: background-color 0.2s, opacity 0.2s;
     }
+
     .modal-btn.cancel {
       background-color: var(--sidebar-bg);
       color: var(--text-color);
       border: 1px solid var(--border-color);
     }
+
     .modal-btn.cancel:hover {
       background-color: var(--sidebar-hover);
     }
+
     .modal-btn.save {
       background-color: var(--accent-color);
       color: var(--bg-color);
     }
+
     .modal-btn.save:hover {
       opacity: 0.9;
     }
@@ -816,15 +1590,18 @@
       .chapter-title-header {
         display: none;
       }
+
       .header-left {
         gap: 6px;
       }
+
       header {
         padding: 0 8px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Scroll Progress Bar -->
@@ -834,47 +1611,83 @@
   <header>
     <div class="header-left">
       <button class="btn" id="menu-btn" title="สารบัญ (Menu)">
-        <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg viewBox="0 0 24 24">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
       </button>
       <div class="chapter-title-header" id="header-title">กำลังโหลด...</div>
     </div>
-    
+
     <div class="header-right">
       <!-- Font Family Switcher -->
       <button class="btn" id="font-btn" title="เปลี่ยนฟอนต์ Serif / Sans">
-        <svg viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16" />
+        </svg>
       </button>
-      
+
       <!-- Font Size Outlines -->
       <button class="btn" id="size-dec-btn" title="ลดขนาดตัวอักษร">
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <svg viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
       </button>
       <button class="btn" id="size-inc-btn" title="เพิ่มขนาดตัวอักษร">
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <svg viewBox="0 0 24 24">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
       </button>
 
       <!-- Paragraph Indentation Toggle -->
       <button class="btn" id="indent-btn" title="ย่อหน้าบรรทัดแรก (Toggle Indentation)">
-        <svg viewBox="0 0 24 24"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="4" y1="18" x2="21" y2="18"></line><polyline points="4 6 7 9 4 12"></polyline></svg>
+        <svg viewBox="0 0 24 24">
+          <line x1="10" y1="6" x2="21" y2="6"></line>
+          <line x1="10" y1="12" x2="21" y2="12"></line>
+          <line x1="4" y1="18" x2="21" y2="18"></line>
+          <polyline points="4 6 7 9 4 12"></polyline>
+        </svg>
       </button>
 
       <!-- Alignment Toggle -->
       <button class="btn" id="align-btn" title="สลับการจัดตำแหน่ง Left / Justified">
-        <svg viewBox="0 0 24 24"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
+        <svg viewBox="0 0 24 24">
+          <line x1="21" y1="10" x2="3" y2="10"></line>
+          <line x1="21" y1="6" x2="3" y2="6"></line>
+          <line x1="21" y1="14" x2="3" y2="14"></line>
+          <line x1="21" y1="18" x2="3" y2="18"></line>
+        </svg>
       </button>
 
       <!-- Comments Sidebar Toggle -->
       <button class="btn" id="comment-sidebar-btn" title="ความคิดเห็น (Comments)" style="position: relative;">
-        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-        <span id="comment-count-badge" style="position: absolute; top: 2px; right: 2px; background-color: #ef4444; color: white; font-size: 0.6rem; font-weight: bold; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; display: none;">0</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span id="comment-count-badge"
+          style="position: absolute; top: 2px; right: 2px; background-color: #ef4444; color: white; font-size: 0.6rem; font-weight: bold; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; display: none;">0</span>
       </button>
 
       <!-- Theme Switcher -->
       <button class="btn" id="theme-btn" title="เปลี่ยนธีม">
         <!-- Sun icon (shown in dark theme) -->
-        <svg class="theme-icon-light" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="theme-icon-light" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
         <!-- Moon icon (shown in light theme) -->
-        <svg class="theme-icon-dark" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="theme-icon-dark" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
       </button>
     </div>
   </header>
@@ -884,7 +1697,10 @@
     <div class="sidebar-header">
       <span class="sidebar-title">ตอนทั้งหมด</span>
       <button class="btn" id="close-sidebar-btn" title="ปิด">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
       </button>
     </div>
     <div class="sidebar-content">
@@ -917,12 +1733,16 @@
     <!-- Bottom navigation -->
     <footer class="nav-footer">
       <a href="#" class="nav-link disabled" id="prev-chapter-btn">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
         ตอนก่อนหน้า
       </a>
       <a href="#" class="nav-link disabled" id="next-chapter-btn">
         ตอนต่อไป
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <svg viewBox="0 0 24 24">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
       </a>
     </footer>
   </main>
@@ -930,10 +1750,16 @@
   <!-- Floating Selection Menu -->
   <div id="selection-menu">
     <button class="selection-menu-btn btn-praise" id="sel-btn-praise" title="ชื่นชม (Praise)">
-      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"></path></svg>
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          fill="currentColor"></path>
+      </svg>
     </button>
     <button class="selection-menu-btn btn-suggest" id="sel-btn-suggest" title="เสนอแนะ/แก้ไข (Suggest)">
-      <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+      <svg viewBox="0 0 24 24">
+        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+      </svg>
     </button>
   </div>
 
@@ -945,7 +1771,8 @@
     <div class="modal-content">
       <h3 class="modal-title" id="comment-modal-title">แสดงความคิดเห็น</h3>
       <p class="modal-quote" id="comment-modal-quote"></p>
-      <textarea class="modal-textarea" id="comment-modal-textarea" placeholder="พิมพ์ความคิดเห็นของคุณที่นี่..."></textarea>
+      <textarea class="modal-textarea" id="comment-modal-textarea"
+        placeholder="พิมพ์ความคิดเห็นของคุณที่นี่..."></textarea>
       <div class="modal-footer">
         <button class="modal-btn cancel" id="comment-modal-cancel">ยกเลิก</button>
         <button class="modal-btn save" id="comment-modal-save">บันทึก</button>
@@ -959,11 +1786,41 @@
       <span class="comment-sidebar-title">ความคิดเห็น</span>
       <div class="comment-sidebar-actions">
         <button class="btn" id="comment-export-btn" title="ดาวน์โหลดคอมเมนต์ (JSON)">
-          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+          </svg>
         </button>
         <button class="btn" id="close-comment-sidebar-btn" title="ปิด">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <svg viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
+      </div>
+    </div>
+    <!-- Filter Tabs -->
+    <div class="comment-sidebar-tabs" id="comment-sidebar-tabs">
+      <button class="comment-tab-btn active" data-filter="chapter">บทนี้ (<span
+          id="tab-count-chapter">0</span>)</button>
+      <button class="comment-tab-btn" data-filter="all">ทั้งหมด (<span id="tab-count-all">0</span>)</button>
+      <button class="comment-tab-btn" data-filter="praise">ชื่นชม</button>
+      <button class="comment-tab-btn" data-filter="suggest">เสนอแนะ</button>
+    </div>
+    <!-- Date Filter Bar -->
+    <div class="comment-date-filter-bar">
+      <div class="date-filter-row">
+        <select id="comment-date-preset" class="comment-date-select" title="เลือกช่วงเวลาของความคิดเห็น">
+          <option value="today" selected>วันนี้ (Today)</option>
+          <option value="all">ทุกช่วงเวลา (All Time)</option>
+          <option value="7days">7 วันล่าสุด</option>
+          <option value="custom">กำหนดช่วงวันที่...</option>
+        </select>
+        <span class="filtered-count-tag" id="filtered-comments-tag">0 รายการ</span>
+      </div>
+      <div id="comment-custom-date-group" class="custom-date-group" style="display: none;">
+        <input type="date" id="comment-date-start" class="comment-date-input" title="วันที่เริ่ม">
+        <span style="opacity: 0.6;">ถึง</span>
+        <input type="date" id="comment-date-end" class="comment-date-input" title="วันที่สิ้นสุด">
       </div>
     </div>
     <div class="comment-sidebar-content" id="comment-sidebar-list">
@@ -971,7 +1828,74 @@
     </div>
   </nav>
 
+  <!-- Image Preview Lightbox Modal -->
+  <div id="image-modal">
+    <div class="image-modal-controls">
+      <button class="image-modal-btn" id="image-zoom-btn" title="ขยาย/ย่อ รูปภาพ">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <line x1="11" y1="8" x2="11" y2="14"></line>
+          <line x1="8" y1="11" x2="14" y2="11"></line>
+        </svg>
+      </button>
+      <button class="image-modal-btn" id="close-image-modal-btn" title="ปิด (ESC)">
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="image-modal-container">
+      <img id="image-modal-img" class="image-modal-img" src="" alt="Preview">
+      <div id="image-modal-caption" class="image-modal-caption"></div>
+    </div>
+  </div>
+
   <script>
+    // Path and Link Resolver Helpers
+    function resolveImagePath(url) {
+      if (!url) return '';
+      let clean = decodeURIComponent(url).replace(/^file:\/\/\//i, '').replace(/\\/g, '/');
+
+      if (clean.includes('Story Section/')) {
+        clean = clean.split('Story Section/')[1];
+      } else if (clean.includes('Story%20Section/')) {
+        clean = clean.split('Story%20Section/')[1];
+      }
+
+      clean = clean.replace(/^\/+/, '').replace(/^data\//, '');
+      return `data/${clean}`;
+    }
+
+    function findChapterIndexByUrl(url) {
+      if (!url) return -1;
+      let clean = decodeURIComponent(url).replace(/^file:\/\/\//i, '').replace(/\\/g, '/');
+      let filename = clean.split('/').pop().split('#')[0].trim();
+
+      if (!filename) return -1;
+
+      // 1. Match exact filename or relative path
+      for (let i = 0; i < STATE.chapters.length; i++) {
+        const chFile = STATE.chapters[i].file;
+        const chBase = chFile.split('/').pop();
+        if (chFile === filename || chBase === filename || chFile.endsWith('/' + filename) || filename.endsWith('/' + chBase)) {
+          return i;
+        }
+      }
+
+      // 2. Fallback: match without .md extension or case-insensitive match
+      const filenameNoExt = filename.replace(/\.md$/i, '').toLowerCase();
+      for (let i = 0; i < STATE.chapters.length; i++) {
+        const chFileNoExt = STATE.chapters[i].file.split('/').pop().replace(/\.md$/i, '').toLowerCase();
+        if (chFileNoExt === filenameNoExt) {
+          return i;
+        }
+      }
+
+      return -1;
+    }
+
     // Configurable state
     const STATE = {
       theme: 'light',
@@ -987,6 +1911,7 @@
     const FALLBACK_CHAPTERS = [
       { "file": "Chapter_Minus1_The_Legend_of_Creation.md", "title": "พงศาวดาร: การสรรค์สร้างโลก และปฐมบทแห่งดินแดน (The Chronicle of Creation)" },
       { "file": "World_Setting.md", "title": "[Lore] ข้อมูลโลกและภูมิศาสตร์ (World Setting & Geography)" },
+      { "file": "Entity_Tiers.md", "title": "[Lore] ระบบระดับตัวตนและระดับภัยคุกคาม (Entity & Threat Classification Tiers)" },
       { "file": "Technology_Evolution.md", "title": "[Lore] วิวัฒนาการทางเทคโนโลยี (Technology & Energy Evolution)" },
       { "file": "Species_Aeran.md", "title": "[Lore] เผ่าพันธุ์เอร่า (Species: Aeran)" },
       { "file": "Species_Automata.md", "title": "[Lore] เผ่าพันธุ์ออโตมาตา (Species: Automata)" },
@@ -1006,6 +1931,7 @@
       { "file": "Creature/Solar_Magic_Flower.md", "title": "[Creature] แพกเซียน: ดอกไม้สุริยะมนตรา (Solar Magic Flower)" },
       { "file": "Creature/Dragon_Lily.md", "title": "[Creature] แพกเซียน: ดอกลิลลี่มังกร (Dragon Lily)" },
       { "file": "Creature/Gloom_Centipede.md", "title": "[Creature] ฮอร์เดียน: ตะขาบเงามืดสะท้อนแสง (Gloom Centipede)" },
+      { "file": "Characters/Relationship_Map.md", "title": "[Character] แผนผังความสัมพันธ์ตัวละคร (Character Relationship Map)" },
       { "file": "Chapter_00_The_Cradle_of_Dorea.md", "title": "ตอนที่ 0: ของขวัญจากฟากฟ้า และคำสัญญาอันแสนอบอุ่น (The Cradle of Dorea)" },
       { "file": "Chapter_01_The_Ash_of_Draconia.md", "title": "ตอนที่ 1: วันที่ท้องฟ้าถล่ม และอ้อมกอดสุดท้าย (The Ash of Draconia)" },
       { "file": "Chapter_02_The_Origin_of_Tar.md", "title": "ตอนที่ 2: รอยแผลแห่งเอเธลการ์ด และคุณหมอผู้อ่อนโยน (The Origin of Thar)" },
@@ -1016,10 +1942,319 @@
       { "file": "Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md", "title": "ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต (The Bound Hearts and Five Years' Dawn)" }
     ];
 
-    // Configure Marked
+    // Configure Marked with Custom Link & Image Renderer
     if (window.marked) {
+      const renderer = new marked.Renderer();
+
+      // Intercept Markdown Links (Compatible with Marked v10+ & Legacy)
+      renderer.link = function (hrefOrToken, titleArg, textArg) {
+        let href = '';
+        let title = '';
+        let text = '';
+
+        if (hrefOrToken && typeof hrefOrToken === 'object') {
+          // Marked v10+ Token signature
+          href = hrefOrToken.href || '';
+          title = hrefOrToken.title || '';
+          text = hrefOrToken.text || (hrefOrToken.tokens && window.marked ? window.marked.parseInline(hrefOrToken.tokens) : '');
+        } else {
+          // Legacy 3-argument signature
+          href = hrefOrToken || '';
+          title = titleArg || '';
+          text = textArg || '';
+        }
+
+        let cleanUrl = decodeURIComponent(href);
+
+        // 1. Check if link points to an image file
+        if (/\.(png|jpg|jpeg|gif|webp|svg)($|\?)/i.test(cleanUrl)) {
+          const resolvedImgSrc = resolveImagePath(cleanUrl);
+          return `<a href="${resolvedImgSrc}" class="image-link-badge" data-preview-img="${resolvedImgSrc}" title="${title || text || 'ดูรูปภาพ'}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>${text}</span>
+          </a>`;
+        }
+
+        // 2. Check if link points to an internal chapter/document
+        const targetIdx = findChapterIndexByUrl(cleanUrl);
+        if (targetIdx !== -1) {
+          return `<a href="#" class="internal-doc-link" data-chapter-index="${targetIdx}" title="${title || text}">
+            <span>${text}</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>`;
+        }
+
+        // 3. External or default link
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer" title="${title || ''}">${text}</a>`;
+      };
+
+      // Intercept Markdown Image Embeds (Compatible with Marked v10+ & Legacy)
+      renderer.image = function (hrefOrToken, titleArg, textArg) {
+        let href = '';
+        let title = '';
+        let text = '';
+
+        if (hrefOrToken && typeof hrefOrToken === 'object') {
+          // Marked v10+ Token signature
+          href = hrefOrToken.href || '';
+          title = hrefOrToken.title || '';
+          text = hrefOrToken.text || '';
+        } else {
+          // Legacy 3-argument signature
+          href = hrefOrToken || '';
+          title = titleArg || '';
+          text = textArg || '';
+        }
+
+        let cleanUrl = decodeURIComponent(href);
+        const resolvedSrc = resolveImagePath(cleanUrl);
+        return `<figure class="reader-image-figure">
+          <img src="${resolvedSrc}" alt="${text || title || 'รูปภาพประกอบ'}" title="${title || text || 'คลิกเพื่อขยายดูรูปภาพ'}" data-preview-img="${resolvedSrc}" loading="lazy" />
+          ${text ? `<figcaption class="reader-image-caption">${text} (คลิกที่ภาพเพื่อขยาย)</figcaption>` : ''}
+        </figure>`;
+      };
+
+      // Standalone Built-in Native Relationship Graph Renderer
+      function parseGraphData(text) {
+        const subgraphs = [];
+        const nodesMap = {};
+        const edges = [];
+
+        let currentSubgraph = null;
+        const lines = text.split('\n');
+
+        for (let rawLine of lines) {
+          let line = rawLine.trim();
+          if (!line || line.startsWith('%%')) continue;
+
+          // Subgraph start: subgraph ID["Title"]
+          const subMatch = line.match(/^subgraph\s+([A-Za-z0-9_]+)(?:\["([^"]+)"\])?/i);
+          if (subMatch) {
+            currentSubgraph = {
+              id: subMatch[1],
+              title: subMatch[2] || subMatch[1],
+              nodes: []
+            };
+            subgraphs.push(currentSubgraph);
+            continue;
+          }
+
+          // Subgraph end
+          if (line.toLowerCase() === 'end') {
+            currentSubgraph = null;
+            continue;
+          }
+
+          // Node definition: ID["Label<br>(Subtext)"] or ID["Label"]
+          const nodeMatch = line.match(/^([A-Za-z0-9_]+)\["([^"]+)"\]/);
+          if (nodeMatch) {
+            const id = nodeMatch[1];
+            const rawLabel = nodeMatch[2];
+            const parts = rawLabel.split(/<br\s*\/?>/i);
+            const label = parts[0].trim();
+            const subtext = parts.slice(1).join(' ').trim();
+
+            const nodeObj = { id, label, subtext, subgraphId: currentSubgraph ? currentSubgraph.id : null };
+            nodesMap[id] = nodeObj;
+            if (currentSubgraph) {
+              currentSubgraph.nodes.push(nodeObj);
+            }
+            continue;
+          }
+
+          // Connections / Edges: A ==>|label| B or A -->|label| B or A <==>|label| B or A -.->|label| B
+          const edgeMatch = line.match(/^([A-Za-z0-9_]+)\s*(<==>|==>|<-->|-->|-\.->)\s*(?:\|([^|]+)\|)?\s*([A-Za-z0-9_]+)/);
+          if (edgeMatch) {
+            const from = edgeMatch[1];
+            const op = edgeMatch[2];
+            const label = edgeMatch[3] || '';
+            const to = edgeMatch[4];
+
+            let type = 'solid';
+            if (op === '==>' || op === '<==>') type = 'thick';
+            if (op === '-.->') type = 'dashed';
+            let isBidi = (op === '<==>' || op === '<-->');
+
+            edges.push({ from, to, label, type, isBidi });
+          }
+        }
+
+        // Collect orphan nodes not in any subgraph
+        const orphanNodes = Object.values(nodesMap).filter(n => !n.subgraphId);
+        if (orphanNodes.length > 0) {
+          subgraphs.push({
+            id: 'GENERAL',
+            title: 'ตัวละครทั่วไป / อื่นๆ',
+            nodes: orphanNodes
+          });
+        }
+
+        return { subgraphs, nodesMap, edges };
+      }
+
+      function buildBuiltinGraphHtml(codeText) {
+        const data = parseGraphData(codeText);
+        if (Object.keys(data.nodesMap).length === 0 && data.subgraphs.length === 0) {
+          return `<pre><code>${codeText}</code></pre>`;
+        }
+
+        // Build connection tree map: nodeId -> array of { targetLabel, label, type, arrow }
+        const treeConnectionsMap = {};
+        Object.keys(data.nodesMap).forEach(id => {
+          treeConnectionsMap[id] = [];
+        });
+
+        data.edges.forEach(edge => {
+          const fromNode = data.nodesMap[edge.from] || { label: edge.from };
+          const toNode = data.nodesMap[edge.to] || { label: edge.to };
+
+          let arrow = edge.isBidi ? '⇹' : '➔';
+          if (edge.type === 'dashed') arrow = '⇢';
+
+          // Add connection to 'from' character node
+          if (treeConnectionsMap[edge.from]) {
+            treeConnectionsMap[edge.from].push({
+              targetLabel: toNode.label,
+              label: edge.label,
+              type: edge.type,
+              arrow: arrow
+            });
+          }
+
+          // If bidirectional, also add to 'to' character node
+          if (edge.isBidi && treeConnectionsMap[edge.to]) {
+            treeConnectionsMap[edge.to].push({
+              targetLabel: fromNode.label,
+              label: edge.label,
+              type: edge.type,
+              arrow: '⇹'
+            });
+          }
+        });
+
+        let html = `<div class="tree-graph-wrapper">`;
+        html += `
+        <div class="tree-graph-header">
+          <span>แผนผังต้นไม้ความสัมพันธ์ (Character Relationship Tree)</span>
+        </div>
+      `;
+
+        // Render Subgraphs & Nodes Tree
+        html += `<div class="tree-nodes-list">`;
+        data.subgraphs.forEach(sub => {
+          if (!sub.nodes || sub.nodes.length === 0) return;
+
+          html += `<div class="tree-subgraph-group">`;
+          html += `<div class="tree-subgraph-title">${sub.title}</div>`;
+          html += `<div class="tree-cards-list">`;
+
+          sub.nodes.forEach(node => {
+            const connections = treeConnectionsMap[node.id] || [];
+
+            html += `
+            <div class="tree-character-card" id="tree-node-${node.id}">
+              <div class="tree-char-header">
+                <span class="tree-char-title">${node.label}</span>
+                ${node.subtext ? `<span class="tree-char-subtext">(${node.subtext})</span>` : ''}
+              </div>
+          `;
+
+            if (connections.length > 0) {
+              html += `<div class="tree-branches">`;
+              connections.forEach((conn, index) => {
+                const isLast = index === connections.length - 1;
+                const symbol = isLast ? '└─' : '├─';
+
+                html += `
+                <div class="tree-branch">
+                  <span class="tree-branch-symbol">${symbol}</span>
+                  <span class="tree-branch-target">${conn.targetLabel}</span>
+                  <span class="tree-branch-arrow">${conn.arrow}</span>
+                  ${conn.label ? `<span class="tree-branch-badge ${conn.type}">${conn.label}</span>` : ''}
+                </div>
+              `;
+              });
+              html += `</div>`;
+            } else {
+              html += `<div style="font-size:0.78rem; color:var(--text-muted); padding-left:16px;">ไม่มีสายสัมพันธ์เพิ่มเติม</div>`;
+            }
+
+            html += `</div>`; // .tree-character-card
+          });
+
+          html += `</div></div>`; // .tree-cards-list & .tree-subgraph-group
+        });
+
+        html += `</div></div>`; // .tree-nodes-list & .tree-graph-wrapper
+        return html;
+      }
+
+      // Intercept Code Blocks for Graph Diagrams
+      renderer.code = function (code, lang) {
+        let textCode = typeof code === 'object' ? code.text : code;
+        let language = typeof code === 'object' ? (code.lang || '') : (lang || '');
+        let trimmed = (textCode || '').trim();
+
+        if (language === 'mermaid' || trimmed.startsWith('graph ') || trimmed.startsWith('sequenceDiagram') || trimmed.startsWith('flowchart') || trimmed.startsWith('gantt') || trimmed.startsWith('classDiagram')) {
+          let cleanCode = removeAllEmojis(textCode);
+          return buildBuiltinGraphHtml(cleanCode);
+        }
+        return `<pre><code class="language-${language}">${textCode}</code></pre>`;
+      };
+
+      // Responsive Table Renderer & Threat Badges Formatting (Compatible with Marked v10+ & Legacy)
+      renderer.table = function (headerOrToken, bodyArg) {
+        let headerHtml = '';
+        let bodyHtml = '';
+
+        if (headerOrToken && typeof headerOrToken === 'object') {
+          // Marked v10+ Token signature
+          const token = headerOrToken;
+          
+          if (token.header && Array.isArray(token.header)) {
+            headerHtml = '<tr>' + token.header.map(cell => {
+              const cellText = window.marked ? window.marked.parseInline(cell.text || '') : cell.text;
+              const align = cell.align ? ` style="text-align:${cell.align}"` : '';
+              return `<th${align}>${cellText}</th>`;
+            }).join('') + '</tr>';
+          }
+
+          if (token.rows && Array.isArray(token.rows)) {
+            bodyHtml = token.rows.map(row => {
+              const cellsHtml = row.map(cell => {
+                let cellText = window.marked ? window.marked.parseInline(cell.text || '') : cell.text;
+                cellText = cellText.replace(/\[THREAT-([A-Z0-9]+)\]/gi, (match, p1) => {
+                  const classKey = 'threat-' + p1.toLowerCase();
+                  return `<span class="threat-tag-badge ${classKey}">[THREAT-${p1.toUpperCase()}]</span>`;
+                });
+                const align = cell.align ? ` style="text-align:${cell.align}"` : '';
+                return `<td${align}>${cellText}</td>`;
+              }).join('');
+              return `<tr>${cellsHtml}</tr>`;
+            }).join('');
+          }
+        } else {
+          // Legacy 2-argument signature
+          headerHtml = headerOrToken || '';
+          bodyHtml = bodyArg || '';
+          
+          bodyHtml = bodyHtml.replace(/\[THREAT-([A-Z0-9]+)\]/gi, (match, p1) => {
+            const classKey = 'threat-' + p1.toLowerCase();
+            return `<span class="threat-tag-badge ${classKey}">[THREAT-${p1.toUpperCase()}]</span>`;
+          });
+        }
+
+        return `<div class="table-container">
+          <table>
+            <thead>${headerHtml}</thead>
+            <tbody>${bodyHtml}</tbody>
+          </table>
+        </div>`;
+      };
+
       marked.use({
-        breaks: true, // Treat single newlines as line breaks (web novel format)
+        renderer: renderer,
+        breaks: true,
         gfm: true
       });
     }
@@ -1097,6 +2332,46 @@
       STATE.theme = newTheme;
       elements.html.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
+      renderMermaidDiagrams();
+    }
+
+    // Dynamic Mermaid Diagram Renderer
+    async function renderMermaidDiagrams() {
+      const mermaidNodes = elements.readerContent.querySelectorAll('.mermaid');
+      if (mermaidNodes.length === 0) return;
+
+      if (window.mermaid) {
+        try {
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: STATE.theme === 'dark' ? 'dark' : 'neutral',
+            securityLevel: 'loose',
+            fontFamily: 'Inter, Sarabun, sans-serif',
+            suppressErrorRendering: true
+          });
+
+          for (let i = 0; i < mermaidNodes.length; i++) {
+            const node = mermaidNodes[i];
+            const rawCode = node.getAttribute('data-mermaid-code') || node.textContent;
+            if (!node.getAttribute('data-mermaid-code')) {
+              node.setAttribute('data-mermaid-code', rawCode);
+            }
+
+            let cleanCode = rawCode.trim();
+
+            try {
+              const id = 'mermaid_svg_' + Date.now() + '_' + i;
+              const renderResult = await mermaid.render(id, cleanCode);
+              node.innerHTML = renderResult.svg;
+            } catch (err) {
+              console.warn('Mermaid render warning for diagram:', err);
+              node.innerHTML = `<div style="padding:12px; font-family:var(--font-sans); font-size:0.85rem; opacity:0.8;"><pre><code>${cleanCode}</code></pre></div>`;
+            }
+          }
+        } catch (e) {
+          console.error('Error rendering Mermaid diagrams:', e);
+        }
+      }
     }
 
     // Toggle Font Family
@@ -1117,7 +2392,7 @@
       // Boundaries
       if (newSize < 14) newSize = 14;
       if (newSize > 28) newSize = 28;
-      
+
       STATE.fontSize = newSize;
       elements.body.style.setProperty('--font-size-base', `${newSize}px`);
       localStorage.setItem('fontSize', newSize);
@@ -1180,7 +2455,7 @@
         if (index === STATE.currentChapterIndex) {
           li.classList.add('active');
         }
-        
+
         // Trim titles for UI
         let cleanTitle = chapter.title.split('(')[0].trim();
         li.textContent = cleanTitle;
@@ -1197,7 +2472,7 @@
       if (index < 0 || index >= STATE.chapters.length) return;
       STATE.currentChapterIndex = index;
       localStorage.setItem('chapterIndex', index);
-      
+
       // Update sidebar active state
       const items = elements.chapterListUl.querySelectorAll('.chapter-item');
       items.forEach((item, idx) => {
@@ -1211,20 +2486,25 @@
       loadChapterContent(STATE.chapters[index]);
     }
 
+    // Comprehensive emoji removal helper
+    function removeAllEmojis(str) {
+      if (!str) return '';
+      return str.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]|\uD83D[\uDE00-\uDE4F]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDE80-\uDEF6]|\uFE0F)/g, '');
+    }
+
     // Preprocess markdown to remove emojis and fix headers/dividers dynamically
     function preprocessMarkdown(text) {
       if (!text) return '';
-      
-      // Remove emojis (non-BMP characters above U+FFFF)
-      let cleanText = text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
-      
+
+      let cleanText = removeAllEmojis(text);
+
       const lines = cleanText.split('\n');
       let firstNonEmpty = true;
-      
+
       for (let i = 0; i < lines.length; i++) {
         let line = lines[i].trim();
         if (!line) continue;
-        
+
         if (firstNonEmpty) {
           if (!line.startsWith('#')) {
             lines[i] = '# ' + line;
@@ -1232,7 +2512,7 @@
           firstNonEmpty = false;
           continue;
         }
-        
+
         // Convert custom headings to standard markdown
         if (line.startsWith('✦')) {
           lines[i] = '## ' + line.substring(1).trim();
@@ -1244,7 +2524,7 @@
           lines[i] = '\n---\n';
         }
       }
-      
+
       return lines.join('\n');
     }
 
@@ -1256,7 +2536,7 @@
       }
       try {
         const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
-        
+
         function walk(node) {
           if (node.nodeType === Node.TEXT_NODE) {
             const text = node.nodeValue;
@@ -1280,7 +2560,7 @@
             }
           }
         }
-        
+
         walk(element);
       } catch (e) {
         console.error('Error segmenting Thai words:', e);
@@ -1311,34 +2591,37 @@
       try {
         const path = `data/${chapter.file}`;
         const response = await fetch(path);
-        
+
         if (!response.ok) {
           throw new Error(`Failed to load ${chapter.file}`);
         }
-        
+
         let markdownText = await response.text();
-        
+
         // Preprocess markdown
         markdownText = preprocessMarkdown(markdownText);
-        
+
         if (window.marked) {
           elements.readerContent.innerHTML = marked.parse(markdownText);
         } else {
           // simple parser fallback if marked fails
           elements.readerContent.innerHTML = `<h1>${chapter.title}</h1><p>${markdownText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>`;
         }
-        
+
         // Dynamic Comment highlights insertion
         renderCommentsForCurrentChapter();
-        
+
         // Apply beautiful Thai word wrapping
         applyThaiWordBreaks(elements.readerContent);
-        
+
+        // Render Mermaid Diagrams dynamically
+        renderMermaidDiagrams();
+
       } catch (err) {
         console.error('Error loading chapter markdown:', err);
         showFallbackMessage(chapter);
       }
-      
+
       // Reset scroll position to top
       updateScrollProgress();
     }
@@ -1346,7 +2629,7 @@
     // Show beautiful local environment fallback message (CORS block or missing files)
     function showFallbackMessage(chapter) {
       const isFileProtocol = window.location.protocol === 'file:';
-      
+
       let helpHtml = '';
       if (isFileProtocol) {
         helpHtml = `
@@ -1442,25 +2725,34 @@
 
     function updateCommentBadge() {
       const currentFile = STATE.chapters[STATE.currentChapterIndex]?.file;
-      const count = commentsDb.filter(c => c.chapterFile === currentFile).length;
+      const chapterCount = commentsDb.filter(c => c.chapterFile === currentFile).length;
+      const totalCount = commentsDb.length;
+
       const badge = document.getElementById('comment-count-badge');
       if (badge) {
-        if (count > 0) {
-          badge.textContent = count;
+        if (totalCount > 0) {
+          badge.textContent = totalCount;
+          badge.title = `ความคิดเห็นบทนี้: ${chapterCount} / ทั้งหมด: ${totalCount}`;
           badge.style.display = 'flex';
         } else {
           badge.style.display = 'none';
         }
       }
+
+      // Update tab badge counters
+      const tabChapterCount = document.getElementById('tab-count-chapter');
+      const tabAllCount = document.getElementById('tab-count-all');
+      if (tabChapterCount) tabChapterCount.textContent = chapterCount;
+      if (tabAllCount) tabAllCount.textContent = totalCount;
     }
 
     function renderCommentsForCurrentChapter() {
       const currentFile = STATE.chapters[STATE.currentChapterIndex]?.file;
       if (!currentFile) return;
-      
+
       const chapterComments = commentsDb.filter(c => c.chapterFile === currentFile);
       const blocks = elements.readerContent.children;
-      
+
       const commentsByBlock = {};
       chapterComments.forEach(comment => {
         if (!commentsByBlock[comment.blockIndex]) {
@@ -1472,10 +2764,10 @@
       for (const blockIdx in commentsByBlock) {
         const blockEl = blocks[blockIdx];
         if (!blockEl) continue;
-        
+
         // Sort comments inside this block by startOffset descending to prevent index shift issues when wrapping!
         const blockComments = commentsByBlock[blockIdx].sort((a, b) => b.startOffset - a.startOffset);
-        
+
         blockComments.forEach(comment => {
           // Double check selection matches text content to prevent corruption
           const textAtRange = blockEl.textContent.substring(comment.startOffset, comment.endOffset);
@@ -1528,7 +2820,7 @@
       const span = document.createElement('span');
       span.className = className;
       span.setAttribute('data-comment-id', commentId);
-      
+
       try {
         range.surroundContents(span);
       } catch (e) {
@@ -1597,7 +2889,7 @@
 
         // Get character offsets
         const offsets = getSelectionCharacterOffsetsWithin(blockEl);
-        
+
         currentSelectionData = {
           chapterFile: STATE.chapters[STATE.currentChapterIndex].file,
           blockIndex: blockIndex,
@@ -1686,7 +2978,7 @@
       modalTitle.className = `modal-title ${type}`;
       modalQuote.textContent = `"${currentSelectionData.selectedText}"`;
       modalTextarea.value = '';
-      
+
       modal.classList.add('open');
       modalTextarea.focus();
     }
@@ -1706,31 +2998,112 @@
       }
     }
 
+    function isSameDate(d1, d2) {
+      return d1.getFullYear() === d2.getFullYear() &&
+        d1.getMonth() === d2.getMonth() &&
+        d1.getDate() === d2.getDate();
+    }
+
+    function filterCommentsByDate(comments) {
+      const presetSelect = document.getElementById('comment-date-preset');
+      const preset = presetSelect ? presetSelect.value : (STATE.datePreset || 'today');
+      const now = new Date();
+
+      if (preset === 'today') {
+        return comments.filter(c => {
+          const cDate = new Date(c.timestamp);
+          return isSameDate(cDate, now);
+        });
+      }
+
+      if (preset === '7days') {
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(now.getDate() - 7);
+        sevenDaysAgo.setHours(0, 0, 0, 0);
+        return comments.filter(c => new Date(c.timestamp) >= sevenDaysAgo);
+      }
+
+      if (preset === 'custom') {
+        const startEl = document.getElementById('comment-date-start');
+        const endEl = document.getElementById('comment-date-end');
+
+        let startDate = startEl && startEl.value ? new Date(startEl.value) : null;
+        let endDate = endEl && endEl.value ? new Date(endEl.value) : null;
+
+        if (startDate) startDate.setHours(0, 0, 0, 0);
+        if (endDate) endDate.setHours(23, 59, 59, 999);
+
+        return comments.filter(c => {
+          const cDate = new Date(c.timestamp);
+          if (startDate && cDate < startDate) return false;
+          if (endDate && cDate > endDate) return false;
+          return true;
+        });
+      }
+
+      // preset === 'all'
+      return comments;
+    }
+
     function renderCommentSidebarList() {
       commentSidebarList.innerHTML = '';
       const currentFile = STATE.chapters[STATE.currentChapterIndex]?.file;
-      if (!currentFile) return;
+      const filter = STATE.commentFilter || 'chapter';
 
-      const chapterComments = commentsDb.filter(c => c.chapterFile === currentFile);
+      let targetComments = [];
+      if (filter === 'chapter') {
+        targetComments = commentsDb.filter(c => c.chapterFile === currentFile);
+      } else if (filter === 'all') {
+        targetComments = [...commentsDb];
+      } else if (filter === 'praise') {
+        targetComments = commentsDb.filter(c => c.type === 'praise');
+      } else if (filter === 'suggest') {
+        targetComments = commentsDb.filter(c => c.type === 'suggest');
+      }
 
-      if (chapterComments.length === 0) {
-        commentSidebarList.innerHTML = '<div class="empty-comments">ไม่มีความคิดเห็นในบทนี้<br><small style="opacity: 0.6; display: block; margin-top: 4px;">ไฮไลท์ข้อความเพื่อแสดงความเห็นได้เลย</small></div>';
+      // Filter by Date
+      const finalComments = filterCommentsByDate(targetComments);
+
+      // Update Tag Count
+      const tag = document.getElementById('filtered-comments-tag');
+      if (tag) {
+        tag.textContent = `${finalComments.length} รายการ`;
+      }
+
+      if (finalComments.length === 0) {
+        let msg = 'ไม่มีความคิดเห็นตามเงื่อนไขที่เลือก';
+        const preset = document.getElementById('comment-date-preset')?.value || 'today';
+        if (preset === 'today') msg = 'ไม่มีความคิดเห็นในวันนี้';
+
+        commentSidebarList.innerHTML = `<div class="empty-comments">${msg}<br><small style="opacity: 0.6; display: block; margin-top: 4px;">ลองเปลี่ยนตัวกรองวันที่หรือไฮไลท์ข้อความใหม่</small></div>`;
         return;
       }
 
       // Sort by date descending
-      chapterComments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      finalComments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-      chapterComments.forEach(comment => {
+      finalComments.forEach(comment => {
         const card = document.createElement('div');
         card.className = 'comment-card';
+
+        // Chapter Badge (when viewing 'all' or filtered lists)
+        const chapterObj = STATE.chapters.find(ch => ch.file === comment.chapterFile);
+        const chapterTitle = chapterObj ? chapterObj.title.split('(')[0].trim() : comment.chapterFile;
+
+        const chapterBadge = document.createElement('div');
+        chapterBadge.className = 'comment-card-chapter-badge';
+        chapterBadge.innerHTML = `<span>[บท]</span> <span>${chapterTitle}</span>`;
+        chapterBadge.title = 'คลิกเพื่อข้ามไปอ่านบทนี้';
+        chapterBadge.addEventListener('click', () => {
+          jumpToComment(comment.chapterFile, comment.id);
+        });
 
         const quote = document.createElement('blockquote');
         quote.className = 'comment-card-quote';
         quote.textContent = `"${comment.selectedText}"`;
-        quote.title = 'คลิกเพื่อเลื่อนไปยังจุดนี้';
+        quote.title = 'คลิกเพื่อเลื่อนไปยังข้อความที่ไฮไลท์';
         quote.addEventListener('click', () => {
-          scrollToCommentHighlight(comment.id);
+          jumpToComment(comment.chapterFile, comment.id);
         });
 
         const header = document.createElement('div');
@@ -1752,6 +3125,8 @@
         const time = document.createElement('span');
         time.className = 'comment-card-time';
         time.textContent = new Date(comment.timestamp).toLocaleDateString('th-TH', {
+          month: 'short',
+          day: 'numeric',
           hour: '2-digit',
           minute: '2-digit'
         });
@@ -1783,6 +3158,7 @@
         footer.appendChild(time);
         footer.appendChild(btns);
 
+        card.appendChild(chapterBadge);
         card.appendChild(quote);
         card.appendChild(header);
         card.appendChild(text);
@@ -1790,6 +3166,20 @@
 
         commentSidebarList.appendChild(card);
       });
+    }
+
+    function jumpToComment(chapterFile, commentId) {
+      const targetIdx = STATE.chapters.findIndex(c => c.file === chapterFile);
+      if (targetIdx !== -1) {
+        if (STATE.currentChapterIndex !== targetIdx) {
+          selectChapter(targetIdx);
+          setTimeout(() => {
+            scrollToCommentHighlight(commentId);
+          }, 400);
+        } else {
+          scrollToCommentHighlight(commentId);
+        }
+      }
     }
 
     function deleteComment(commentId) {
@@ -1825,10 +3215,10 @@
 
     function showTooltip(targetEl, comment) {
       if (!tooltip) return;
-      
+
       const typeStr = comment.type === 'praise' ? 'ชื่นชม' : 'เสนอแนะ';
       const typeClass = comment.type;
-      
+
       tooltip.innerHTML = `
         <div class="tooltip-header ${typeClass}">
           <span>${typeStr}</span>
@@ -1838,7 +3228,7 @@
       `;
 
       tooltip.classList.add('active');
-      
+
       const rect = targetEl.getBoundingClientRect();
       const tooltipHeight = tooltip.offsetHeight;
       const tooltipWidth = tooltip.offsetWidth;
@@ -1867,7 +3257,7 @@
     function setupCommentEventListeners() {
       // Mouse/Touch triggers for selection
       document.addEventListener('pointerup', checkSelection);
-      
+
       // Floating menu actions
       document.getElementById('sel-btn-praise').addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1907,6 +3297,42 @@
         toggleCommentSidebar(true);
       });
 
+      // Comment Filter Tabs Event Listeners
+      const tabBtns = document.querySelectorAll('.comment-tab-btn');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          STATE.commentFilter = btn.dataset.filter;
+          renderCommentSidebarList();
+        });
+      });
+
+      // Date Filter Preset & Custom Dates Event Listeners
+      const datePresetSelect = document.getElementById('comment-date-preset');
+      const customDateGroup = document.getElementById('comment-custom-date-group');
+      const dateStartInput = document.getElementById('comment-date-start');
+      const dateEndInput = document.getElementById('comment-date-end');
+
+      if (datePresetSelect) {
+        datePresetSelect.addEventListener('change', (e) => {
+          STATE.datePreset = e.target.value;
+          if (e.target.value === 'custom') {
+            if (customDateGroup) customDateGroup.style.display = 'flex';
+          } else {
+            if (customDateGroup) customDateGroup.style.display = 'none';
+          }
+          renderCommentSidebarList();
+        });
+      }
+
+      if (dateStartInput) {
+        dateStartInput.addEventListener('change', () => renderCommentSidebarList());
+      }
+      if (dateEndInput) {
+        dateEndInput.addEventListener('change', () => renderCommentSidebarList());
+      }
+
       // Sidebar buttons
       commentSidebarBtn.addEventListener('click', () => {
         const isOpen = commentSidebar.classList.contains('open');
@@ -1918,20 +3344,39 @@
       });
 
       commentExportBtn.addEventListener('click', () => {
-        if (commentsDb.length === 0) {
-          alert('ยังไม่มีความคิดเห็นให้ดาวน์โหลด');
+        const currentFile = STATE.chapters[STATE.currentChapterIndex]?.file;
+        const filter = STATE.commentFilter || 'chapter';
+
+        let targetComments = [];
+        if (filter === 'chapter') {
+          targetComments = commentsDb.filter(c => c.chapterFile === currentFile);
+        } else if (filter === 'all') {
+          targetComments = [...commentsDb];
+        } else if (filter === 'praise') {
+          targetComments = commentsDb.filter(c => c.type === 'praise');
+        } else if (filter === 'suggest') {
+          targetComments = commentsDb.filter(c => c.type === 'suggest');
+        }
+
+        const commentsToExport = filterCommentsByDate(targetComments);
+
+        if (commentsToExport.length === 0) {
+          alert('ไม่พบความคิดเห็นในเงื่อนไขการกรอง/ช่วงวันที่ที่เลือก');
           return;
         }
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(commentsDb, null, 2));
+
+        const preset = STATE.datePreset || 'filtered';
+        const dateStr = new Date().toISOString().split('T')[0];
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(commentsToExport, null, 2));
         const downloadAnchor = document.createElement('a');
-        downloadAnchor.setAttribute("href",     dataStr);
-        downloadAnchor.setAttribute("download", `novel_comments_${Date.now()}.json`);
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `novel_comments_${preset}_${dateStr}.json`);
         document.body.appendChild(downloadAnchor);
         downloadAnchor.click();
         downloadAnchor.remove();
       });
 
-      // Tooltips for highlights (hover & click delegation)
+      // Tooltips and Click Handlers for Reader Content (Doc Links, Image Preview, Highlights)
       elements.readerContent.addEventListener('mouseover', (e) => {
         const highlight = e.target.closest('.comment-highlight');
         if (highlight) {
@@ -1950,6 +3395,30 @@
       });
 
       elements.readerContent.addEventListener('click', (e) => {
+        // 1. Internal Markdown Document Navigation Link
+        const docLink = e.target.closest('.internal-doc-link');
+        if (docLink) {
+          e.preventDefault();
+          e.stopPropagation();
+          const targetIdx = parseInt(docLink.getAttribute('data-chapter-index'), 10);
+          if (!isNaN(targetIdx) && STATE.chapters[targetIdx]) {
+            selectChapter(targetIdx);
+          }
+          return;
+        }
+
+        // 2. Image Click (or Image Link Badge Click) -> Lightbox Modal
+        const imgLink = e.target.closest('[data-preview-img]');
+        if (imgLink) {
+          e.preventDefault();
+          e.stopPropagation();
+          const imgSrc = imgLink.getAttribute('data-preview-img');
+          const caption = imgLink.getAttribute('alt') || imgLink.getAttribute('title') || '';
+          openImageModal(imgSrc, caption);
+          return;
+        }
+
+        // 3. Highlight Comment Tooltip
         const highlight = e.target.closest('.comment-highlight');
         if (highlight) {
           e.stopPropagation();
@@ -1971,6 +3440,60 @@
       });
     }
 
+    // Image Preview Lightbox Modal Functions
+    const imageModal = document.getElementById('image-modal');
+    const imageModalImg = document.getElementById('image-modal-img');
+    const imageModalCaption = document.getElementById('image-modal-caption');
+    const closeImageModalBtn = document.getElementById('close-image-modal-btn');
+    const imageZoomBtn = document.getElementById('image-zoom-btn');
+
+    function openImageModal(src, caption) {
+      if (!imageModal || !imageModalImg) return;
+      imageModalImg.src = src;
+      imageModalImg.classList.remove('zoomed');
+      imageModalCaption.textContent = caption || '';
+      imageModal.classList.add('open');
+    }
+
+    function closeImageModal() {
+      if (imageModal) {
+        imageModal.classList.remove('open');
+        if (imageModalImg) imageModalImg.classList.remove('zoomed');
+      }
+    }
+
+    if (closeImageModalBtn) {
+      closeImageModalBtn.addEventListener('click', closeImageModal);
+    }
+
+    if (imageModal) {
+      imageModal.addEventListener('click', (e) => {
+        if (e.target === imageModal || e.target.classList.contains('image-modal-container')) {
+          closeImageModal();
+        }
+      });
+    }
+
+    if (imageModalImg) {
+      imageModalImg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        imageModalImg.classList.toggle('zoomed');
+      });
+    }
+
+    if (imageZoomBtn) {
+      imageZoomBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (imageModalImg) imageModalImg.classList.toggle('zoomed');
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeImageModal();
+      }
+    });
+
     // Initial load
     (async function init() {
       initSettings();
@@ -1980,4 +3503,5 @@
     })();
   </script>
 </body>
+
 </html>
