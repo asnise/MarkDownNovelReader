@@ -1,0 +1,36 @@
+# แฟ้มข้อมูลการออกแบบตัวละครหลัก (Main Character Design Focus Reference)
+
+> [!IMPORTANT]
+> **คำแนะนำสำหรับ AI (AI Instructions):**
+> หากปัญญาประดิษฐ์ (AI) ต้องการที่จะเข้าใจ วิเคราะห์ หรือเรียนรู้รูปลักษณ์ภายนอก ลักษณะทางกายภาพ และหน้าตาของตัวละครหลักทั้งสองคน (โดเรีย และ ธาร์) **จะต้องอ้างอิง วิเคราะห์ และดูข้อมูลภาพจากไฟล์นี้เท่านั้น** ห้ามใช้การคาดเดาหรือจินตนาการนอกเหนือจากภาพสเก็ตช์หลักที่ระบุในเอกสารนี้
+
+---
+
+## 1. ข้อมูลไฟล์ภาพการออกแบบตัวละคร (Design File Mapping)
+
+| ตัวละคร (Character) | ชื่อไฟล์รูปภาพ (File Name) | ลิงก์ไฟล์ดิบ (Raw File Link) |
+| :--- | :--- | :--- |
+| **โดเรีย (Dorea / Doria)** | `Dorea_base_Desgin.jpg` | [Dorea_base_Desgin.jpg](file:///d:/Dorea%20Pricese%20Journey/Story%20Section/Assets/Images/Dorea_base_Desgin.jpg) |
+| **ธาร์ (Thar)** | `Tar_base_Desgin.png` | [Tar_base_Desgin.png](file:///d:/Dorea%20Pricese%20Journey/Story%20Section/Assets/Images/Tar_base_Desgin.png) |
+
+---
+
+## 2. การวิเคราะห์รูปลักษณ์ตามภาพอ้างอิง (Visual Analysis & References)
+
+### 2.1 โดเรีย (Dorea) - [Dorea_base_Desgin.jpg](file:///d:/Dorea%20Pricese%20Journey/Story%20Section/Assets/Images/Dorea_base_Desgin.jpg)
+- **ภาพอ้างอิงแนวคิด**:
+  ![Dorea Concept Art](file:///d:/Dorea%20Pricese%20Journey/Story%20Section/Assets/Images/Dorea_base_Desgin.jpg)
+- **จุดสังเกตสำคัญสำหรับ AI**:
+  - ผิวสีแทน (Tan skin) ที่สะท้อนความเป็นนักล่าและสายเลือดดราโกนอยด์
+  - เขาคู่สีดำทองที่โค้งรับหน้าผากอย่างสง่างาม
+  - ผมสีเงินสว่างยาวล้อมกรอบใบหน้า
+  - ดวงตาสีน้ำเงินไพลินที่สื่ออารมณ์แน่วแน่และดุดันแต่แฝงความอ่อนไหว
+
+### 2.2 ธาร์ (Thar) - [Tar_base_Desgin.png](file:///d:/Dorea%20Pricese%20Journey/Story%20Section/Assets/Images/Tar_base_Desgin.png)
+- **ภาพอ้างอิงแนวคิด**:
+  ![Thar Concept Art](file:///d:/Dorea%20Pricese%20Journey/Story%20Section/Assets/Images/Tar_base_Desgin.png)
+- **จุดสังเกตสำคัญสำหรับ AI**:
+  - ชายหนุ่มสวมแว่นตากรอบกลมบางสีเงิน บุคลิกสะอาดสะอ้าน
+  - ทรงผมยุ่งสีน้ำตาลอ่อนแบบธรรมชาติ (Messy hair)
+  - แววตาหลังเลนส์แว่นมีความฉลาด หลักแหลม ทว่าดูเหนื่อยล้าหรือแฝงความง่วงงุนจากการศึกษาค้นคว้าทางการแพทย์
+  - ท่าทางสุภาพเรียบร้อยในชุดเสื้อเชิ้ตพับแขน
