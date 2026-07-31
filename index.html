@@ -1346,6 +1346,31 @@
       gap: 12px;
     }
 
+    /* Jump & Highlight Pulse Animation */
+    @keyframes jumpHighlightPulse {
+      0% {
+        background-color: #ef4444 !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 16px rgba(239, 68, 68, 0.9), 0 0 30px rgba(239, 68, 68, 0.5);
+        border-radius: 4px;
+        transform: scale(1.03);
+      }
+      50% {
+        background-color: rgba(239, 68, 68, 0.65) !important;
+        box-shadow: 0 0 24px rgba(239, 68, 68, 0.8);
+      }
+      100% {
+        box-shadow: none;
+        transform: scale(1);
+      }
+    }
+
+    .comment-highlight.jump-active {
+      display: inline-block;
+      animation: jumpHighlightPulse 2s ease-in-out forwards;
+      transition: all 0.3s ease;
+    }
+
     .comment-card {
       background-color: var(--bg-color);
       border: 1px solid var(--border-color);
@@ -1356,12 +1381,14 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: pointer;
     }
 
     .comment-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      border-color: var(--accent-color);
     }
 
     .comment-card-quote {
@@ -3085,6 +3112,14 @@
       finalComments.forEach(comment => {
         const card = document.createElement('div');
         card.className = 'comment-card';
+        card.title = 'คลิกเพื่อวาร์ปไปยังจุดที่บันทึกความคิดเห็น';
+
+        // Whole card click handler: Warp / Swap to comment location!
+        card.addEventListener('click', (e) => {
+          // Do not jump if user clicked copy or delete buttons
+          if (e.target.closest('.comment-card-btn')) return;
+          jumpToComment(comment.chapterFile, comment.id);
+        });
 
         // Chapter Badge (when viewing 'all' or filtered lists)
         const chapterObj = STATE.chapters.find(ch => ch.file === comment.chapterFile);
@@ -3094,17 +3129,11 @@
         chapterBadge.className = 'comment-card-chapter-badge';
         chapterBadge.innerHTML = `<span>[บท]</span> <span>${chapterTitle}</span>`;
         chapterBadge.title = 'คลิกเพื่อข้ามไปอ่านบทนี้';
-        chapterBadge.addEventListener('click', () => {
-          jumpToComment(comment.chapterFile, comment.id);
-        });
 
         const quote = document.createElement('blockquote');
         quote.className = 'comment-card-quote';
         quote.textContent = `"${comment.selectedText}"`;
         quote.title = 'คลิกเพื่อเลื่อนไปยังข้อความที่ไฮไลท์';
-        quote.addEventListener('click', () => {
-          jumpToComment(comment.chapterFile, comment.id);
-        });
 
         const header = document.createElement('div');
         header.className = 'comment-card-header';
@@ -3138,7 +3167,8 @@
         copyBtn.className = 'comment-card-btn';
         copyBtn.title = 'คัดลอกข้อความฟีดแบ็ก';
         copyBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
-        copyBtn.addEventListener('click', () => {
+        copyBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
           copyCommentText(comment);
         });
 
@@ -3146,7 +3176,8 @@
         delBtn.className = 'comment-card-btn delete';
         delBtn.title = 'ลบความคิดเห็น';
         delBtn.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>';
-        delBtn.addEventListener('click', () => {
+        delBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
           if (confirm('คุณต้องการลบความคิดเห็นนี้ใช่หรือไม่?')) {
             deleteComment(comment.id);
           }
@@ -3169,13 +3200,19 @@
     }
 
     function jumpToComment(chapterFile, commentId) {
+      // Auto-close comment sidebar on mobile screens (screen width <= 768px)
+      // so reader text is immediately visible!
+      if (window.innerWidth <= 768) {
+        toggleCommentSidebar(false);
+      }
+
       const targetIdx = STATE.chapters.findIndex(c => c.file === chapterFile);
       if (targetIdx !== -1) {
         if (STATE.currentChapterIndex !== targetIdx) {
           selectChapter(targetIdx);
           setTimeout(() => {
             scrollToCommentHighlight(commentId);
-          }, 400);
+          }, 450);
         } else {
           scrollToCommentHighlight(commentId);
         }
@@ -3190,16 +3227,44 @@
     }
 
     function scrollToCommentHighlight(commentId) {
-      const span = document.querySelector(`.comment-highlight[data-comment-id="${commentId}"]`);
+      const targetComment = commentsDb.find(c => c.id === commentId);
+      let span = document.querySelector(`.comment-highlight[data-comment-id="${commentId}"]`);
+
+      // Fallback: If highlight span wasn't created yet or chapter re-rendered, trigger comment rendering
+      if (!span && targetComment) {
+        renderCommentsForCurrentChapter();
+        span = document.querySelector(`.comment-highlight[data-comment-id="${commentId}"]`);
+      }
+
       if (span) {
+        // Scroll smooth center
         span.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        span.style.transition = 'none';
-        span.style.backgroundColor = 'rgba(239, 68, 68, 0.4)';
-        setTimeout(() => {
-          span.style.transition = 'background-color 1s ease';
-          const isPraise = span.classList.contains('status-praise');
-          span.style.backgroundColor = isPraise ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)';
-        }, 300);
+
+        // Trigger high-visibility flash pulse animation
+        span.classList.remove('jump-active');
+        void span.offsetWidth; // force reflow
+        span.classList.add('jump-active');
+
+        // Show floating tooltip popup automatically above the highlighted sentence
+        if (targetComment) {
+          showTooltip(span, targetComment);
+          setTimeout(() => {
+            hideTooltip();
+          }, 4000);
+        }
+      } else if (targetComment) {
+        // Ultimate Fallback: scroll to paragraph block directly if exact offset shifted
+        const blocks = elements.readerContent.children;
+        const blockEl = blocks[targetComment.blockIndex];
+        if (blockEl) {
+          blockEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          blockEl.style.transition = 'background-color 0.5s ease';
+          const originalBg = blockEl.style.backgroundColor;
+          blockEl.style.backgroundColor = 'rgba(245, 158, 11, 0.3)';
+          setTimeout(() => {
+            blockEl.style.backgroundColor = originalBg;
+          }, 2500);
+        }
       }
     }
 
