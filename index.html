@@ -1353,7 +1353,6 @@
         color: #ffffff !important;
         box-shadow: 0 0 16px rgba(239, 68, 68, 0.9), 0 0 30px rgba(239, 68, 68, 0.5);
         border-radius: 4px;
-        transform: scale(1.03);
       }
       50% {
         background-color: rgba(239, 68, 68, 0.65) !important;
@@ -1361,12 +1360,10 @@
       }
       100% {
         box-shadow: none;
-        transform: scale(1);
       }
     }
 
     .comment-highlight.jump-active {
-      display: inline-block;
       animation: jumpHighlightPulse 2s ease-in-out forwards;
       transition: all 0.3s ease;
     }
@@ -2864,6 +2861,10 @@
     let currentSelectionData = null;
 
     function checkSelection(e) {
+      // Ignore if clicking inside the selection menu
+      if (e && e.target && e.target.closest('#selection-menu')) {
+        return;
+      }
       // Delay slightly to let the selection settle
       setTimeout(() => {
         const selection = window.getSelection();
@@ -3223,7 +3224,16 @@
       commentsDb = commentsDb.filter(c => c.id !== commentId);
       saveCommentsToStorage();
       renderCommentSidebarList();
-      loadChapterContent(STATE.chapters[STATE.currentChapterIndex]);
+      
+      const span = document.querySelector(`.comment-highlight[data-comment-id="${commentId}"]`);
+      if (span) {
+        const parent = span.parentNode;
+        while (span.firstChild) {
+          parent.insertBefore(span.firstChild, span);
+        }
+        parent.removeChild(span);
+        parent.normalize();
+      }
     }
 
     function scrollToCommentHighlight(commentId) {
@@ -3358,7 +3368,12 @@
         commentsDb.push(newComment);
         saveCommentsToStorage();
         closeCommentModal();
-        loadChapterContent(STATE.chapters[STATE.currentChapterIndex]);
+        
+        const blockEl = elements.readerContent.children[newComment.blockIndex];
+        if (blockEl) {
+          wrapTextRange(blockEl, newComment.startOffset, newComment.endOffset, `comment-highlight status-${newComment.type}`, newComment.id);
+        }
+        
         toggleCommentSidebar(true);
       });
 
