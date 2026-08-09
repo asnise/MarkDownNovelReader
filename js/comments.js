@@ -785,6 +785,15 @@ function copyCommentText(comment) {
 // Setup Event Listeners for Comments UI
 function setupCommentEventListeners() {
   document.addEventListener('pointerup', checkSelection);
+  
+  // Add debounced selectionchange for mobile dragging
+  let selectionTimeout;
+  document.addEventListener('selectionchange', () => {
+    clearTimeout(selectionTimeout);
+    selectionTimeout = setTimeout(() => {
+      checkSelection();
+    }, 400); // 400ms debounce allows dragging handles on mobile smoothly
+  });
 
   document.getElementById('sel-btn-praise')?.addEventListener('click', (e) => {
     e.stopPropagation();
