@@ -851,7 +851,6 @@ function setupCommentEventListeners() {
     if (success) {
       Toast.show(isEdit ? 'แก้ไขคอมเมนต์สำเร็จ!' : 'บันทึกคอมเมนต์สำเร็จ!', 'success');
       closeCommentModal();
-      toggleCommentSidebar(true);
     }
   });
 }
