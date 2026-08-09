@@ -5,30 +5,88 @@
 let commentsDb = [];
 let currentSelectionData = null;
 let currentCommentType = 'praise';
+let currentEditingCommentId = null;
 
-// Initialize Comments from LocalStorage
-function initComments() {
-  try {
-    const saved = localStorage.getItem('novel_reader_comments');
-    if (saved) {
-      commentsDb = JSON.parse(saved);
-    }
-  } catch (e) {
-    console.error('Failed to load comments from local storage', e);
-    commentsDb = [];
+// =============================================================
+// Firebase Configuration (PLACEHOLDER - NEED TO FILL THIS IN!)
+// =============================================================
+const firebaseConfig = {
+  apiKey: "AIzaSyDinf22hQjq5Tp8Qr4YCMhRrE5UUmt75iY",
+  authDomain: "stone-tract-418706.firebaseapp.com",
+  projectId: "stone-tract-418706",
+  storageBucket: "stone-tract-418706.firebasestorage.app",
+  messagingSenderId: "376370604845",
+  appId: "1:376370604845:web:68facf6177a619b740c1a4",
+  measurementId: "G-S8G9E0PHYZ"
+};
+
+// Initialize Firebase only if not already initialized
+let db;
+if (typeof firebase !== 'undefined') {
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
   }
-  updateCommentBadge();
+  db = firebase.firestore();
+}
+
+// Initialize Comments from Firestore (Real-time listener)
+function initComments() {
+  if (!db) {
+    console.error('Firebase is not loaded properly. Check internet connection or config.');
+    return;
+  }
+  
+  // Real-time listener for the 'comments' collection
+  db.collection('comments').onSnapshot((snapshot) => {
+    commentsDb = [];
+    snapshot.forEach((doc) => {
+      commentsDb.push(doc.data());
+    });
+    
+    // Update UI whenever comments change
+    updateCommentBadge();
+    
+    // Re-render highlights in the current chapter if reader content exists
+    if (typeof elements !== 'undefined' && elements.readerContent) {
+      renderCommentsForCurrentChapter();
+    }
+    
+    // Re-render sidebar list if it's open
+    const commentSidebar = document.getElementById('comment-sidebar');
+    if (commentSidebar && commentSidebar.classList.contains('open')) {
+      renderCommentSidebarList();
+    }
+  }, (error) => {
+    console.error('Error fetching comments from Firestore:', error);
+  });
+  
   setupCommentEventListeners();
 }
 
-// Save Comments to LocalStorage
-function saveCommentsToStorage() {
+// Save a single comment to Firestore
+async function saveCommentToFirestore(commentObj) {
+  if (!db) return false;
   try {
-    localStorage.setItem('novel_reader_comments', JSON.stringify(commentsDb));
+    await db.collection('comments').doc(commentObj.id).set(commentObj);
+    return true;
   } catch (e) {
-    console.error('Failed to save comments to local storage', e);
+    console.error('Failed to save comment to Firebase:', e);
+    Toast.show('บันทึกคอมเมนต์ล้มเหลว', 'error');
+    return false;
   }
-  updateCommentBadge();
+}
+
+// Delete a single comment from Firestore
+async function deleteCommentFromFirestore(commentId) {
+  if (!db) return false;
+  try {
+    await db.collection('comments').doc(commentId).delete();
+    return true;
+  } catch (e) {
+    console.error('Failed to delete comment from Firebase:', e);
+    Toast.show('ลบคอมเมนต์ล้มเหลว', 'error');
+    return false;
+  }
 }
 
 // Update Header & Tab Comment Counters
@@ -54,11 +112,35 @@ function updateCommentBadge() {
   if (tabAllCount) tabAllCount.textContent = totalCount;
 }
 
+// Unwrap all comment highlights
+function unwrapAllComments() {
+  const spans = document.querySelectorAll('.comment-highlight');
+  spans.forEach(span => {
+    const originalText = span.getAttribute('data-original-text');
+    const parent = span.parentNode;
+    if (parent) {
+      if (originalText) {
+        const textNode = document.createTextNode(originalText);
+        parent.insertBefore(textNode, span);
+        parent.removeChild(span);
+      } else {
+        while (span.firstChild) {
+          parent.insertBefore(span.firstChild, span);
+        }
+        parent.removeChild(span);
+      }
+      parent.normalize();
+    }
+  });
+}
+
 // Render Highlights for Current Chapter
 function renderCommentsForCurrentChapter() {
+  unwrapAllComments();
+  
   const currentFile = STATE.chapters[STATE.currentChapterIndex]?.file;
   if (!currentFile || !elements.readerContent) return;
-
+  
   const chapterComments = commentsDb.filter(c => c.chapterFile === currentFile);
   const blocks = elements.readerContent.children;
 
@@ -120,6 +202,8 @@ function wrapTextRange(element, start, end, className, commentId, replacementTex
   }
 
   let currentPos = 0;
+  let isFirstReplacementDone = false;
+  
   for (const textNode of textNodes) {
     const len = textNode.nodeValue.length;
     const nodeStart = currentPos;
@@ -143,7 +227,13 @@ function wrapTextRange(element, start, end, className, commentId, replacementTex
       if (commentId) span.setAttribute('data-comment-id', commentId);
 
       if (replacementText) {
-        span.textContent = replacementText;
+        if (!isFirstReplacementDone) {
+          span.textContent = replacementText;
+          isFirstReplacementDone = true;
+        } else {
+          span.textContent = '';
+          span.style.display = 'none';
+        }
         span.setAttribute('data-original-text', originalText || splitNode.nodeValue);
         span.title = `คำเดิม: "${originalText || splitNode.nodeValue}"`;
         splitNode.parentNode.replaceChild(span, splitNode);
@@ -229,6 +319,7 @@ function checkSelection(e) {
 
 // Open Comment Creation Modal
 function openCommentModal(type) {
+  currentEditingCommentId = null;
   currentCommentType = type;
   const modal = document.getElementById('comment-modal');
   const titleEl = document.getElementById('comment-modal-title');
@@ -273,11 +364,66 @@ function openCommentModal(type) {
   }
 }
 
+// Open Edit Comment Modal
+function openEditCommentModal(comment) {
+  currentEditingCommentId = comment.id;
+  currentCommentType = comment.type;
+  currentSelectionData = {
+    chapterFile: comment.chapterFile,
+    blockIndex: comment.blockIndex,
+    selectedText: comment.selectedText,
+    startOffset: comment.startOffset,
+    endOffset: comment.endOffset
+  };
+
+  const modal = document.getElementById('comment-modal');
+  const titleEl = document.getElementById('comment-modal-title');
+  const quoteEl = document.getElementById('comment-modal-quote');
+  const textarea = document.getElementById('comment-modal-textarea');
+  const replaceContainer = document.getElementById('comment-modal-replace-container');
+  const replaceInput = document.getElementById('comment-modal-replace-input');
+  
+  const selMenu = document.getElementById('selection-menu');
+  if (selMenu) selMenu.classList.remove('active');
+
+  let titleStr = 'แก้ไข: เสนอแนะให้แก้ไข';
+  let titleClass = 'suggest';
+  if (comment.type === 'praise') {
+    titleStr = 'แก้ไข: ชื่นชมเนื้อหา';
+    titleClass = 'praise';
+  } else if (comment.type === 'replace') {
+    titleStr = 'แก้ไข: แทนที่คำ / ประโยค';
+    titleClass = 'replace';
+  }
+
+  titleEl.textContent = titleStr;
+  titleEl.className = `modal-title ${titleClass}`;
+  quoteEl.textContent = `"${comment.selectedText}"`;
+  textarea.value = comment.text;
+
+  if (replaceContainer && replaceInput) {
+    if (comment.type === 'replace') {
+      replaceContainer.style.display = 'block';
+      replaceInput.value = comment.replacement || '';
+    } else {
+      replaceContainer.style.display = 'none';
+    }
+  }
+
+  modal.classList.add('open');
+  if (comment.type === 'replace' && replaceInput) {
+    setTimeout(() => replaceInput.focus(), 100);
+  } else {
+    setTimeout(() => textarea.focus(), 100);
+  }
+}
+
 // Close Comment Creation Modal
 function closeCommentModal() {
   const modal = document.getElementById('comment-modal');
   if (modal) modal.classList.remove('open');
   window.getSelection()?.removeAllRanges();
+  currentEditingCommentId = null;
 }
 
 // Floating Tooltip Functions
@@ -511,7 +657,17 @@ function renderCommentSidebarList() {
       }
     });
 
+    const editBtn = document.createElement('button');
+    editBtn.className = 'comment-card-btn';
+    editBtn.title = 'แก้ไขความคิดเห็น';
+    editBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>';
+    editBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openEditCommentModal(comment);
+    });
+
     btns.appendChild(copyBtn);
+    btns.appendChild(editBtn);
     btns.appendChild(delBtn);
 
     footer.appendChild(time);
@@ -581,10 +737,14 @@ function scrollToCommentHighlight(commentId) {
 }
 
 // Delete Comment
-function deleteComment(commentId) {
-  commentsDb = commentsDb.filter(c => c.id !== commentId);
-  saveCommentsToStorage();
-  renderCommentSidebarList();
+async function deleteComment(commentId) {
+  Loading.show('กำลังลบความคิดเห็น...');
+  const success = await deleteCommentFromFirestore(commentId);
+  Loading.hide();
+  
+  if (!success) return;
+  
+  Toast.show('ลบความคิดเห็นสำเร็จ', 'success');
 
   const spans = document.querySelectorAll(`.comment-highlight[data-comment-id="${commentId}"]`);
   spans.forEach(span => {
@@ -646,18 +806,21 @@ function setupCommentEventListeners() {
   const modalTextarea = document.getElementById('comment-modal-textarea');
 
   modalCancel?.addEventListener('click', closeCommentModal);
-  modalSave?.addEventListener('click', () => {
+  modalSave?.addEventListener('click', async () => {
     const text = modalTextarea.value.trim();
     if (!text) {
-      alert('กรุณากรอกความคิดเห็น');
+      Toast.show('กรุณากรอกความคิดเห็น', 'error');
       return;
     }
 
     const replaceInput = document.getElementById('comment-modal-replace-input');
-    const replacementText = (currentCommentType === 'replace') ? replaceInput.value.trim() : undefined;
+    const replacementText = (currentCommentType === 'replace') ? replaceInput.value.trim() : null;
+    
+    const isEdit = currentEditingCommentId !== null;
+    const commentId = isEdit ? currentEditingCommentId : 'c_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
     const newComment = {
-      id: 'c_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+      id: commentId,
       chapterFile: currentSelectionData.chapterFile,
       blockIndex: currentSelectionData.blockIndex,
       selectedText: currentSelectionData.selectedText,
@@ -666,26 +829,20 @@ function setupCommentEventListeners() {
       type: currentCommentType,
       text: text,
       replacement: replacementText,
-      timestamp: new Date().toISOString()
+      timestamp: isEdit ? commentsDb.find(c => c.id === commentId)?.timestamp || new Date().toISOString() : new Date().toISOString()
     };
 
-    commentsDb.push(newComment);
-    saveCommentsToStorage();
-    closeCommentModal();
-
-    const blockEl = elements.readerContent.children[newComment.blockIndex];
-    if (blockEl) {
-      wrapTextRange(
-        blockEl, 
-        newComment.startOffset, 
-        newComment.endOffset, 
-        `comment-highlight status-${newComment.type}`, 
-        newComment.id, 
-        (newComment.type === 'replace' && newComment.replacement) ? newComment.replacement : null, 
-        newComment.selectedText
-      );
+    Loading.show('กำลังบันทึกคอมเมนต์...');
+    
+    // Send to Firebase. onSnapshot will trigger and re-render everything cleanly.
+    const success = await saveCommentToFirestore(newComment);
+    
+    Loading.hide();
+    
+    if (success) {
+      Toast.show(isEdit ? 'แก้ไขคอมเมนต์สำเร็จ!' : 'บันทึกคอมเมนต์สำเร็จ!', 'success');
+      closeCommentModal();
+      toggleCommentSidebar(true);
     }
-
-    toggleCommentSidebar(true);
   });
 }
