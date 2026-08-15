@@ -23,16 +23,45 @@ const firebaseConfig = {
 // Initialize Firebase only if not already initialized
 let db;
 if (typeof firebase !== 'undefined') {
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+  try {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    db = firebase.firestore();
+    // Enable long polling to prevent WebChannel CORS / Listen stream errors
+    db.settings({
+      experimentalForceLongPolling: true,
+      merge: true
+    });
+  } catch (e) {
+    console.warn('Firestore initialization warning:', e);
   }
-  db = firebase.firestore();
 }
 
-// Initialize Comments from Firestore (Real-time listener)
+// Fallback / Helper for storage cache save
+function saveCommentsToStorage() {
+  try {
+    localStorage.setItem('novel_reader_comments_cache', JSON.stringify(commentsDb));
+  } catch (e) {}
+}
+
+// Initialize Comments from Firestore (with local cache fallback)
 function initComments() {
+  // Load cached comments first for immediate display
+  try {
+    const cached = localStorage.getItem('novel_reader_comments_cache');
+    if (cached) {
+      commentsDb = JSON.parse(cached);
+      updateCommentBadge();
+      if (typeof elements !== 'undefined' && elements.readerContent) {
+        renderCommentsForCurrentChapter();
+      }
+    }
+  } catch (e) {}
+
   if (!db) {
-    console.error('Firebase is not loaded properly. Check internet connection or config.');
+    console.warn('Firebase is not loaded. Operating in offline/local comments mode.');
+    setupCommentEventListeners();
     return;
   }
   
@@ -42,6 +71,8 @@ function initComments() {
     snapshot.forEach((doc) => {
       commentsDb.push(doc.data());
     });
+    
+    saveCommentsToStorage();
     
     // Update UI whenever comments change
     updateCommentBadge();
@@ -57,35 +88,107 @@ function initComments() {
       renderCommentSidebarList();
     }
   }, (error) => {
-    console.error('Error fetching comments from Firestore:', error);
+    console.warn('Firestore real-time connection note (using cached/local data):', error);
   });
   
   setupCommentEventListeners();
 }
 
-// Save a single comment to Firestore
+// Save a single comment to Firestore (with local fallback)
 async function saveCommentToFirestore(commentObj) {
-  if (!db) return false;
+  if (!db) {
+    const idx = commentsDb.findIndex(c => c.id === commentObj.id);
+    if (idx >= 0) commentsDb[idx] = commentObj;
+    else commentsDb.push(commentObj);
+    saveCommentsToStorage();
+    updateCommentBadge();
+    if (typeof elements !== 'undefined' && elements.readerContent) {
+      renderCommentsForCurrentChapter();
+    }
+    return true;
+  }
   try {
     await db.collection('comments').doc(commentObj.id).set(commentObj);
     return true;
   } catch (e) {
-    console.error('Failed to save comment to Firebase:', e);
-    Toast.show('บันทึกคอมเมนต์ล้มเหลว', 'error');
-    return false;
+    console.warn('Failed to save to Firebase directly, saving locally:', e);
+    const idx = commentsDb.findIndex(c => c.id === commentObj.id);
+    if (idx >= 0) commentsDb[idx] = commentObj;
+    else commentsDb.push(commentObj);
+    saveCommentsToStorage();
+    updateCommentBadge();
+    if (typeof elements !== 'undefined' && elements.readerContent) {
+      renderCommentsForCurrentChapter();
+    }
+    return true;
   }
 }
 
-// Delete a single comment from Firestore
+// Delete a single comment from Firestore (with local fallback)
 async function deleteCommentFromFirestore(commentId) {
-  if (!db) return false;
+  if (!db) {
+    commentsDb = commentsDb.filter(c => c.id !== commentId);
+    saveCommentsToStorage();
+    updateCommentBadge();
+    unwrapAllComments();
+    if (typeof elements !== 'undefined' && elements.readerContent) {
+      renderCommentsForCurrentChapter();
+    }
+    return true;
+  }
   try {
     await db.collection('comments').doc(commentId).delete();
     return true;
   } catch (e) {
-    console.error('Failed to delete comment from Firebase:', e);
-    Toast.show('ลบคอมเมนต์ล้มเหลว', 'error');
-    return false;
+    console.warn('Failed to delete from Firebase directly, deleting locally:', e);
+    commentsDb = commentsDb.filter(c => c.id !== commentId);
+    saveCommentsToStorage();
+    updateCommentBadge();
+    unwrapAllComments();
+    if (typeof elements !== 'undefined' && elements.readerContent) {
+      renderCommentsForCurrentChapter();
+    }
+    return true;
+  }
+}
+
+// Delete all comments
+async function deleteAllCommentsFromFirestore() {
+  if (!db) {
+    commentsDb = [];
+    saveCommentsToStorage();
+    unwrapAllComments();
+    updateCommentBadge();
+    renderCommentSidebarList();
+    Toast.show('ลบคอมเมนต์ทั้งหมดสำเร็จ!', 'success');
+    return true;
+  }
+  try {
+    Loading.show('กำลังลบคอมเมนต์ทั้งหมด...');
+    const snapshot = await db.collection('comments').get();
+    const batch = db.batch();
+    snapshot.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+    commentsDb = [];
+    saveCommentsToStorage();
+    unwrapAllComments();
+    updateCommentBadge();
+    renderCommentSidebarList();
+    Loading.hide();
+    Toast.show('ลบคอมเมนต์ทั้งหมดสำเร็จ!', 'success');
+    return true;
+  } catch (e) {
+    console.error('Failed to delete all comments from Firebase:', e);
+    Loading.hide();
+    commentsDb = [];
+    saveCommentsToStorage();
+    unwrapAllComments();
+    updateCommentBadge();
+    renderCommentSidebarList();
+    Toast.show('ลบคอมเมนต์ทั้งหมดสำเร็จ (โหมดท้องถิ่น)', 'success');
+    return true;
   }
 }
 

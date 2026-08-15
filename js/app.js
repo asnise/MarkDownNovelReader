@@ -300,21 +300,18 @@ function setupGlobalEventListeners() {
     toggleCommentSidebar(false);
   });
 
-  document.getElementById('comment-delete-all-btn')?.addEventListener('click', () => {
+  document.getElementById('comment-delete-all-btn')?.addEventListener('click', async () => {
     if (commentsDb.length === 0) return;
     if (confirm('คุณแน่ใจหรือไม่ว่าต้องการลบคอมเมนต์ทั้งหมด? (ลบแล้วกู้คืนไม่ได้)')) {
-      commentsDb = [];
-      saveCommentsToStorage();
-      renderCommentSidebarList();
-      document.querySelectorAll('.comment-highlight').forEach(span => {
-        const parent = span.parentNode;
-        while (span.firstChild) {
-          parent.insertBefore(span.firstChild, span);
-        }
-        parent.removeChild(span);
-        parent.normalize();
-      });
-      updateCommentBadge();
+      if (typeof deleteAllCommentsFromFirestore === 'function') {
+        await deleteAllCommentsFromFirestore();
+      } else {
+        commentsDb = [];
+        if (typeof saveCommentsToStorage === 'function') saveCommentsToStorage();
+        if (typeof unwrapAllComments === 'function') unwrapAllComments();
+        renderCommentSidebarList();
+        updateCommentBadge();
+      }
     }
   });
 

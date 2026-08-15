@@ -48,7 +48,14 @@ class LoadingSystem {
         to { transform: rotate(360deg); }
       }
     `;
-    document.head.appendChild(style);
+    const targetHead = document.head || document.documentElement;
+    if (targetHead) {
+      targetHead.appendChild(style);
+    } else {
+      document.addEventListener('DOMContentLoaded', () => {
+        (document.head || document.documentElement).appendChild(style);
+      });
+    }
 
     // Create DOM
     this.overlay = document.createElement('div');
@@ -64,19 +71,33 @@ class LoadingSystem {
     this.overlay.appendChild(this.spinner);
     this.overlay.appendChild(this.textEl);
     
-    // Use setTimeout to ensure body is parsed
-    setTimeout(() => {
-      document.body.appendChild(this.overlay);
-    }, 0);
+    const mount = () => {
+      if (document.body && !document.getElementById('api-loading-overlay')) {
+        document.body.appendChild(this.overlay);
+      }
+    };
+
+    if (document.body) {
+      mount();
+    } else {
+      document.addEventListener('DOMContentLoaded', mount);
+    }
   }
 
   show(text = 'กำลังโหลด...') {
-    this.textEl.textContent = text;
-    this.overlay.classList.add('active');
+    if (this.textEl) this.textEl.textContent = text;
+    if (this.overlay) {
+      if (!this.overlay.parentNode && document.body) {
+        document.body.appendChild(this.overlay);
+      }
+      this.overlay.classList.add('active');
+    }
   }
 
   hide() {
-    this.overlay.classList.remove('active');
+    if (this.overlay) {
+      this.overlay.classList.remove('active');
+    }
   }
 }
 

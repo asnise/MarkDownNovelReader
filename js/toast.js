@@ -70,15 +70,30 @@ class ToastSystem {
         color: #3b82f6;
       }
     `;
-    document.head.appendChild(style);
+    const targetHead = document.head || document.documentElement;
+    if (targetHead) {
+      targetHead.appendChild(style);
+    } else {
+      document.addEventListener('DOMContentLoaded', () => {
+        (document.head || document.documentElement).appendChild(style);
+      });
+    }
 
     // Create Container
     this.container = document.createElement('div');
     this.container.id = 'api-toast-container';
     
-    setTimeout(() => {
-      document.body.appendChild(this.container);
-    }, 0);
+    const mount = () => {
+      if (document.body && !document.getElementById('api-toast-container')) {
+        document.body.appendChild(this.container);
+      }
+    };
+
+    if (document.body) {
+      mount();
+    } else {
+      document.addEventListener('DOMContentLoaded', mount);
+    }
   }
 
   getIconSvg(type) {
@@ -92,6 +107,9 @@ class ToastSystem {
   }
 
   show(message, type = 'info', duration = 3000) {
+    if (!this.container.parentNode && document.body) {
+      document.body.appendChild(this.container);
+    }
     const toast = document.createElement('div');
     toast.className = `api-toast ${type}`;
     
@@ -110,7 +128,7 @@ class ToastSystem {
       toast.classList.replace('show', 'hide');
       setTimeout(() => {
         if (toast.parentNode) toast.parentNode.removeChild(toast);
-      }, 300); // Wait for transition
+      }, 300);
     }, duration);
   }
 }
