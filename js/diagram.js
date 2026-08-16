@@ -242,6 +242,66 @@ function initMarkedParser() {
     </div>`;
   };
 
+  renderer.image = function(hrefOrToken, title, text) {
+    let href = typeof hrefOrToken === 'object' ? hrefOrToken.href : (hrefOrToken || '');
+    let imgTitle = typeof hrefOrToken === 'object' ? (hrefOrToken.title || '') : (title || '');
+    let imgText = typeof hrefOrToken === 'object' ? (hrefOrToken.text || '') : (text || '');
+
+    if (href && !href.startsWith('http') && !href.startsWith('data:') && !href.startsWith('file:///')) {
+      let currentFile = STATE.chapters[STATE.currentChapterIndex]?.file || '';
+      let pathSegments = currentFile.split('/');
+      pathSegments.pop(); 
+      let hrefSegments = href.split('/');
+      for (let segment of hrefSegments) {
+        if (segment === '..') pathSegments.pop();
+        else if (segment !== '.') pathSegments.push(segment);
+      }
+      href = 'data/' + pathSegments.join('/');
+    }
+
+    let out = `<img src="${href}" alt="${imgText}"`;
+    if (imgTitle) out += ` title="${imgTitle}"`;
+    out += ` data-preview-img="${href}" class="markdown-image" loading="lazy">`;
+    return out;
+  };
+
+  renderer.link = function(hrefOrToken, title, text) {
+    let href = typeof hrefOrToken === 'object' ? hrefOrToken.href : (hrefOrToken || '');
+    let linkTitle = typeof hrefOrToken === 'object' ? (hrefOrToken.title || '') : (title || '');
+    let linkText = typeof hrefOrToken === 'object' ? (hrefOrToken.text || '') : (text || '');
+
+    if (href && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('#') && !href.startsWith('file:///')) {
+      let currentFile = STATE.chapters[STATE.currentChapterIndex]?.file || '';
+      let pathSegments = currentFile.split('/');
+      pathSegments.pop(); 
+      let hrefSegments = href.split('/');
+      for (let segment of hrefSegments) {
+        if (segment === '..') pathSegments.pop();
+        else if (segment !== '.') pathSegments.push(segment);
+      }
+      href = 'data/' + pathSegments.join('/');
+    }
+
+    let out = `<a href="${href}"`;
+    if (linkTitle) out += ` title="${linkTitle}"`;
+    
+    // Add internal-doc-link class if it links to a markdown file
+    if (href.endsWith('.md')) {
+      // Find chapter index matching this path
+      // the href is something like 'data/Characters/Dorea.md'
+      let shortPath = href.replace('data/', '');
+      let chapterIdx = STATE.chapters.findIndex(c => c.file === shortPath);
+      if (chapterIdx !== -1) {
+        out += ` class="internal-doc-link" data-chapter-index="${chapterIdx}"`;
+      } else {
+        out += ` class="internal-doc-link"`; // fallback
+      }
+    }
+    
+    out += `>${linkText}</a>`;
+    return out;
+  };
+
   marked.use({
     renderer: renderer,
     breaks: true,
