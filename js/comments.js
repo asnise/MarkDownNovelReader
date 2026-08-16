@@ -31,6 +31,7 @@ if (typeof firebase !== 'undefined') {
     // Enable long polling to prevent WebChannel CORS / Listen stream errors
     db.settings({
       experimentalForceLongPolling: true,
+      experimentalAutoDetectLongPolling: false,
       merge: true
     });
   } catch (e) {

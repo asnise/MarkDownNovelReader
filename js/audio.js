@@ -158,51 +158,91 @@ function highlightTextInDOM(searchText) {
   const readerContent = document.getElementById('reader-content');
   if (!readerContent) return;
 
-  let cleanSearch = searchText.replace(/[.,!?"]/g, '').trim();
+  const cleanRegex = /[\s\u200B-\u200D\uFEFF"'.,!?()[\]{}:;<>_/\\-]/g;
+  let cleanSearch = searchText.replace(cleanRegex, '');
   if (cleanSearch.length < 3) return;
 
+  const textNodes = [];
   const treeWalker = document.createTreeWalker(
     readerContent,
     NodeFilter.SHOW_TEXT,
-    null,
+    { acceptNode: function(node) {
+        if (node.parentNode.nodeName === 'CODE') return NodeFilter.FILTER_REJECT;
+        if (node.parentNode.classList.contains('audio-highlight')) return NodeFilter.FILTER_SKIP;
+        return NodeFilter.FILTER_ACCEPT;
+    }},
     false
   );
 
   let node;
   while (node = treeWalker.nextNode()) {
-    if (node.parentNode.nodeName === 'CODE' || node.parentNode.classList.contains('audio-highlight')) continue;
+    textNodes.push(node);
+  }
 
-    const nodeText = node.nodeValue;
-    const cleanNodeText = nodeText.replace(/[.,!?"]/g, '');
-    
-    let matchIndex = cleanNodeText.indexOf(cleanSearch);
-    if (matchIndex !== -1) {
-      // Find approximate real index
-      const firstWord = searchText.split(' ')[0];
-      const realIndex = nodeText.indexOf(firstWord);
-      
-      if (realIndex !== -1) {
-        const span = document.createElement('span');
-        span.className = 'audio-highlight';
-        
-        const split1 = node.splitText(realIndex);
-        if (split1.nodeValue.length > searchText.length) {
-           split1.splitText(searchText.length);
-        }
-        
-        span.textContent = split1.nodeValue;
-        split1.parentNode.replaceChild(span, split1);
-        
-        const rect = span.getBoundingClientRect();
-        const isInViewport = rect.top >= 100 && rect.bottom <= (window.innerHeight - 100);
-        if (!isInViewport) {
-           window.scrollBy({
-             top: rect.top - (window.innerHeight / 2),
-             behavior: 'smooth'
-           });
-        }
-        break; 
+  let combinedText = '';
+  const nodeMap = [];
+  
+  for (let i = 0; i < textNodes.length; i++) {
+    const text = textNodes[i].nodeValue;
+    for (let j = 0; j < text.length; j++) {
+      const char = text[j];
+      if (!cleanRegex.test(char)) {
+        combinedText += char;
+        nodeMap.push({ nodeIndex: i, charIndex: j });
       }
+      cleanRegex.lastIndex = 0; // reset regex state
+    }
+  }
+
+  const matchStart = combinedText.indexOf(cleanSearch);
+  
+  if (matchStart !== -1) {
+    const matchEnd = matchStart + cleanSearch.length - 1;
+    const startInfo = nodeMap[matchStart];
+    const endInfo = nodeMap[matchEnd];
+    
+    let nodesToWrap = [];
+    for (let i = startInfo.nodeIndex; i <= endInfo.nodeIndex; i++) {
+      const originalNode = textNodes[i];
+      let startOffset = (i === startInfo.nodeIndex) ? startInfo.charIndex : 0;
+      let endOffset = (i === endInfo.nodeIndex) ? endInfo.charIndex + 1 : originalNode.nodeValue.length;
+      
+      nodesToWrap.push({
+        node: originalNode,
+        start: startOffset,
+        end: endOffset
+      });
+    }
+    
+    let firstSpan = null;
+    for (let i = nodesToWrap.length - 1; i >= 0; i--) {
+      const item = nodesToWrap[i];
+      if (item.start >= item.end) continue;
+      
+      const span = document.createElement('span');
+      span.className = 'audio-highlight';
+      
+      const nodeToSplit = item.node;
+      const split1 = nodeToSplit.splitText(item.start);
+      if (item.end - item.start < split1.nodeValue.length) {
+         split1.splitText(item.end - item.start);
+      }
+      
+      span.textContent = split1.nodeValue;
+      split1.parentNode.replaceChild(span, split1);
+      
+      if (i === 0) firstSpan = span;
+    }
+    
+    if (firstSpan) {
+       const rect = firstSpan.getBoundingClientRect();
+       const isInViewport = rect.top >= 100 && rect.bottom <= (window.innerHeight - 100);
+       if (!isInViewport) {
+          window.scrollBy({
+            top: rect.top - (window.innerHeight / 2),
+            behavior: 'smooth'
+          });
+       }
     }
   }
 }
