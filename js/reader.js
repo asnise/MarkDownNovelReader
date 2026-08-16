@@ -195,6 +195,9 @@ async function loadChapterContent(chapter) {
     updateCommentBadge();
     applyThaiWordBreaks(elements.readerContent);
     renderMermaidDiagrams();
+    if (window.loadChapterAudio) {
+      window.loadChapterAudio(chapter.file);
+    }
 
   } catch (err) {
     console.error('Error loading chapter markdown:', err);

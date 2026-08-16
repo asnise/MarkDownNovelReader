@@ -1646,3 +1646,101 @@ body.indent-enabled .reader-content p {
     padding: 0 8px;
   }
 }
+
+/* Audio Player UI */
+.audio-player-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--surface-bg, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 1000;
+  width: 90%;
+  max-width: 500px;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .audio-player-container {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.audio-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color, #3b82f6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.audio-btn:hover {
+  background-color: var(--bg-color, #f3f4f6);
+}
+
+.audio-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.audio-progress-wrapper {
+  flex-grow: 1;
+  height: 6px;
+  background-color: var(--border-color, #e5e7eb);
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+.audio-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--primary-color, #3b82f6);
+  border-radius: 3px;
+  width: 0%;
+  pointer-events: none;
+}
+
+.audio-time-display {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.75rem;
+  color: var(--text-muted, #6b7280);
+  min-width: 65px;
+  text-align: center;
+}
+
+.close-audio {
+  color: var(--text-muted, #6b7280);
+}
+
+/* Audio Highlighting inside Markdown */
+.audio-highlight {
+  background-color: rgba(59, 130, 246, 0.2);
+  border-bottom: 2px solid var(--primary-color, #3b82f6);
+  color: inherit;
+  transition: background-color 0.1s ease;
+}
+
+[data-theme="dark"] .audio-highlight {
+  background-color: rgba(59, 130, 246, 0.3);
+}
