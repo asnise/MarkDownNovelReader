@@ -52,7 +52,7 @@ const FALLBACK_CHAPTERS = [
   { file: 'Creature/Solar_Magic_Flower.md', title: '[Creature] แพกเซียน: ดอกไม้สุริยะมนตรา (Solar Magic Flower)' },
   { file: 'Creature/Dragon_Lily.md', title: '[Creature] แพกเซียน: ดอกลิลลี่มังกร (Dragon Lily)' },
   { file: 'Creature/Gloom_Centipede.md', title: '[Creature] ฮอร์เดียน: ตะขาบเงามืดสะท้อนแสง (Gloom Centipede)' },
-  { file: 'Comment/Chapter_00-07_2026-05-27_01_Consistency_and_Pacing_Review.md', title: '[Review] บันทึกตรวจทานความสมเหตุสมผลและจังหวะเรื่อง (Pacing & Consistency Review)' },
+  { file: 'SideStory_01_The_Skyward_Ambition.md', title: '[Side Story] ความทะเยอทะยานสู่ผืนฟ้า: จุดกำเนิด ATKD (The Skyward Ambition)' },
   { file: 'Chapter_00_The_Cradle_of_Dorea.md', title: 'ตอนที่ 0: ของขวัญจากฟากฟ้า และคำสัญญาอันแสนอบอุ่น (The Cradle of Dorea)' },
   { file: 'Chapter_01_The_Ash_of_Draconia.md', title: 'ตอนที่ 1: วันที่ท้องฟ้าถล่ม และอ้อมกอดสุดท้าย (The Ash of Draconia)' },
   { file: 'Chapter_02_The_Origin_of_Tar.md', title: 'ตอนที่ 2: รอยแผลแห่งเอเธลการ์ด และคุณหมอผู้อ่อนโยน (The Origin of Thar)' },
@@ -60,7 +60,8 @@ const FALLBACK_CHAPTERS = [
   { file: 'Chapter_04_The_Doctors_Suture.md', title: 'ตอนที่ 4: คืนพายุโหม และเส้นทางสู่บ้าน (The Doctor\'s Suture - Journey)' },
   { file: 'Chapter_05_The_Tense_Distance_and_Shivered_Trust.md', title: 'ตอนที่ 5: ระยะห่างและเศษเสี้ยวความระแวง (The Tense Distance and Shivered Trust)' },
   { file: 'Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md', title: 'ตอนที่ 6: ตัวอักษรดวงดาว กับภาษาที่เชื่อมใจ (The Silent Pages and the Starry Letters)' },
-  { file: 'Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md', title: 'ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต (The Bound Hearts and Five Years\' Dawn)' }
+  { file: 'Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md', title: 'ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต (The Bound Hearts and Five Years\' Dawn)' },
+  { file: 'SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md', title: '[Side Story] ตอนพิเศษ: กลิ่นหอมที่ตกค้าง กับไอร้อนใต้เงาราตรี (The Lingering Scent and the Midnight Heat)' }
 ];
 
 // Comprehensive Emoji Removal Helper
