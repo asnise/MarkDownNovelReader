@@ -52,7 +52,7 @@ const FALLBACK_CHAPTERS = [
   { file: 'Creature/Solar_Magic_Flower.md', title: '[Creature] แพกเซียน: ดอกไม้สุริยะมนตรา (Solar Magic Flower)' },
   { file: 'Creature/Dragon_Lily.md', title: '[Creature] แพกเซียน: ดอกลิลลี่มังกร (Dragon Lily)' },
   { file: 'Creature/Gloom_Centipede.md', title: '[Creature] ฮอร์เดียน: ตะขาบเงามืดสะท้อนแสง (Gloom Centipede)' },
-  { file: 'SideStory_01_The_Skyward_Ambition.md', title: '[Side Story] ความทะเยอทะยานสู่ผืนฟ้า: จุดกำเนิด ATKD (The Skyward Ambition)' },
+  { file: 'Comment/Chapter_00-07_2026-05-27_01_Consistency_and_Pacing_Review.md', title: '[Review] บันทึกตรวจทานความสมเหตุสมผลและจังหวะเรื่อง (Pacing & Consistency Review)' },
   { file: 'Chapter_00_The_Cradle_of_Dorea.md', title: 'ตอนที่ 0: ของขวัญจากฟากฟ้า และคำสัญญาอันแสนอบอุ่น (The Cradle of Dorea)' },
   { file: 'Chapter_01_The_Ash_of_Draconia.md', title: 'ตอนที่ 1: วันที่ท้องฟ้าถล่ม และอ้อมกอดสุดท้าย (The Ash of Draconia)' },
   { file: 'Chapter_02_The_Origin_of_Tar.md', title: 'ตอนที่ 2: รอยแผลแห่งเอเธลการ์ด และคุณหมอผู้อ่อนโยน (The Origin of Thar)' },
