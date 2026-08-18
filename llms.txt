@@ -1,0 +1,98 @@
+# Dorea's Princess Journey (การเดินทางของเจ้าหญิงมังกร)
+
+> Comprehensive Knowledge Base, World Setting, Characters, and Chapter Manifest for AI Agents.
+
+## Overview
+นิยายแฟนตาซี-ไซไฟดาร์กโรมานซ์และวิทยาการเวทมนตร์ เรื่องราวของ **โดเรีย (Dorea)** เจ้าหญิงเผ่ามังกร (Dragonoid) ผู้รอดชีวิตจากการล่มสลายของดราโกเนีย กับ **ธาร์ (Thar)** คุณหมอหนุ่มอัจฉริยะชาวเอร่า (Aera) ผู้รักษาแผลกายและผูกพันใจ ทั้งสองร่วมกันเผชิญหน้ากับความท้าทายในสถาบันเอเธลการ์ด การพัฒนาเทคโนโลยี ATKD และภัยคุกคามจากรอยแยกมิติ (Dimensional Rifts)
+
+## Core Glossary & Dictionary (พจนานุกรมคำศัพท์และเอนทิตี)
+- **โดเรีย (Dorea)** (Dorea) [ดราโกนอยด์ (Dragonoid)]: เจ้าหญิงมังกร / ทายาทตระกูลไวร์ชีล (Lady Dorea of Wyvernshield) — เด็กสาวเผ่ามังกร ผู้รอดชีวิตจากการล่มสลายของดราโกเนีย ซ่อนเกล็ดบางละเอียดใต้โหนกแก้ม มีความสัมพันธ์ลึกซึ้งและผูกพันกับหมอธาร์
+- **ธาร์ (Thar Evancross)** (Thar) [ชาวเอร่า (Aeran / Human)]: แพทย์สนาม / อัจฉริยะกายวิภาคและมานา (Physician of Calamity) — แพทย์หนุ่มผู้สุขุม เยือกเย็น และรอบคอบ ผู้ช่วยชีวิตโดเรียและเป็นคู่ชีวิตที่คอยปกป้องดูแลซึ่งกันและกัน มีความรู้ลึกซึ้งด้านชีพจรมานาและกายวิภาค
+- **ดราโกนอยด์ (Dragonoid)** (Dragonoid): เผ่าพันธุ์มนุษย์มังกร มีเกล็ดสะท้อนแสง พละกำลังมหาศาล สัญชาตญาณสัตว์ร้าย และความสามารถในการบินหรือต่อสู้แนวหน้า
+- **ชาวเอร่า (Aera / Aeran)** (Aeran): เผ่าพันธุ์มนุษย์ทั่วไปในโลกของเรื่อง มีความยืดหยุ่นทางความคิด สร้างสรรค์เทคโนโลยี และเวทมนตร์ประยุกต์
+- **บีสต์คิน (Beastkin)** (Beastkin): เผ่าพันธุ์ครึ่งสัตว์ มีประสาทสัมผัสและพละกำลังทางกายภาพสูงตามลักษณะสัตว์ประจำตัว
+- **ออโตมาตา (Automata)** (Automata): เผ่าพันธุ์จักรกลและหุ่นยนต์ที่มีแกนมานาขับเคลื่อน มีความแม่นยำและการคำนวณขั้นสูง
+- **ซิลวาน (Sylvan)** (Sylvan): เผ่านกหรือภูตพฤกษา มีความเชี่ยวชาญด้านธรรมชาติ ธาตุลม และเวทมนตร์พฤกษา
+- **ATKD (Aether-Thigh Kinetic Drive)** (ATKD): ชุดขับเคลื่อนพลังจลน์สถิตขา เทคโนโลยีต้านแรงโน้มถ่วงที่พัฒนาโดยอาร์เธอร์และเอลิส ช่วยให้มนุษย์เคลื่อนที่และต่อสู้บนอากาศเทียบเคียงเผ่ามังกร
+- **รอยแยกมิติ (Dimensional Rift)** (Dimensional Rift): ปรากฏการณ์มิติฉีกขาดที่ปล่อยสัตว์อสูรกลายพันธุ์และแร่ธาตุพลังงานออกมา เป็นภัยคุกคามหลักที่นักผจญภัยต้องคอยจัดการ
+- **เอเธลการ์ด (Aethelgard)** (Aethelgard): นครหลวงศูนย์กลางการศึกษา อคาเดมี การแพทย์ และวิทยาการเวทมนตร์ เมืองที่ธาร์และโดเรียใช้ชีวิตและศึกษาอยู่
+- **ดราโกเนีย (Draconia)** (Draconia): อาณาจักรโบราณของเผ่ามังกรที่ถูกทำลายลงในอดีต ต้นกำเนิดและบ้านเกิดของโดเรีย
+- **เอลิซ่า เพนนีเวิร์ธ (Eliza Pennyworth)** (Eliza) [ชาวเอร่า (Aeran)]: ผู้ช่วยแพทย์ / บุตรีตระกูลแพทย์ชั้นนำ — เด็กสาวผมบลอนด์ทองผู้ขยันขันแข็งและเอาใจใส่ ช่วยงานธาร์ในคลินิกหมอวัตสันอย่างเข้าขา มีความชื่นชมและแอบชอบธาร์อย่างบริสุทธิ์ใจ
+- **ปู่กิเดียน (Gideon)** (Gideon) [ชาวเอร่า (Aeran)]: ผู้พิทักษ์และผู้อุปถัมภ์ — ผู้อุปถัมภ์ที่ช่วยเหลือส่งเสียให้ธาร์และโดเรียได้เข้าศึกษาในเอเธลการ์ด
+
+## Knowledge Base Files (ฐานข้อมูล Lore & World Building)
+- [[Lore] Aether-Thigh Kinetic Drive (ATKD)](https://asnise.github.io/MarkDownNovelReader/data/ATKD_Development_History.md): ประวัติศาสตร์การพัฒนา เทคโนโลยีสายการผลิต และบันทึกประวัติบุคคล
+- [ระบบระดับตัวตนและระดับภัยคุกคาม (Entity & Threat Classification Tiers)](https://asnise.github.io/MarkDownNovelReader/data/Entity_Tiers.md): เอกสารนี้ระบุการจัดระดับภัยคุกคามของอสุรกาย สิ่งมีชีวิตโบราณ และภัยพิบัติมานาในโลกเอเธลการ์ดและดราโกเนีย โดยแบ่งออกเป็น 7 ระดับมาตรฐาน
+- [ฐานข้อมูลทักษะและเวทมนตร์ (Skill & Magic Database)](https://asnise.github.io/MarkDownNovelReader/data/Skill_Database.md): เอกสารนี้เป็นฐานข้อมูลหลักรวบรวมและจัดหมวดหมู่ทักษะ วิชา เวทมนตร์ ปาฏิหาริย์ และความสามารถทางชีวภาพทั้งหมดที่ปรากฏและถูกกล่าวถึงในจักรวาล "Dorea's Princess Journey" โดยจำแนกออกเป็น 6 หมวดหมู่หลักตามระบบพลังงานและกายวิภาคของเรื่อง
+- [เผ่าพันธุ์มนุษย์: ชาวเอร่า (Aera / Aeran Lore & Culture)](https://asnise.github.io/MarkDownNovelReader/data/Species_Aeran.md): ชาวเอร่า (Aera / Aeran) หรือ "มนุษย์" ในโลก Atherea เป็นเผ่าพันธุ์ผู้ผลักดันโลกเข้าสู่ยุคอุตสาหกรรมด้วยสติปัญญาและนวัตกรรม พวกเขาไม่มีร่างกายที่ทรงพลังหรือพลังเวทมนตร์มาแต่กำเนิดเหมือนดราโกนอยด์ แต่ทดแทนด้วยมันสมองและการสร้างเครื่องจักรกลไฮบริดผสานการเหนี่ยวนำมานา (Mana-Inductive Tech)
+- [เผ่าพันธุ์ออโตมาตา: เกียร์บอร์น (Automata / The Gearborn Lore)](https://asnise.github.io/MarkDownNovelReader/data/Species_Automata.md): ออโตมาตา (Automata) หรือ "เกียร์บอร์น" (Gearborn) คือสิ่งมีชีวิตจักรกลกึ่งเวทมนตร์ที่มีชีวิตและจิตสำนึกเป็นของตนเอง พวกเขาไม่ได้เกิดจากกระบวนการผลิตอุตสาหกรรมในสายพาน แต่ตื่นรู้ขึ้นมาด้วยปาฏิหาริย์แห่งมานาและเจตจำนงบริสุทธิ์จากจุดเริ่มต้นของประวัติศาสตร์
+- [เผ่าพันธุ์บีสต์คิน (Beastkin / Feral-Kin Biology & Lore)](https://asnise.github.io/MarkDownNovelReader/data/Species_Beastkin.md): บีสต์คิน (Beastkin) หรือ "มนุษย์กึ่งสัตว์" คือเผ่าพันธุ์ที่มีความหลากหลายทางสายเลือดมากที่สุดในโลก Atherea พวกเขาผสานลักษณะทางกายภาพและสัญชาตญาณอันทรงพลังของสัตว์ป่าเข้ากับภูมิปัญญาของมนุษย์ มักอาศัยอยู่ในพื้นที่ธรรมชาติ ชายแดน และป่าเขา เช่น หุบเขากรีนวัลเลย์
+- [เผ่าพันธุ์ดราโกนอยด์ (Dragonoid Biology & Lore)](https://asnise.github.io/MarkDownNovelReader/data/Species_Dragonoid.md): ดราโกนอยด์ (Dragonoid) หรือ "มนุษย์มังกร" คือเผ่าพันธุ์กึ่งเทพโบราณที่ยืนอยู่บนจุดสูงสุดของห่วงโซ่อาหารและอารยธรรมในโลก Atherea พวกเขาไม่ใช่สัตว์เลื้อยคลาน แต่เป็นเผ่าพันธุ์ลักษณะคล้ายมนุษย์ที่มีสายเลือดและพลังมังกรอันทรงพลังไหลเวียนอยู่ตั้งแต่แรกเกิด
+- [เผ่าพันธุ์ซิลวาน (Sylvan / Flora-Elves Biology & Lore)](https://asnise.github.io/MarkDownNovelReader/data/Species_Sylvan.md): ชาวซิลวาน (Sylvan / Sylvani) หรือ "เอลฟ์พฤกษา" คือเผ่าพันธุ์แห่งผืนป่าโบราณที่มีชีวิตผูกพันกับมานาธรรมชาติและพฤกษศาสตร์อย่างแนบแน่น พวกเขาทำหน้าที่เป็นผู้พิทักษ์ป่าลึกและผู้เชี่ยวชาญด้านยาสมุนไพรเวทมนตร์ในทวีป Atherea
+- [ประวัติศาสตร์เทคโนโลยีและระบบพลังงานผสมผสาน (Technological Evolution & Energy Systems)](https://asnise.github.io/MarkDownNovelReader/data/Technology_Evolution.md): อารยธรรมของมนุษย์หรือชาวเอร่า (Aera / Aeran) ขับเคลื่อนด้วยวิวัฒนาการทางเทคโนโลยีและระบบพลังงานที่พัฒนาขึ้นมาทีละขั้น แตกต่างจากเผ่าพันธุ์โบราณที่ดำเนินชีวิตด้วยพลังธรรมชาติมาแต่แรกเริ่ม ชาวเอร่าก้าวผ่านการปฏิวัติอุตสาหกรรมในหลากหลายรูปแบบที่คล้ายคลึงกับโลกจริง ก่อนจะค้นพบธรรมชาติของพลังงาน "มานา" โ...
+- [ข้อมูลโลกและเทคโนโลยี (World Setting & Magic-Medical System)](https://asnise.github.io/MarkDownNovelReader/data/World_Setting.md): จักรวาลของ "Dorea's Journey" ตั้งอยู่บนทวีปที่มีการผสมผสานระหว่างเวทมนตร์ เทคโนโลยีอนาล็อกและจักรกลผสานมานา (Analog & Mana-Tech) และศาสตร์ยาสมุนไพรธรรมชาติ
+
+## Character Profiles (ข้อมูลตัวละคร)
+- [ข้อมูลตัวละคร: คาร์ลอส (Carlos)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Carlos.md): ชื่อเต็ม: คาร์ลอส บรันด์ (Carlos Brand)
+- [สารบัญข้อมูลตัวละคร (Master Character Document Index)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Character_Document.md): เอกสารฉบับนี้ทำหน้าที่เป็น ศูนย์กลางข้อมูลตัวละคร (Character Hub) สำหรับนิยายเรื่อง "Dorea's Journey" โดยรวบรวมลิงก์ไปยังไฟล์ประวัติตัวละครแยกเฉพาะ พร้อมสรุปบทบาทและความสัมพันธ์เบื้องต้นเพื่อความสะดวกในการอ้างอิง
+- [แฟ้มข้อมูลการออกแบบตัวละครหลัก (Main Character Design Focus Reference)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Design_Focus.md): > คำแนะนำสำหรับ AI (AI Instructions):
+- [ข้อมูลตัวละคร: โดราริน่า (Dorarina)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Dorea.md): ชื่อเต็ม: เลดี้โดราริน่า ไวท์ชีลด์ (Lady Dorarina Whiteshilde) หรือ เจ้าหญิงโดราริน่า (Princess Dorarina) / ชื่อเล่น: โดเรีย (Dorea)
+- [ข้อมูลตัวละคร: หมอวัตสัน (Dr. Watson)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Dr_Watson.md): ชื่อเต็ม: อาร์เธอร์ วัตสัน (Arthur Watson)
+- [ข้อมูลตัวละคร: เอลิซ่า (Eliza)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Eliza.md): ชื่อเต็ม: เอลิซ่า เพนนีเวิร์ธ (Eliza Pennyworth)
+- [ข้อมูลตัวละคร: ฟลอร่า (Flora)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Flora.md): ชื่อเต็ม: ฟลอร่า บาร์นส์ (Flora Barnes)
+- [ข้อมูลตัวละคร: ปู่กิเดียน (Gideon)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Gideon.md): ชื่อเต็ม: กิเดียน อีแวนครอส (Gideon Evancross)
+- [ข้อมูลตัวละคร: ท่านหญิงเอนย่า (Lady Enya)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Lady_Enya.md): ชื่อเต็ม: เลดี้เอนย่า ไวท์ชีลด์ (Lady Enya Whiteshilde)
+- [ข้อมูลตัวละคร: แลนซ์ (Lance)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Lance.md): ชื่อเต็ม: แลนซ์ ไอรอนฮาร์ต (Lance Ironheart)
+- [ข้อมูลตัวละคร: ลอร์ดไวร์ชีล (Lord Wyvernshield)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Lord_Wyvernshield.md): ชื่อเต็มปัจจุบัน (หลังแต่งเข้าตระกูล): เอเธลเซีย ไวท์ชีลด์ (Aethelxea Whiteshilde) หรือ ลอร์ดไวท์ชีลด์ (Lord Whiteshilde)
+- [ข้อมูลตัวละคร: เจ้าชายลูเซียส (Prince Lucius)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Lucius.md): ชื่อเต็ม: ลูเซียส สเตอร์ลิง (Lucius Sterling)
+- [ข้อมูลตัวละคร: มาร์ค (Mark)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Mark.md): ชื่อเต็ม: มาร์ค เรนเดล (Mark Rendel)
+- [ข้อมูลตัวละครประกอบอื่นๆ (Minor Characters)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Minor_Characters.md): รวมข้อมูลตัวละครสมทบย่อยที่มีบทบาทส่งเสริมพล็อตและสร้างสีสันในแต่ละช่วงของเรื่องตามบันทึกดราฟต์
+- [แผนผังความสัมพันธ์ตัวละคร (Character Relationship Map)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Relationship_Map.md): subgraph DRACONEIA["อาณาจักรดราโกเนีย (Draconia Realm)"]
+- [ข้อมูลตัวละคร: ธาร์ (Thar)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Thar.md): ชื่อเต็มปัจจุบัน: ธาริคนา อีแวนครอส (Tharicnar Evancross)
+- [ข้อมูลตัวละคร: เซฟิรัส (Zephyrus)](https://asnise.github.io/MarkDownNovelReader/data/Characters/Zephyrus.md): ชื่อเต็ม: เซฟิรัส วินด์วอล์กเกอร์ (Zephyrus Windwalker)
+
+## Chapters & Side Stories (สารบัญตอนนิยาย)
+- [พงศาวดาร: การสรรค์สร้างโลก และปฐมบทแห่งดินแดน (The Chronicle of Creation)](https://asnise.github.io/MarkDownNovelReader/data/Chapter_Minus1_The_Legend_of_Creation.md): กาลครั้งหนึ่งนานมาแล้ว... เนิ่นนานเสียจนแม้แต่สายลมปฐมกาลก็ยังมิอาจพัดผ่าน และดวงดาวดวงแรกก็ยังมิได้ลืมตาตื่นขึ้นมาในความมืดมิด ท่ามกลางความว่างเปล่าอันไร้ขอบเขต มีเพียงกระแสมานาบริสุทธิ์สายหนึ่งที่ล่องลอยอยู่อย่างโดดเดี่ยว มันคือ "มหาจิตวิญญาณแห่งสรรพสิ่ง" ที่ถักทอตัวขึ้นมาด้วยประกายแสงอันนุ่มนวล
+- [ตอนที่ 0: ของขวัญจากฟากฟ้า และคำสัญญาอันแสนอบอุ่น (The Cradle of Dorea)](https://asnise.github.io/MarkDownNovelReader/data/Chapter_00_The_Cradle_of_Dorea.md): ภายใต้แสงรุ้งประกายแก้วที่ทอดผ่านยอดปราสาทผลึกธรรมชาติอันงดงามตระการตาของอาณาจักรลอยฟ้า “ดราโกเนีย” ลมหายใจแรกของสายเลือดขุนนางผู้สูงศักดิ์ได้ถือกำเนิดขึ้นท่ามกลางความยินดีของผู้คนทั่วทั้งแผ่นดิน เด็กหญิงตัวน้อยผู้มีเรือนผมสีเงินสว่างและดวงตาสีไพลินน้ำงามได้รับการขนานนามว่าเป็น “ของขวัญจากฟากฟ้า” แด...
+- [ตอนที่ 1: วันที่ท้องฟ้าถล่ม และอ้อมกอดสุดท้าย (The Ash of Draconia)](https://asnise.github.io/MarkDownNovelReader/data/Chapter_01_The_Ash_of_Draconia.md): แสงอรุณสีทองของเช้าวันใหม่สาดส่องผ่านกระจกหน้าต่างบานใหญ่
+- [ตอนที่ 2: รอยแผลแห่งเอเธลการ์ด และคุณหมอผู้อ่อนโยน (The Origin of Thar)](https://asnise.github.io/MarkDownNovelReader/data/Chapter_02_The_Origin_of_Tar.md): ในโลกเบื้องล่างที่เต็มไปด้วยมนุษย์...
+- [ตอนที่ 3: แขนสีเงินกลางป่าลึก และอ้อมกอดของคนแปลกหน้า (The Cold Embrace)](https://asnise.github.io/MarkDownNovelReader/data/Chapter_03_The_Cold_Embrace.md): แสงสีทองจากวงเวทอัญเชิญโบราณฉีกกระชากมิติสลายตัวไปในชั้นบรรยากาศเหน็บหนาวของป่าชายแดนใต้ ทิ้งร่างของโดเรียวัยสิบสามปีให้ร่วงหล่นกระแทกผืนดินโคลนอย่างรุนแรง ความผันผวนของมิติที่ไม่เสถียรได้ฉีกกระชากผิวเนื้อที่แผ่นหลังของเธอจนเป็นบาดแผลฉกรรจ์ เลือดสีแดงสดไหลทะลักออกมาไม่หยุด ทว่า ทันทีที่รับรู้ถึงสติส...
+- [ตอนที่ 4: คืนพายุโหม และเส้นทางสู่บ้าน (The Doctor's Suture - Journey)](https://asnise.github.io/MarkDownNovelReader/data/Chapter_04_The_Doctors_Suture.md): สายฝนกระหน่ำซัดสาดลงมาอย่างไม่ลืมหูลืมตา ลมมรสุมฤดูหนาวพัดโหมจนผืนป่าชายแดนใต้สั่นสะท้านเป็นระลอกคลื่น
+- [ตอนที่ 5: ระยะห่างและเศษเสี้ยวความระแวง (The Tense Distance and Shivered Trust)](https://asnise.github.io/MarkDownNovelReader/data/Chapter_05_The_Tense_Distance_and_Shivered_Trust.md): เสียงกระหน่ำของพายุฝนภายนอกบ้านริมชายแดนท้ายหมู่บ้านกรีนวัลเลย์แปรเปลี่ยนเป็นเสียงหยดน้ำค้างเกาะกิ่งไม้จาง ๆ ในยามรุ่งสาง
+- [ตอนที่ 6: ตัวอักษรดวงดาว กับภาษาที่เชื่อมใจ (The Silent Pages and the Starry Letters)](https://asnise.github.io/MarkDownNovelReader/data/Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md): "เบา ๆ หน่อยครับปู่... แสบจะตายอยู่แล้วครับ"
+- [ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต (The Bound Hearts and Five Years' Dawn)](https://asnise.github.io/MarkDownNovelReader/data/Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md): หลังจากที่โดเรียตัดสินใจยอมรับคำชวนและตกลงที่จะอยู่ที่คลีนิคในฐานะผู้ช่วย
+- [ไซด์สตอรี่: ความทะเยอทะยานสู่ผืนฟ้า (The Skyward Ambition)](https://asnise.github.io/MarkDownNovelReader/data/SideStory_01_The_Skyward_Ambition.md): "มนุษย์ไม่ได้ถูกสร้างมาให้บินได้ นั่นคือความจริงที่พวกเราถูกสอนมาตั้งแต่เด็ก"
+- [ตอนพิเศษ: กลิ่นหอมที่ตกค้าง กับไอร้อนใต้เงาราตรี (The Lingering Scent and the Midnight Heat)](https://asnise.github.io/MarkDownNovelReader/data/SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md): หนึ่งสัปดาห์ก่อนหน้านี้...
+
+## Creature & Monster Catalog (สัตว์อสูรและภัยคุกคาม)
+- [เพริเลียน: อสูรพงไพรเล็บกรด (Acid-Clawed Behemoth)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Acid_Clawed_Behemoth.md): ระดับชนชั้นสิ่งมีชีวิต: Perilian (เพริเลียน - อันตรายซุ่มเงียบระดับบุคคล / อสูรเจ้าป่า)
+- [รูอิเนียน: เทพอัศวินจักรกลทลายค่าย (Ancient Ruin Golem)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Ancient_Ruin_Golem.md): ระดับชนชั้นสิ่งมีชีวิต: Ruinian (รูอิเนียน - ผู้โค่นล้มสิ่งก่อสร้างและมหานคร)
+- [พรีโมเดียน: มังกรบรรพกาลออเรลิอุส (Aurelius Ancient Dragon)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Aurelius_Ancient_Dragon.md): ระดับชนชั้นสิ่งมีชีวิต: Primordian (พรีโมเดียน - สัตว์บรรพกาลโบราณ)
+- [คาตาคริสเมียน: อสูรขุนเขาคลั่ง (Cataclys-Golem)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Cataclys_Golem.md): ระดับชนชั้นสิ่งมีชีวิต: Cataclysmyan (คาตาคริสเมียน - ภัยพิบัติมีชีวิตเคลื่อนที่)
+- [มอร์เฟียน: ปรสิตกัดกินแกนเวท (Core-Eater Parasite)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Core_Eater_Parasite.md): ระดับชนชั้นสิ่งมีชีวิต: Morphian (มอร์เฟียน - อสูรปรับตัวและวิวัฒนาการระดับชุมชน)
+- [แพกเซียน: ดอกลิลลี่มังกร (Dragon Lily)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Dragon_Lily.md): ระดับชนชั้นสิ่งมีชีวิต: Paxian (แพกเซียน - พืชพรรณมานาเฉพาะถิ่น)
+- [ฮอร์เดียน: ตะขาบเงามืดสะท้อนแสง (Gloom Centipede)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Gloom_Centipede.md): ระดับชนชั้นสิ่งมีชีวิต: Hordeian (ฮอร์เดียน - อสูรเปลือกแข็งรวมฝูง)
+- [ฮอร์เดียน: หมาป่าอสุรามานา (Mana Direwolf)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Mana_Direwolf.md): ระดับชนชั้นสิ่งมีชีวิต: Hordeian (ฮอร์เดียน - นักล่ารวมฝูงระดับขบวนเดินทาง)
+- [อบิสโซเลียน: เนบิวลาวาเนียร์ (Nebula-Vanir)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Nebula_Vanir.md): ระดับชนชั้นสิ่งมีชีวิต: Abyssolian (อบิสโซเลียน - ตัวตนต่างภพ/นอกจักรวาล)
+- [แพกเซียน: นกเขาหิมะขาว (Snow Pigeon)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Snow_Pigeon.md): ระดับชนชั้นสิ่งมีชีวิต: Paxian (แพกเซียน - สิ่งมีชีวิตรักสงบและไร้พิษภัย)
+- [แพกเซียน: ดอกไม้สุริยะมนตรา (Solar Magic Flower)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Solar_Magic_Flower.md): ระดับชนชั้นสิ่งมีชีวิต: Paxian (แพกเซียน - พืชพรรณมานาธรรมชาติ)
+- [เพริเลียน: กริฟฟินป่าปีกวายุ (Wild Gale Griffin)](https://asnise.github.io/MarkDownNovelReader/data/Creature/Wild_Gale_Griffin.md): ระดับชนชั้นสิ่งมีชีวิต: Perilian (เพริเลียน - สัตว์ร้ายปักษาระดับบุคคล)
+- [พจนานุกรมสัตว์อสูรและตัวตนปฐมภูมิ: _Base (Creature Classifications & Taxonomy)](https://asnise.github.io/MarkDownNovelReader/data/Creature/_Base.md): เอกสารฉบับนี้เป็นแกนกลางหลัก (Base Registry) สำหรับการจัดหมวดหมู่ วิวัฒนาการ และระดับภัยคุกคามของสิ่งมีชีวิตและอสุรกายทั้งหมดใน Dorea's Journey โดยใช้ภาษาทับศัพท์เชิงแฟนตาซีระบบสากลในการนิยามลักษณะทางกายภาพ พลังงานมานา สเกลอายุขัย และอาณาจักรชีวภาพร่วมกัน
+
+## Plot Structure & Timeline (ไทม์ไลน์และโครงเรื่อง)
+- [สรุปเนื้อเรื่องและลำดับเหตุการณ์ (Timeline) ตอนที่ 1 - 7](https://asnise.github.io/MarkDownNovelReader/data/Plot_Structure/Chapters_01_to_07_Summary.md): Dorea Pricese Journey
+- [โครงสร้างและเนื้อหาแต่ละตอน (Chapters Outline & Narrative Breakdown)](https://asnise.github.io/MarkDownNovelReader/data/Plot_Structure/Chapters_Outline.md): เอกสารนี้ระบุรายละเอียด พล็อตสำคัญ อารมณ์แกนกลาง และคำแนะนำสำหรับการเขียนเนื้อหาของแต่ละตอนโดยละเอียด
+- [ลำดับเหตุการณ์และช่วงอายุ (Chronological Timeline)](https://asnise.github.io/MarkDownNovelReader/data/Plot_Structure/Timeline.md): ลำดับอายุของ โดเรีย และ ธาร์ ตั้งแต่เริ่มต้นจนกระทั่งเข้าสู่มหาวิทยาลัยเมืองหลวง
+
+## AI Operating Instructions & Mandatory Web Sync Protocol
+> คำแนะนำและกฎภาคบังคับสำหรับ AI เมื่อได้รับคำสั่งให้อ่าน ค้นหา หรืออัปเดตข้อมูล:
+- **การค้นหาและอ้างอิงข้อมูล**: ใช้ลิงก์ตรงรายบทในรูปแบบ `https://asnise.github.io/MarkDownNovelReader/?chapter=<filename.md>` หรือส่งลิงก์ผลการค้นหา `https://asnise.github.io/MarkDownNovelReader/?q=<keyword>`
+- **กฎการอัปเดตข้อมูล (Mandatory Sync Rule)**: หาก AI แก้ไขเนื้อหาหรือสร้างบทใหม่ ต้องแก้ไขที่โฟลเดอร์ `Story Section/` เท่านั้น จากนั้นรัน `sync_to_reader.bat` เพื่อให้ระบบอัปเดต `llms.txt`, `ai_index.json` และหน้าเว็บให้อัตโนมัติ (ห้ามแก้ไฟล์ใน data/ โดยตรง)
+- **คู่มือฉบับเต็มสำหรับ AI**: [https://asnise.github.io/MarkDownNovelReader/AI_INSTRUCTIONS.md](https://asnise.github.io/MarkDownNovelReader/AI_INSTRUCTIONS.md)
+
+## Direct Machine Endpoints (สำหรับ AI Query & Ingestion)
+- **AI Integration Guide**: [https://asnise.github.io/MarkDownNovelReader/AI_INSTRUCTIONS.md](https://asnise.github.io/MarkDownNovelReader/AI_INSTRUCTIONS.md) (คู่มือการทำงานสำหรับ AI)
+- **Full Lore Ingestion**: [https://asnise.github.io/MarkDownNovelReader/llms-full.txt](https://asnise.github.io/MarkDownNovelReader/llms-full.txt) (เอกสารสรุปความครบถ้วนแบบไฟล์เดียว)
+- **Structured JSON Graph**: [https://asnise.github.io/MarkDownNovelReader/data/ai_index.json](https://asnise.github.io/MarkDownNovelReader/data/ai_index.json) (JSON API สำหรับค้นหาและอ้างอิง)
+- **Full-Text Search Index**: [https://asnise.github.io/MarkDownNovelReader/data/search_index.json](https://asnise.github.io/MarkDownNovelReader/data/search_index.json)
+- **Interactive Web Reader**: [https://asnise.github.io/MarkDownNovelReader/index.html](https://asnise.github.io/MarkDownNovelReader/index.html)

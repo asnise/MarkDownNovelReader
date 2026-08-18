@@ -361,7 +361,14 @@ async function init() {
   await loadChaptersList();
 
   if (STATE.chapters && STATE.chapters.length > 0) {
-    if (STATE.currentChapterIndex < 0 || STATE.currentChapterIndex >= STATE.chapters.length) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const chapterParam = urlParams.get('chapter');
+    if (chapterParam) {
+      const idx = STATE.chapters.findIndex(c => c.file === chapterParam || c.file.endsWith('/' + chapterParam) || chapterParam.endsWith('/' + c.file));
+      if (idx !== -1) {
+        STATE.currentChapterIndex = idx;
+      }
+    } else if (STATE.currentChapterIndex < 0 || STATE.currentChapterIndex >= STATE.chapters.length) {
       STATE.currentChapterIndex = 0;
     }
     selectChapter(STATE.currentChapterIndex);
@@ -374,3 +381,4 @@ if (document.readyState === 'loading') {
 } else {
   init();
 }
+

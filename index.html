@@ -87,6 +87,22 @@
         </svg>
       </button>
 
+      <!-- Search Engine Modal Toggle -->
+      <button class="btn" id="search-btn" title="ค้นหาเนื้อเรื่องและสารบรรณ (Ctrl + K)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+
+      <!-- AI Context & Knowledge Helper -->
+      <button class="btn" id="ai-helper-btn" title="ศูนย์ข้อมูลและ Prompt สำหรับ AI (AI Context)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      </button>
+
       <!-- Comments Sidebar Toggle -->
       <button class="btn" id="comment-sidebar-btn" title="ความคิดเห็น (Comments)" style="position: relative;">
         <svg viewBox="0 0 24 24">
@@ -342,6 +358,100 @@
     </div>
   </div>
 
+  <!-- Search Engine Modal -->
+  <div id="search-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-content search-modal-content">
+      <div class="search-input-header">
+        <svg viewBox="0 0 24 24" class="search-input-icon">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="search-input" class="search-input" placeholder="พิมพ์ค้นหา เช่น โดเรีย, ATKD, รอยแยกมิติ, หมอวัตสัน..." autofocus autocomplete="off">
+        <button id="search-clear-btn" class="search-clear-btn" title="ล้างข้อความ" style="display: none;">&times;</button>
+        <button id="search-close-btn" class="search-close-btn" title="ปิด (Esc)">Esc</button>
+      </div>
+
+      <!-- Filter Categories -->
+      <div class="search-filters">
+        <button class="search-filter-chip active" data-cat="all">ทั้งหมด (<span id="search-count-all">0</span>)</button>
+        <button class="search-filter-chip" data-cat="Chapters">บทนิยาย</button>
+        <button class="search-filter-chip" data-cat="Lore">องค์ความรู้โลก</button>
+        <button class="search-filter-chip" data-cat="Characters">ตัวละคร</button>
+        <button class="search-filter-chip" data-cat="Creature">สัตว์อสูร</button>
+        <button class="search-filter-chip" data-cat="Dictionary">พจนานุกรม</button>
+      </div>
+
+      <!-- Results Container -->
+      <div id="search-results-container" class="search-results-container">
+        <div class="search-empty-state" id="search-initial-state">
+          <p>พิมพ์คำค้นหาเพื่อสำรวจเนื้อเรื่อง สารบรรณ Lore หรือศัพท์เฉพาะ</p>
+          <div class="search-suggest-tags">
+            <span class="search-suggest-tag">โดเรีย</span>
+            <span class="search-suggest-tag">ธาร์</span>
+            <span class="search-suggest-tag">ATKD</span>
+            <span class="search-suggest-tag">ดราโกนอยด์</span>
+            <span class="search-suggest-tag">รอยแยกมิติ</span>
+            <span class="search-suggest-tag">เอลิซ่า</span>
+          </div>
+        </div>
+        <ul id="search-results-list" class="search-results-list" style="display: none;"></ul>
+      </div>
+
+      <div class="search-modal-footer">
+        <span><kbd>↑</kbd> <kbd>↓</kbd> เลือก</span>
+        <span><kbd>Enter</kbd> เปิดอ่าน</span>
+        <span><kbd>Esc</kbd> ปิด</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Context & Knowledge Helper Modal -->
+  <div id="ai-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-content ai-modal-content">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          <h3 class="modal-title">AI Knowledge & Prompt Helper</h3>
+        </div>
+        <button id="ai-modal-close-btn" class="modal-close-x" title="ปิด">&times;</button>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 12px 0;">
+        จัดเตรียมข้อมูลสรุป (Context Pack) พร้อมใช้งาน สำหรับนำไปส่งต่อให้ AI (ChatGPT, Claude, Gemini) ได้ทันทีในคลิกเดียว
+      </p>
+
+      <!-- Context Selector Tabs -->
+      <div class="ai-tab-buttons">
+        <button class="ai-tab-btn active" data-pack="prompt_pack">✨ Full Universe Prompt</button>
+        <button class="ai-tab-btn" data-pack="current_chapter">📖 Current Chapter</button>
+        <button class="ai-tab-btn" data-pack="characters">👥 Character Profiles</button>
+        <button class="ai-tab-btn" data-pack="dictionary">📚 Glossary & Terms</button>
+      </div>
+
+      <div class="ai-preview-box">
+        <textarea id="ai-prompt-preview" readonly class="ai-prompt-textarea"></textarea>
+      </div>
+
+      <div class="modal-footer ai-modal-footer">
+        <div class="ai-links">
+          <a href="llms.txt" target="_blank" class="ai-direct-link" title="เปิดดู llms.txt มาตรฐาน">📄 llms.txt</a>
+          <a href="llms-full.txt" target="_blank" class="ai-direct-link" title="เปิดดู llms-full.txt แบบรวมทั้งหมด">📑 llms-full.txt</a>
+          <a href="data/ai_index.json" target="_blank" class="ai-direct-link" title="เปิดดู JSON API">🔗 ai_index.json</a>
+        </div>
+        <button class="modal-btn save" id="ai-copy-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: text-bottom;">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          คัดลอก Prompt สำหรับ AI
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Application Modular JavaScript Files -->
   <script src="js/loading.js"></script>
   <script src="js/toast.js"></script>
@@ -350,9 +460,10 @@
   <script src="js/sidebar.js"></script>
   <script src="js/comments.js"></script>
   <script src="js/audio.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/ai_helper.js"></script>
   <script src="js/app.js"></script>
 
 </body>
-
 
 </html>

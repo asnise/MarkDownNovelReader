@@ -62,14 +62,34 @@ function selectChapter(index) {
   STATE.currentChapterIndex = index;
   localStorage.setItem('chapterIndex', index);
 
-  const items = elements.chapterListUl.querySelectorAll('.chapter-item');
-  items.forEach((item, idx) => {
-    if (idx === index) {
-      item.classList.add('active');
-    } else {
-      item.classList.remove('active');
-    }
-  });
+  if (elements.chapterListUl) {
+    const items = elements.chapterListUl.querySelectorAll('.chapter-item');
+    items.forEach((item, idx) => {
+      if (idx === index) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
 
   loadChapterContent(STATE.chapters[index]);
 }
+
+// Global Chapter Loader for Search Engine & Deep Linking
+window.loadChapter = function (fileOrIndex) {
+  if (typeof fileOrIndex === 'number') {
+    selectChapter(fileOrIndex);
+    return;
+  }
+  if (!STATE.chapters || !STATE.chapters.length) return;
+  const index = STATE.chapters.findIndex(c => c.file === fileOrIndex || c.file.endsWith('/' + fileOrIndex) || fileOrIndex.endsWith('/' + c.file));
+  if (index !== -1) {
+    selectChapter(index);
+  } else {
+    const customChapter = { file: fileOrIndex, title: fileOrIndex.split('/').pop().replace('.md', '') };
+    loadChapterContent(customChapter);
+  }
+};
+window.selectChapter = selectChapter;
+
