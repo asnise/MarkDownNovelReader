@@ -2082,7 +2082,7 @@ flowchart TD
 
 ---
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapter_00_The_Cradle_of_Dorea.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_00_The_Cradle_of_Dorea.md)
 
 
 --- [CHAPTER: ตอนที่ 1: วันที่ท้องฟ้าถล่ม และอ้อมกอดสุดท้าย (The Ash of Draconia)] (Chapter_01_The_Ash_of_Draconia.md) ---
@@ -2098,7 +2098,7 @@ flowchart TD
 
 เธอกระชับผ้าห่มขนสัตว์หนานุ่มแนบอกด้วยความอบอุ่นที่ยังไม่เลือนหาย
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapter_01_The_Ash_of_Draconia.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_01_The_Ash_of_Draconia.md)
 
 
 --- [CHAPTER: ตอนที่ 2: รอยแผลแห่งเอเธลการ์ด และคุณหมอผู้อ่อนโยน (The Origin of Thar)] (Chapter_02_The_Origin_of_Tar.md) ---
@@ -2114,7 +2114,7 @@ flowchart TD
 
 ในค่ำคืนที่พายุเพลิงสงครามแย่งชิงดินแดนชายแดนตะวันตกของจักรวรรดิเอเธลการ์ดพัดผ่าน
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapter_02_The_Origin_of_Tar.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_02_The_Origin_of_Tar.md)
 
 
 --- [CHAPTER: ตอนที่ 3: แขนสีเงินกลางป่าลึก และอ้อมกอดของคนแปลกหน้า (The Cold Embrace)] (Chapter_03_The_Cold_Embrace.md) ---
@@ -2130,7 +2130,7 @@ flowchart TD
 
 ---
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapter_03_The_Cold_Embrace.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_03_The_Cold_Embrace.md)
 
 
 --- [CHAPTER: ตอนที่ 4: คืนพายุโหม และเส้นทางสู่บ้าน (The Doctor's Suture - Journey)] (Chapter_04_The_Doctors_Suture.md) ---
@@ -2146,7 +2146,7 @@ flowchart TD
 
 เมื่อปลายนิ้วสัมผัสกรอบโลหะกลมบาง เขารีบฉวยมันขึ้นมาเช็ดคราบดินโคลนเหลวออกลวกๆ ด้วยแขนเสื้อเชิ้ตที่เปียกโชก
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapter_04_The_Doctors_Suture.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_04_The_Doctors_Suture.md)
 
 
 --- [CHAPTER: ตอนที่ 5: ระยะห่างและเศษเสี้ยวความระแวง (The Tense Distance and Shivered Trust)] (Chapter_05_The_Tense_Distance_and_Shivered_Trust.md) ---
@@ -2162,7 +2162,7 @@ flowchart TD
 
 เธอพบว่าตัวเองกำลังนอนอยู่บนเตียงพยาบาลหนานุ่มที่มีผ้าห่มขนสัตว์ผืนอุ่นคลุมร่างไว้จนถึงอก
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapter_05_The_Tense_Distance_and_Shivered_Trust.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_05_The_Tense_Distance_and_Shivered_Trust.md)
 
 
 --- [CHAPTER: ตอนที่ 6: ตัวอักษรดวงดาว กับภาษาที่เชื่อมใจ (The Silent Pages and the Starry Letters)] (Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md) ---
@@ -2178,7 +2178,7 @@ flowchart TD
 
 "แต่ถ้าผมดึงมือหนีกะทันหัน... การดิ้นรนหรือภาวะช็อกอาจทำให้กล้ามเนื้อและแผลที่หลังฉีกขาดซ้ำจนอาการทรุดหนักได้นะครับ"
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md)
 
 
 --- [CHAPTER: ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต (The Bound Hearts and Five Years' Dawn)] (Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md) ---
@@ -2194,7 +2194,7 @@ flowchart TD
 
 "ฉันคิดว่า... ถึงเวลาที่เราต้องส่งดวงวิญญาณของมารดาเธอให้ไปสู่สุคติอย่างแท้จริงแล้วล่ะ"
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md)
 
 
 --- [CHAPTER: พงศาวดาร: การสรรค์สร้างโลก และปฐมบทแห่งดินแดน (The Chronicle of Creation)] (Chapter_Minus1_The_Legend_of_Creation.md) ---
@@ -2210,7 +2210,7 @@ flowchart TD
 
 * **จำนวนดินแดน**: 12 ประเทศ
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapter_Minus1_The_Legend_of_Creation.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_Minus1_The_Legend_of_Creation.md)
 
 
 --- [CHAPTER: ไซด์สตอรี่: ความทะเยอทะยานสู่ผืนฟ้า (The Skyward Ambition)] (SideStory_01_The_Skyward_Ambition.md) ---
@@ -2226,7 +2226,7 @@ flowchart TD
 
 เขาหยิบชอล์กขึ้นมาวาดรูปสรีระมนุษย์ลงบนกระดานชนวน จากนั้นก็วงกลมไปที่บริเวณเอวและต้นขา
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/SideStory_01_The_Skyward_Ambition.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/SideStory_01_The_Skyward_Ambition.md)
 
 
 --- [CHAPTER: ตอนพิเศษ: กลิ่นหอมที่ตกค้าง กับไอร้อนใต้เงาราตรี (The Lingering Scent and the Midnight Heat)] (SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md) ---
@@ -2242,4 +2242,4 @@ flowchart TD
 
 "มันอันตรายนะ โดเรีย" ธาร์เงยหน้าขึ้นมองเธอด้วยความเป็นห่วง แววตาสีน้ำตาลฉายแววกังวล "มอนสเตอร์ที่ปนเปื้อนพลังงานมิติมักจะดุร้ายและคาดเดาได้ยาก ถึงเธอจะแข็งแกร่งก็เถอะ..."
 
-(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md)
+(อ่านตอนเต็มได้ที่: https://asnise.github.io/MarkDownNovelReader/data/Chapters/SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md)

@@ -151,27 +151,27 @@
     {
       "id": "Dragonoid",
       "name_th": "ดราโกนอยด์",
-      "file": "Species_Dragonoid.md"
+      "file": "Lore/Species_Dragonoid.md"
     },
     {
       "id": "Aeran",
       "name_th": "ชาวเอร่า",
-      "file": "Species_Aeran.md"
+      "file": "Lore/Species_Aeran.md"
     },
     {
       "id": "Beastkin",
       "name_th": "บีสต์คิน",
-      "file": "Species_Beastkin.md"
+      "file": "Lore/Species_Beastkin.md"
     },
     {
       "id": "Automata",
       "name_th": "ออโตมาตา",
-      "file": "Species_Automata.md"
+      "file": "Lore/Species_Automata.md"
     },
     {
       "id": "Sylvan",
       "name_th": "ซิลวาน",
-      "file": "Species_Sylvan.md"
+      "file": "Lore/Species_Sylvan.md"
     }
   ],
   "documents": [
@@ -179,168 +179,168 @@
       "id": "Chapter_00_The_Cradle_of_Dorea.md",
       "category": "Chapters",
       "title": "ตอนที่ 0: ของขวัญจากฟากฟ้า และคำสัญญาอันแสนอบอุ่น (The Cradle of Dorea)",
-      "data_file": "Chapter_00_The_Cradle_of_Dorea.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapter_00_The_Cradle_of_Dorea.md",
+      "data_file": "Chapters/Chapter_00_The_Cradle_of_Dorea.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_00_The_Cradle_of_Dorea.md",
       "snippet": "ภายใต้แสงรุ้งประกายแก้วที่ทอดผ่านยอดปราสาทผลึกธรรมชาติอันงดงามตระการตาของอาณาจักรลอยฟ้า “ดราโกเนีย” ลมหายใจแรกของสายเลือดขุนนางผู้สูงศักดิ์ได้ถือกำเนิดขึ้นท่ามกลางความยินดีของผู้คนทั่วทั้งแผ่นดิน เด็กหญิงตัวน้อยผู้มีเรือนผมสีเงินสว่างและดวงตาสีไพลินน้ำงามได้รับการขนานนามว่าเป็น “ของขวัญจากฟากฟ้า” แด..."
     },
     {
       "id": "Chapter_01_The_Ash_of_Draconia.md",
       "category": "Chapters",
       "title": "ตอนที่ 1: วันที่ท้องฟ้าถล่ม และอ้อมกอดสุดท้าย (The Ash of Draconia)",
-      "data_file": "Chapter_01_The_Ash_of_Draconia.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapter_01_The_Ash_of_Draconia.md",
+      "data_file": "Chapters/Chapter_01_The_Ash_of_Draconia.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_01_The_Ash_of_Draconia.md",
       "snippet": "แสงอรุณสีทองของเช้าวันใหม่สาดส่องผ่านกระจกหน้าต่างบานใหญ่"
     },
     {
       "id": "Chapter_02_The_Origin_of_Tar.md",
       "category": "Chapters",
       "title": "ตอนที่ 2: รอยแผลแห่งเอเธลการ์ด และคุณหมอผู้อ่อนโยน (The Origin of Thar)",
-      "data_file": "Chapter_02_The_Origin_of_Tar.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapter_02_The_Origin_of_Tar.md",
+      "data_file": "Chapters/Chapter_02_The_Origin_of_Tar.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_02_The_Origin_of_Tar.md",
       "snippet": "ในโลกเบื้องล่างที่เต็มไปด้วยมนุษย์..."
     },
     {
       "id": "Chapter_03_The_Cold_Embrace.md",
       "category": "Chapters",
       "title": "ตอนที่ 3: แขนสีเงินกลางป่าลึก และอ้อมกอดของคนแปลกหน้า (The Cold Embrace)",
-      "data_file": "Chapter_03_The_Cold_Embrace.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapter_03_The_Cold_Embrace.md",
+      "data_file": "Chapters/Chapter_03_The_Cold_Embrace.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_03_The_Cold_Embrace.md",
       "snippet": "แสงสีทองจากวงเวทอัญเชิญโบราณฉีกกระชากมิติสลายตัวไปในชั้นบรรยากาศเหน็บหนาวของป่าชายแดนใต้ ทิ้งร่างของโดเรียวัยสิบสามปีให้ร่วงหล่นกระแทกผืนดินโคลนอย่างรุนแรง ความผันผวนของมิติที่ไม่เสถียรได้ฉีกกระชากผิวเนื้อที่แผ่นหลังของเธอจนเป็นบาดแผลฉกรรจ์ เลือดสีแดงสดไหลทะลักออกมาไม่หยุด ทว่า ทันทีที่รับรู้ถึงสติส..."
     },
     {
       "id": "Chapter_04_The_Doctors_Suture.md",
       "category": "Chapters",
       "title": "ตอนที่ 4: คืนพายุโหม และเส้นทางสู่บ้าน (The Doctor's Suture - Journey)",
-      "data_file": "Chapter_04_The_Doctors_Suture.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapter_04_The_Doctors_Suture.md",
+      "data_file": "Chapters/Chapter_04_The_Doctors_Suture.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_04_The_Doctors_Suture.md",
       "snippet": "สายฝนกระหน่ำซัดสาดลงมาอย่างไม่ลืมหูลืมตา ลมมรสุมฤดูหนาวพัดโหมจนผืนป่าชายแดนใต้สั่นสะท้านเป็นระลอกคลื่น"
     },
     {
       "id": "Chapter_05_The_Tense_Distance_and_Shivered_Trust.md",
       "category": "Chapters",
       "title": "ตอนที่ 5: ระยะห่างและเศษเสี้ยวความระแวง (The Tense Distance and Shivered Trust)",
-      "data_file": "Chapter_05_The_Tense_Distance_and_Shivered_Trust.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapter_05_The_Tense_Distance_and_Shivered_Trust.md",
+      "data_file": "Chapters/Chapter_05_The_Tense_Distance_and_Shivered_Trust.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_05_The_Tense_Distance_and_Shivered_Trust.md",
       "snippet": "เสียงกระหน่ำของพายุฝนภายนอกบ้านริมชายแดนท้ายหมู่บ้านกรีนวัลเลย์แปรเปลี่ยนเป็นเสียงหยดน้ำค้างเกาะกิ่งไม้จาง ๆ ในยามรุ่งสาง"
     },
     {
       "id": "Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md",
       "category": "Chapters",
       "title": "ตอนที่ 6: ตัวอักษรดวงดาว กับภาษาที่เชื่อมใจ (The Silent Pages and the Starry Letters)",
-      "data_file": "Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md",
+      "data_file": "Chapters/Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_06_The_Silent_Pages_and_the_Starry_Letters.md",
       "snippet": "\"เบา ๆ หน่อยครับปู่... แสบจะตายอยู่แล้วครับ\""
     },
     {
       "id": "Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md",
       "category": "Chapters",
       "title": "ตอนที่ 7: คำสัญญาใต้ชายคา และห้าปีแห่งการเติบโต (The Bound Hearts and Five Years' Dawn)",
-      "data_file": "Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md",
+      "data_file": "Chapters/Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_07_The_Bound_Hearts_and_Five_Years_Dawn.md",
       "snippet": "หลังจากที่โดเรียตัดสินใจยอมรับคำชวนและตกลงที่จะอยู่ที่คลีนิคในฐานะผู้ช่วย"
     },
     {
       "id": "Chapter_Minus1_The_Legend_of_Creation.md",
       "category": "Chapters",
       "title": "พงศาวดาร: การสรรค์สร้างโลก และปฐมบทแห่งดินแดน (The Chronicle of Creation)",
-      "data_file": "Chapter_Minus1_The_Legend_of_Creation.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapter_Minus1_The_Legend_of_Creation.md",
+      "data_file": "Chapters/Chapter_Minus1_The_Legend_of_Creation.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/Chapter_Minus1_The_Legend_of_Creation.md",
       "snippet": "กาลครั้งหนึ่งนานมาแล้ว... เนิ่นนานเสียจนแม้แต่สายลมปฐมกาลก็ยังมิอาจพัดผ่าน และดวงดาวดวงแรกก็ยังมิได้ลืมตาตื่นขึ้นมาในความมืดมิด ท่ามกลางความว่างเปล่าอันไร้ขอบเขต มีเพียงกระแสมานาบริสุทธิ์สายหนึ่งที่ล่องลอยอยู่อย่างโดดเดี่ยว มันคือ \"มหาจิตวิญญาณแห่งสรรพสิ่ง\" ที่ถักทอตัวขึ้นมาด้วยประกายแสงอันนุ่มนวล"
     },
     {
       "id": "SideStory_01_The_Skyward_Ambition.md",
       "category": "Chapters",
       "title": "ไซด์สตอรี่: ความทะเยอทะยานสู่ผืนฟ้า (The Skyward Ambition)",
-      "data_file": "SideStory_01_The_Skyward_Ambition.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/SideStory_01_The_Skyward_Ambition.md",
+      "data_file": "Chapters/SideStory_01_The_Skyward_Ambition.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/SideStory_01_The_Skyward_Ambition.md",
       "snippet": "\"มนุษย์ไม่ได้ถูกสร้างมาให้บินได้ นั่นคือความจริงที่พวกเราถูกสอนมาตั้งแต่เด็ก\""
     },
     {
       "id": "SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md",
       "category": "Chapters",
       "title": "ตอนพิเศษ: กลิ่นหอมที่ตกค้าง กับไอร้อนใต้เงาราตรี (The Lingering Scent and the Midnight Heat)",
-      "data_file": "SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md",
+      "data_file": "Chapters/SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Chapters/SideStory_02_The_Lingering_Scent_and_the_Midnight_Heat.md",
       "snippet": "หนึ่งสัปดาห์ก่อนหน้านี้..."
     },
     {
       "id": "ATKD_Development_History.md",
       "category": "Lore",
       "title": "[Lore] Aether-Thigh Kinetic Drive (ATKD)",
-      "data_file": "ATKD_Development_History.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/ATKD_Development_History.md",
+      "data_file": "Lore/ATKD_Development_History.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/ATKD_Development_History.md",
       "snippet": "ประวัติศาสตร์การพัฒนา เทคโนโลยีสายการผลิต และบันทึกประวัติบุคคล"
     },
     {
       "id": "Entity_Tiers.md",
       "category": "Lore",
       "title": "ระบบระดับตัวตนและระดับภัยคุกคาม (Entity & Threat Classification Tiers)",
-      "data_file": "Entity_Tiers.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Entity_Tiers.md",
+      "data_file": "Lore/Entity_Tiers.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/Entity_Tiers.md",
       "snippet": "เอกสารนี้ระบุการจัดระดับภัยคุกคามของอสุรกาย สิ่งมีชีวิตโบราณ และภัยพิบัติมานาในโลกเอเธลการ์ดและดราโกเนีย โดยแบ่งออกเป็น 7 ระดับมาตรฐาน"
     },
     {
       "id": "Skill_Database.md",
       "category": "Lore",
       "title": "ฐานข้อมูลทักษะและเวทมนตร์ (Skill & Magic Database)",
-      "data_file": "Skill_Database.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Skill_Database.md",
+      "data_file": "Lore/Skill_Database.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/Skill_Database.md",
       "snippet": "เอกสารนี้เป็นฐานข้อมูลหลักรวบรวมและจัดหมวดหมู่ทักษะ วิชา เวทมนตร์ ปาฏิหาริย์ และความสามารถทางชีวภาพทั้งหมดที่ปรากฏและถูกกล่าวถึงในจักรวาล \"Dorea's Princess Journey\" โดยจำแนกออกเป็น 6 หมวดหมู่หลักตามระบบพลังงานและกายวิภาคของเรื่อง"
     },
     {
       "id": "Species_Aeran.md",
       "category": "Lore",
       "title": "เผ่าพันธุ์มนุษย์: ชาวเอร่า (Aera / Aeran Lore & Culture)",
-      "data_file": "Species_Aeran.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Species_Aeran.md",
+      "data_file": "Lore/Species_Aeran.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/Species_Aeran.md",
       "snippet": "ชาวเอร่า (Aera / Aeran) หรือ \"มนุษย์\" ในโลก Atherea เป็นเผ่าพันธุ์ผู้ผลักดันโลกเข้าสู่ยุคอุตสาหกรรมด้วยสติปัญญาและนวัตกรรม พวกเขาไม่มีร่างกายที่ทรงพลังหรือพลังเวทมนตร์มาแต่กำเนิดเหมือนดราโกนอยด์ แต่ทดแทนด้วยมันสมองและการสร้างเครื่องจักรกลไฮบริดผสานการเหนี่ยวนำมานา (Mana-Inductive Tech)"
     },
     {
       "id": "Species_Automata.md",
       "category": "Lore",
       "title": "เผ่าพันธุ์ออโตมาตา: เกียร์บอร์น (Automata / The Gearborn Lore)",
-      "data_file": "Species_Automata.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Species_Automata.md",
+      "data_file": "Lore/Species_Automata.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/Species_Automata.md",
       "snippet": "ออโตมาตา (Automata) หรือ \"เกียร์บอร์น\" (Gearborn) คือสิ่งมีชีวิตจักรกลกึ่งเวทมนตร์ที่มีชีวิตและจิตสำนึกเป็นของตนเอง พวกเขาไม่ได้เกิดจากกระบวนการผลิตอุตสาหกรรมในสายพาน แต่ตื่นรู้ขึ้นมาด้วยปาฏิหาริย์แห่งมานาและเจตจำนงบริสุทธิ์จากจุดเริ่มต้นของประวัติศาสตร์"
     },
     {
       "id": "Species_Beastkin.md",
       "category": "Lore",
       "title": "เผ่าพันธุ์บีสต์คิน (Beastkin / Feral-Kin Biology & Lore)",
-      "data_file": "Species_Beastkin.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Species_Beastkin.md",
+      "data_file": "Lore/Species_Beastkin.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/Species_Beastkin.md",
       "snippet": "บีสต์คิน (Beastkin) หรือ \"มนุษย์กึ่งสัตว์\" คือเผ่าพันธุ์ที่มีความหลากหลายทางสายเลือดมากที่สุดในโลก Atherea พวกเขาผสานลักษณะทางกายภาพและสัญชาตญาณอันทรงพลังของสัตว์ป่าเข้ากับภูมิปัญญาของมนุษย์ มักอาศัยอยู่ในพื้นที่ธรรมชาติ ชายแดน และป่าเขา เช่น หุบเขากรีนวัลเลย์"
     },
     {
       "id": "Species_Dragonoid.md",
       "category": "Lore",
       "title": "เผ่าพันธุ์ดราโกนอยด์ (Dragonoid Biology & Lore)",
-      "data_file": "Species_Dragonoid.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Species_Dragonoid.md",
+      "data_file": "Lore/Species_Dragonoid.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/Species_Dragonoid.md",
       "snippet": "ดราโกนอยด์ (Dragonoid) หรือ \"มนุษย์มังกร\" คือเผ่าพันธุ์กึ่งเทพโบราณที่ยืนอยู่บนจุดสูงสุดของห่วงโซ่อาหารและอารยธรรมในโลก Atherea พวกเขาไม่ใช่สัตว์เลื้อยคลาน แต่เป็นเผ่าพันธุ์ลักษณะคล้ายมนุษย์ที่มีสายเลือดและพลังมังกรอันทรงพลังไหลเวียนอยู่ตั้งแต่แรกเกิด"
     },
     {
       "id": "Species_Sylvan.md",
       "category": "Lore",
       "title": "เผ่าพันธุ์ซิลวาน (Sylvan / Flora-Elves Biology & Lore)",
-      "data_file": "Species_Sylvan.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Species_Sylvan.md",
+      "data_file": "Lore/Species_Sylvan.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/Species_Sylvan.md",
       "snippet": "ชาวซิลวาน (Sylvan / Sylvani) หรือ \"เอลฟ์พฤกษา\" คือเผ่าพันธุ์แห่งผืนป่าโบราณที่มีชีวิตผูกพันกับมานาธรรมชาติและพฤกษศาสตร์อย่างแนบแน่น พวกเขาทำหน้าที่เป็นผู้พิทักษ์ป่าลึกและผู้เชี่ยวชาญด้านยาสมุนไพรเวทมนตร์ในทวีป Atherea"
     },
     {
       "id": "Technology_Evolution.md",
       "category": "Lore",
       "title": "ประวัติศาสตร์เทคโนโลยีและระบบพลังงานผสมผสาน (Technological Evolution & Energy Systems)",
-      "data_file": "Technology_Evolution.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/Technology_Evolution.md",
+      "data_file": "Lore/Technology_Evolution.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/Technology_Evolution.md",
       "snippet": "อารยธรรมของมนุษย์หรือชาวเอร่า (Aera / Aeran) ขับเคลื่อนด้วยวิวัฒนาการทางเทคโนโลยีและระบบพลังงานที่พัฒนาขึ้นมาทีละขั้น แตกต่างจากเผ่าพันธุ์โบราณที่ดำเนินชีวิตด้วยพลังธรรมชาติมาแต่แรกเริ่ม ชาวเอร่าก้าวผ่านการปฏิวัติอุตสาหกรรมในหลากหลายรูปแบบที่คล้ายคลึงกับโลกจริง ก่อนจะค้นพบธรรมชาติของพลังงาน \"มานา\" โ..."
     },
     {
       "id": "World_Setting.md",
       "category": "Lore",
       "title": "ข้อมูลโลกและเทคโนโลยี (World Setting & Magic-Medical System)",
-      "data_file": "World_Setting.md",
-      "url": "https://asnise.github.io/MarkDownNovelReader/data/World_Setting.md",
+      "data_file": "Lore/World_Setting.md",
+      "url": "https://asnise.github.io/MarkDownNovelReader/data/Lore/World_Setting.md",
       "snippet": "จักรวาลของ \"Dorea's Journey\" ตั้งอยู่บนทวีปที่มีการผสมผสานระหว่างเวทมนตร์ เทคโนโลยีอนาล็อกและจักรกลผสานมานา (Analog & Mana-Tech) และศาสตร์ยาสมุนไพรธรรมชาติ"
     },
     {

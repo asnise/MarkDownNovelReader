@@ -225,18 +225,36 @@
       .replace(/'/g, "&#039;");
   }
 
-  // 8. Keyboard Navigation
+  // 8. Keyboard Navigation & Shortcuts
   function handleKeyDown(e) {
-    if (searchModal.style.display !== 'flex') {
-      // Global shortcut Ctrl+K / Cmd+K
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+    if (!searchModal) searchModal = document.getElementById('search-modal');
+    if (!searchModal) return;
+
+    const isModalOpen = searchModal.style.display === 'flex';
+
+    if (!isModalOpen) {
+      // 1. Check Ctrl+K, Cmd+K, or Ctrl+F, Cmd+F
+      if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 'k' || e.key.toLowerCase() === 'f')) {
         e.preventDefault();
+        e.stopPropagation();
         openSearchModal();
+        return;
+      }
+
+      // 2. Check "/" key when user is not typing in an input/textarea
+      const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+      if (e.key === '/' && activeTag !== 'input' && activeTag !== 'textarea') {
+        e.preventDefault();
+        e.stopPropagation();
+        openSearchModal();
+        return;
       }
       return;
     }
 
-    const items = searchResultsList.querySelectorAll('.search-result-item');
+    // Modal is currently open
+    const items = searchResultsList ? searchResultsList.querySelectorAll('.search-result-item') : [];
+
     if (e.key === 'Escape') {
       e.preventDefault();
       closeSearchModal();
